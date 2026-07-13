@@ -9,8 +9,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Guevara-Vásquez, GF (1)" />
-<meta name="author" content="Tejada-Peña, DA (2)" />
 
 <meta name="date" content="2026-07-12" />
 
@@ -1523,9 +1521,11 @@ border-radius: 0px;
 <h1 class="title toc-ignore">Methodologies for the correction of
 <code>Garbage codes</code> in mortality records and their applicability
 in microsimulation models: Protocol for a scoping review</h1>
-<h4 class="author">Guevara-Vásquez, GF (1)</h4>
-<h4 class="author">Tejada-Peña, DA (2)</h4>
-<h4 class="date">2026-07-12</h4>
+<h4 class="author">Guevara-Vásquez, GF</h4>
+<address class="author_afil">
+1<br><h4 class="author">Tejada-Peña, DA</h4>
+<address class="author_afil">
+2<br><h4 class="date">2026-07-12</h4>
 
 </div>
 
@@ -1570,16 +1570,22 @@ proportional redistribution; Computer simulation.</p>
 <h1>1. INTRODUCTION</h1>
 <p>Mortality statistics derived from Civil Registration and Vital
 Statistics (CRVS) systems serve as the bedrock of global epidemiological
-surveillance and public health planning<span class="citation"><sup><a href="#ref-abouzahr2015">1</a></sup></span>. However, their utility is
+surveillance and public health planning<span class="citation"><sup><a href="#ref-abouzahr2005">1</a>–<a href="#ref-abouzahr2015">4</a></sup></span>. However, their utility is
 frequently undermined by inconsistencies in the medical certification of
-causes of death.</p>
+causes of death<span class="citation"><sup><a href="#ref-mathers2005">5</a>–<a href="#ref-johnson2021">9</a></sup></span>.</p>
 <p>A critical challenge is the assignment of deaths to “garbage codes”,
 defined in the Global Burden of Disease (GBD) literature as
 International Classification of Diseases (ICD) codes that represent
 ambiguous, non-specific, or biologically implausible underlying
-causes<span class="citation"><sup><a href="#ref-murray1996">2</a></sup></span>. These include ill-defined
+causes<span class="citation"><sup><a href="#ref-murray1996">10</a>,<a href="#ref-naghavi2020">11</a></sup></span>. These include ill-defined
 symptoms (e.g., R-codes), intermediate conditions (e.g., heart failure,
-septicemia), or unspecified tumor sites<span class="citation"><sup><a href="#ref-naghavi2010">3</a>,<a href="#ref-naghavi2020">4</a></sup></span>.</p>
+septicemia), or unspecified tumor sites<span class="citation"><sup><a href="#ref-naghavi2010">6</a>,<a href="#ref-naghavi2020">11</a>–<a href="#ref-iburg2020">13</a></sup></span>. The WHO classifies these
+ambiguous and biologically implausible diagnoses as ‘ill-defined
+conditions’ or ‘conditions unlikely to cause death’, implementing strict
+coding rules (such as steps SP7 and SP8) that explicitly prohibit their
+selection as the underlying cause of death<span class="citation"><sup><a href="#ref-who2022">14</a></sup></span>. Consequently, this underscores
+the global urgency of applying redistribution methodologies whenever
+original medical certificates exhibit these reporting deficiencies.</p>
 <p>To standardize the assessment of these data quality issues, garbage
 codes are systematically classified into four hierarchical levels based
 on their degree of specificity and their potential to distort public
@@ -1591,47 +1597,54 @@ immediate causes of death to unspecified sites within larger disease
 groupings. By categorizing these unusable codes, researchers can better
 prioritize redistribution efforts, focusing on the most damaging “major”
 garbage codes (Levels 1 and 2) that pose the greatest risk to accurate
-health policy and planning<span class="citation"><sup><a href="#ref-naghavi2020">4</a></sup></span>.</p>
+health policy and planning<span class="citation"><sup><a href="#ref-johnson2021">9</a>,<a href="#ref-naghavi2020">11</a>,<a href="#ref-iburg2020">13</a>,<a href="#ref-gbd2016">15</a></sup></span>.</p>
 <p>The prevalence of “garbage codes” within official mortality databases
 severely obscures population health trends, underestimating the true
-burden of critical pathologies—such as ischemic heart disease and
-specific malignancies<span class="citation"><sup><a href="#ref-hart2020">5</a>,<a href="#ref-miki2018">6</a></sup></span>.
-To mitigate these systematic biases, a diverse array of correction and
-redistribution methodologies has evolved over the last two decades.
-These approaches range from traditional proportional redistribution
-stratified by age and sex to multiple imputation and regression
-modeling. More recently, sophisticated methods have emerged, involving
-record linkage with clinical datasets and advanced machine learning
-algorithms<span class="citation"><sup><a href="#ref-foreman2016">7</a>–<a href="#ref-johnson2021">9</a></sup></span>.</p>
+burden of critical pathologies<span class="citation"><sup><a href="#ref-miki2018">7</a>–<a href="#ref-johnson2021">9</a>,<a href="#ref-iburg2020">13</a></sup></span> —such as ischemic heart
+disease<span class="citation"><sup><a href="#ref-ahern2011">16</a></sup></span> and specific malignancies<span class="citation"><sup><a href="#ref-miki2018">7</a>,<a href="#ref-hart2020">8</a>,<a href="#ref-bigoni2021">17</a>,<a href="#ref-dearaujo2026">18</a></sup></span>. To mitigate these
+systematic biases, a diverse array of correction and redistribution
+methodologies has evolved over the last two decades. These approaches
+range from traditional proportional redistribution stratified by age and
+sex<span class="citation"><sup><a href="#ref-johnson2021">9</a></sup></span> to multiple imputation and
+regression modeling<span class="citation"><sup><a href="#ref-johnson2021">9</a>,<a href="#ref-foreman2016">19</a>–<a href="#ref-ng2020">21</a></sup></span>. More recently, sophisticated
+methods have emerged, involving record linkage with clinical
+datasets<span class="citation"><sup><a href="#ref-bierrenbach2019">22</a>,<a href="#ref-costa2020">23</a></sup></span> and advanced machine learning
+algorithms<span class="citation"><sup><a href="#ref-johnson2021">9</a>,<a href="#ref-foreman2016">19</a>–<a href="#ref-ng2020">21</a>,<a href="#ref-teixeira2020">24</a>,<a href="#ref-desouza2025"><strong>desouza2025?</strong></a></sup></span>.</p>
 <p>Despite the proliferation of “garbage code” redistribution algorithms
-spearheaded by international bodies like the WHO and IHME, the extant
-literature remains fragmented. Current research is predominantly
+spearheaded by international bodies like the WHO and IHME<span class="citation"><sup><a href="#ref-scohy2025">25</a></sup></span>, the
+extant literature remains fragmented. Current research is predominantly
 localized, focusing on specific causes or geographical regions in
-isolation. Consequently, systematic mapping is lacking to consolidate
-the methodological diversity, underlying mathematical assumptions, and
-data structures of these approaches. This review aims to bridge this gap
-by synthesizing the existing evidence and evaluating the technical
-transferability of these methodologies to microsimulation models.</p>
+isolation<span class="citation"><sup><a href="#ref-ng2020">21</a>,<a href="#ref-zhang2025">26</a></sup></span> . Consequently, systematic
+mapping is lacking to consolidate the methodological diversity,
+underlying mathematical assumptions, and data structures of these
+approaches<span class="citation"><sup><a href="#ref-devleesschauwer2022">27</a></sup></span> . This review aims
+to bridge this gap <em>—</em>a need recently highlighted in the
+literature<span class="citation"><sup><a href="#ref-scohy2025">25</a></sup></span> <em>—</em> by synthesizing the
+existing evidence and evaluating the technical transferability of these
+methodologies to microsimulation models<span class="citation"><sup><a href="#ref-chrysanthopoulou2021">28</a></sup></span>.</p>
 <p>This knowledge gap becomes critical when addressing the transition
 from population-level mortality records to stochastic microsimulation
 models. Unlike aggregated demographic models that rely on macroscopic
 trends, microsimulation platforms operate at the individual level. They
 simulate single life trajectories, chronic disease progression, and the
-dynamic impact of public health interventions. To remain predictive,
-these frameworks require parameterization with highly disaggregated
-baseline mortality risks. Consequently, “garbage codes” create a
-fundamental barrier to valid modeling by obscuring the individual-level
-precision necessary for simulation. When input data used to calibrate
-microsimulation models incorporate “garbage codes”, the models
-inevitably propagate and exacerbate systematic biases in
-individual-level projections.</p>
+dynamic impact of public health interventions<span class="citation"><sup><a href="#ref-chrysanthopoulou2021">28</a></sup></span> . To remain
+predictive, these frameworks require parameterization with highly
+disaggregated baseline mortality risks<span class="citation"><sup><a href="#ref-chrysanthopoulou2021">28</a></sup></span> . Consequently,
+“garbage codes” create a fundamental barrier to valid modeling by
+obscuring the individual-level precision necessary for simulation. When
+input data used to calibrate microsimulation models incorporate “garbage
+codes”, the models inevitably propagate and exacerbate systematic biases
+in individual-level projections<span class="citation"><sup><a href="#ref-ng2020">21</a>,<a href="#ref-salerno2025">29</a></sup></span>.</p>
 <p>Currently, no evidence synthesis exists on how to adapt or transfer
-redistribution methodologies—originally designed for aggregated
-mortality data—to generate granular datasets suitable for stochastic
-microsimulation. Consequently, this scoping review will map the current
-state-of-the-art, evaluate the technical feasibility of these approaches
-within simulation environments, and provide a framework for future
-public health mathematical modeling.</p>
+redistribution methodologies<span class="citation"><sup><a href="#ref-ng2020">21</a></sup></span>—originally designed for
+aggregated mortality data—to generate granular datasets suitable for
+stochastic microsimulation. Consequently, this scoping review will map
+the current state-of-the-art<em>—</em>a gap explicitly identified as a
+priority in recent literature<span class="citation"><sup><a href="#ref-scohy2025">25</a></sup></span><em>—</em> evaluate the
+technical feasibility of these approaches within simulation
+environments<span class="citation"><sup><a href="#ref-chrysanthopoulou2021">28</a></sup></span>, and provide a
+framework for future public health mathematical modeling<span class="citation"><sup><a href="#ref-foreman2018">30</a></sup></span>
+.</p>
 <p>This scoping review aims to systematically map and synthesize
 evidence on “garbage code” identification and redistribution
 methodologies in low- and middle-income country mortality registries.
@@ -1710,15 +1723,15 @@ eligible:
 <ul>
 <li><strong>Traditional statistics and mathematical demography:</strong>
 Proportional redistribution (simple or stratified by age and sex),
-fractional algorithms, and indirect demographic adjustment methods<span class="citation"><sup><a href="#ref-naghavi2010">3</a></sup></span>.</li>
+fractional algorithms, and indirect demographic adjustment methods<span class="citation"><sup><a href="#ref-naghavi2010">6</a></sup></span>.</li>
 <li><strong>Advanced statistical modeling:</strong> Multiple imputation
 of missing or non-specific data, spatial or spatiotemporal regression
 modeling, and empirical or hierarchical Bayesian approaches (e.g., CODEm
-or CoDcorrect analytical algorithms)<span class="citation"><sup><a href="#ref-foreman2016">7</a>–<a href="#ref-johnson2021">9</a></sup></span>.</li>
+or CoDcorrect analytical algorithms)<span class="citation"><sup><a href="#ref-johnson2021">9</a>,<a href="#ref-foreman2016">19</a>,<a href="#ref-grigoriev2024">20</a></sup></span>.</li>
 <li><strong>Data integration (record linkage):</strong> Deterministic or
 probabilistic algorithms linking mortality records with complementary
 databases (e.g., hospital discharge records, automated verbal autopsies,
-or epidemiological surveillance systems)<span class="citation"><sup><a href="#ref-bierrenbach2019">10</a>,<a href="#ref-franca2014">11</a></sup></span>.</li>
+or epidemiological surveillance systems)<span class="citation"><sup><a href="#ref-bierrenbach2019">22</a>,<a href="#ref-franca2014">31</a></sup></span>.</li>
 <li><strong>Artificial intelligence and machine learning:</strong>
 Data-driven predictive architectures (e.g., decision trees, gradient
 boosting, random forests, or other data-mining frameworks) applied to
@@ -1924,7 +1937,7 @@ stochastic models.</li>
 </ul></li>
 <li><strong>Mapping and Visualization:</strong> To visualize the
 structure and knowledge gaps of the field, we will generate advanced
-graphics using <code>ggplot2</code>, <code>igraph</code><span class="citation"><sup><a href="#ref-wickham2016">12</a>,<a href="#ref-csardi2006">13</a></sup></span>, and <code>tidyr</code>:
+graphics using <code>ggplot2</code>, <code>igraph</code><span class="citation"><sup><a href="#ref-wickham2016">32</a>,<a href="#ref-csardi2006">33</a></sup></span>, and <code>tidyr</code>:
 <ul>
 <li><strong>Structured Evidence Tables:</strong> Master tables will
 detail the methodological characteristics of each study,
@@ -1976,50 +1989,51 @@ as a potential conflict of interest.</p>
 <div id="references" class="section level1">
 <h1>References</h1>
 <div id="refs" class="references csl-bib-body">
-<div id="ref-abouzahr2015" class="csl-entry">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline"><span class="nocase">AbouZahr C, Savigny D de,
-Mikkelsen L, et al.</span> Civil registration and vital statistics:
-Progress in the data revolution for counting and accountability. Lancet.
-2015;386:1373–85.</div>
+<div id="ref-abouzahr2005" class="csl-entry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">AbouZahr C, Boerma T. Health information
+systems: The foundations of public health. Bulletin of the World Health
+Organization. 2005;83:578–83.</div>
 </div>
-<div id="ref-murray1996" class="csl-entry">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">Murray C, Lopez A. The global burden of
-disease: A comprehensive assessment of mortality and disability from
-diseases, injuries and risk factors in 1990 and projected to 2020.
-Boston: Harvard School of Public Health; 1996.</div>
+<div id="ref-setel2007" class="csl-entry">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline"><span class="nocase">Setel P, Macfarlane S,
+Szreter S, Mikkelsen L, Jha P, Stout S, et al.</span> A scandal of
+invisibility: Making everyone count by counting everyone. Lancet.
+2007;370:1569–77.</div>
+</div>
+<div id="ref-who2013crvs" class="csl-entry">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">World Health Organization, University of
+Queensland, Health Metrics Network. Strengthening civil registration and
+vital statistics for births, deaths and causes of death: Resource kit.
+Geneva: World Health Organization; 2013.</div>
+</div>
+<div id="ref-abouzahr2015" class="csl-entry">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline"><span class="nocase">AbouZahr C, Savigny D de,
+Mikkelsen L, Setel P, Lozano R, Nichols E, et al.</span> Civil
+registration and vital statistics: Progress in the data revolution for
+counting and accountability. Lancet. 2015;386:1373–85.</div>
+</div>
+<div id="ref-mathers2005" class="csl-entry">
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">Mathers CD, Fat DM, Inoue M, Rao C, Lopez AD.
+Counting the dead and what they died from: An assessment of the global
+status of cause of death data. Bulletin of the World Health
+Organization. 2005;83:171–7.</div>
 </div>
 <div id="ref-naghavi2010" class="csl-entry">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline"><span class="nocase">Naghavi M, Makela S,
+<div class="csl-left-margin">6. </div><div class="csl-right-inline"><span class="nocase">Naghavi M, Makela S,
 Foreman K, et al.</span> Algorithms for enhancing public health utility
 of national causes-of-death data. Popul Health Metr. 2010;8(1):9.</div>
 </div>
-<div id="ref-naghavi2020" class="csl-entry">
-<div class="csl-left-margin">4. </div><div class="csl-right-inline"><span class="nocase">Naghavi M, Richards N,
-Chowdhury H, et al.</span> Improving the quality of cause of death data
-for public health policy: Are all <span>“garbage”</span> codes equally
-problematic? BMC Med. 2020;18(1):55.</div>
-</div>
-<div id="ref-hart2020" class="csl-entry">
-<div class="csl-left-margin">5. </div><div class="csl-right-inline"><span class="nocase">Hart J et al.</span>
-Improving medical certification of cause of death: Effective strategies
-and approaches based on experiences from the data for health initiative.
-BMC Public Health. 2020;20(1):1083.</div>
-</div>
 <div id="ref-miki2018" class="csl-entry">
-<div class="csl-left-margin">6. </div><div class="csl-right-inline"><span class="nocase">Miki J et al.</span>
+<div class="csl-left-margin">7. </div><div class="csl-right-inline"><span class="nocase">Miki J et al.</span>
 Saving lives through certifying deaths: Assessing the impact of two
 interventions to improve cause of death data in peru. BMC Public Health.
 2018;18(1):1329.</div>
 </div>
-<div id="ref-foreman2016" class="csl-entry">
-<div class="csl-left-margin">7. </div><div class="csl-right-inline">Foreman K, Naghavi M, Ezzati M. Improving the
-usefulness of US mortality data: New methods for reclassification of
-underlying cause of death. Popul Health Metr. 2016;14:14.</div>
-</div>
-<div id="ref-grigoriev2024" class="csl-entry">
-<div class="csl-left-margin">8. </div><div class="csl-right-inline">Grigoriev P, Bonnet F, Perdrix E. Method for
-redistributing ill-defined causes of death. Popul Health Metr.
-2024;22(1):1–14.</div>
+<div id="ref-hart2020" class="csl-entry">
+<div class="csl-left-margin">8. </div><div class="csl-right-inline"><span class="nocase">Hart J et al.</span>
+Improving medical certification of cause of death: Effective strategies
+and approaches based on experiences from the data for health initiative.
+BMC Public Health. 2020;20(1):1083.</div>
 </div>
 <div id="ref-johnson2021" class="csl-entry">
 <div class="csl-left-margin">9. </div><div class="csl-right-inline"><span class="nocase">Johnson S et al.</span>
@@ -2027,24 +2041,147 @@ Public health utility of cause of death data: Applying empirical
 algorithms to improve data quality. BMC Med Inform Decis Mak.
 2021;21(1):175.</div>
 </div>
+<div id="ref-murray1996" class="csl-entry">
+<div class="csl-left-margin">10. </div><div class="csl-right-inline">Murray C, Lopez A. The global burden of
+disease: A comprehensive assessment of mortality and disability from
+diseases, injuries and risk factors in 1990 and projected to 2020.
+Boston: Harvard School of Public Health; 1996.</div>
+</div>
+<div id="ref-naghavi2020" class="csl-entry">
+<div class="csl-left-margin">11. </div><div class="csl-right-inline"><span class="nocase">Naghavi M, Richards N,
+Chowdhury H, et al.</span> Improving the quality of cause of death data
+for public health policy: Are all <span>“garbage”</span> codes equally
+problematic? BMC Med. 2020;18(1):55.</div>
+</div>
+<div id="ref-gbd2017" class="csl-entry">
+<div class="csl-left-margin">12. </div><div class="csl-right-inline">GBD
+2017 Causes of Death Collaborators. Global, regional, and national
+age-sex-specific mortality for 282 causes of death in 195 countries and
+territories, 1980–2017: A systematic analysis for the global burden of
+disease study 2017. The Lancet. 2018;392(10159):1736–88. doi:<a href="https://doi.org/10.1016/S0140-6736(18)32203-7">10.1016/S0140-6736(18)32203-7</a></div>
+</div>
+<div id="ref-iburg2020" class="csl-entry">
+<div class="csl-left-margin">13. </div><div class="csl-right-inline">Iburg KM, Mikkelsen L, Adair T, Lopez AD. Are
+cause of death data fit for purpose? Evidence from 20 countries at
+different levels of socio-economic development. PLoS ONE.
+2020;15(8):e0237539. doi:<a href="https://doi.org/10.1371/journal.pone.0237539">10.1371/journal.pone.0237539</a></div>
+</div>
+<div id="ref-who2022" class="csl-entry">
+<div class="csl-left-margin">14. </div><div class="csl-right-inline">World Health Organization. International
+classification of diseases for mortality and morbidity statistics
+eleventh revision: Reference guide [Internet]. Geneva: World Health
+Organization; 2022. Available from: <a href="https://icd.who.int/browse11">https://icd.who.int/browse11</a></div>
+</div>
+<div id="ref-gbd2016" class="csl-entry">
+<div class="csl-left-margin">15. </div><div class="csl-right-inline">GBD
+2016 Causes of Death Collaborators. Global, regional, and national
+age-sex specific mortality for 264 causes of death, 1980–2016: A
+systematic analysis for the global burden of disease study 2016. The
+Lancet. 2017;390(10100):1151–210.</div>
+</div>
+<div id="ref-ahern2011" class="csl-entry">
+<div class="csl-left-margin">16. </div><div class="csl-right-inline">Ahern RM, Lozano R, Naghavi M, Foreman K,
+Gakidou E, Murray CJ. Improving the public health utility of global
+cardiovascular mortality data: The rise of ischemic heart disease.
+Population Health Metrics. 2011 Dec;9(1):8. doi:<a href="https://doi.org/10.1186/1478-7954-9-8">10.1186/1478-7954-9-8</a></div>
+</div>
+<div id="ref-bigoni2021" class="csl-entry">
+<div class="csl-left-margin">17. </div><div class="csl-right-inline">Bigoni A, Cunha AR da, Antunes JLF.
+Redistributing deaths by ill-defined and unspecified causes on cancer
+mortality in brazil. Rev Saude Publica. 2021 Dec;55:106–6. doi:<a href="https://doi.org/10.11606/s1518-8787.2021055003319">10.11606/s1518-8787.2021055003319</a></div>
+</div>
+<div id="ref-dearaujo2026" class="csl-entry">
+<div class="csl-left-margin">18. </div><div class="csl-right-inline">Araújo Santos Camargo JD de, Camargo SF, Souza
+ATB de, Oliveira Freitas AKMS de, Ferreira CA, Sarmento ACA, et al.
+Regional disparities in breast cancer mortality in brazil: A spatial
+analysis using uncorrected and adjusted data, 2000–2023. Scientific
+Reports. 2026;16:6770. doi:<a href="https://doi.org/10.1038/s41598-026-37844-w">10.1038/s41598-026-37844-w</a></div>
+</div>
+<div id="ref-foreman2016" class="csl-entry">
+<div class="csl-left-margin">19. </div><div class="csl-right-inline">Foreman K, Naghavi M, Ezzati M. Improving the
+usefulness of US mortality data: New methods for reclassification of
+underlying cause of death. Popul Health Metr. 2016;14:14.</div>
+</div>
+<div id="ref-grigoriev2024" class="csl-entry">
+<div class="csl-left-margin">20. </div><div class="csl-right-inline">Grigoriev P, Bonnet F, Perdrix E. Method for
+redistributing ill-defined causes of death. Popul Health Metr.
+2024;22(1):1–14.</div>
+</div>
+<div id="ref-ng2020" class="csl-entry">
+<div class="csl-left-margin">21. </div><div class="csl-right-inline">Ng
+TC, Lo WC, Ku CC, Lu TH, Lin HH. Improving the use of mortality data in
+public health: A comparison of garbage code redistribution models.
+American Journal of Public Health. 2020;110(2):222–9.</div>
+</div>
 <div id="ref-bierrenbach2019" class="csl-entry">
-<div class="csl-left-margin">10. </div><div class="csl-right-inline"><span class="nocase">Bierrenbach A et
+<div class="csl-left-margin">22. </div><div class="csl-right-inline"><span class="nocase">Bierrenbach A et
 al.</span> Redistribution of heart failure deaths using two methods:
 Linkage of hospital records with death certificates. Rev Bras Epidemiol.
-2019;22:e190006.</div>
+2019;22(Suppl 3):e190006.</div>
+</div>
+<div id="ref-costa2020" class="csl-entry">
+<div class="csl-left-margin">23. </div><div class="csl-right-inline">Costa LFL, Montenegro M de MS, Rabello Neto D
+de L, Oliveira ATR de, Trindade JE de O, Adair T, et al. Estimating
+completeness of national and subnational death reporting in brazil:
+Application of record linkage methods. Population Health Metrics.
+2020;18(1):22.</div>
+</div>
+<div id="ref-teixeira2020" class="csl-entry">
+<div class="csl-left-margin">24. </div><div class="csl-right-inline">Teixeira B, Toporcov T, Chiaravalloti-Neto F,
+Chiavegatto Filho A. Spatial clusters of cancer mortality in brazil: A
+machine learning modelling approach. In: Anexo do curriculo lattes.
+2020.</div>
+</div>
+<div id="ref-scohy2025" class="csl-entry">
+<div class="csl-left-margin">25. </div><div class="csl-right-inline">Scohy A, Lesnik T, Devleesschauwer B, Haneef R.
+The importance of redistribution process of ill-defined deaths in
+national mortality database. Archives of Public Health. 2025 Jul
+11;83(1):185. doi:<a href="https://doi.org/10.1186/s13690-025-01652-x">10.1186/s13690-025-01652-x</a></div>
+</div>
+<div id="ref-zhang2025" class="csl-entry">
+<div class="csl-left-margin">26. </div><div class="csl-right-inline">Zhang X, Yang W, Wang J, Ai L, Chen M, Wang C,
+et al. Reallocating diabetes-related garbage codes to improve mortality
+estimates: A case study in weifang, china. Population Health Metrics.
+2025;23(1):38. doi:<a href="https://doi.org/10.1186/s12963-025-00399-5">10.1186/s12963-025-00399-5</a></div>
+</div>
+<div id="ref-devleesschauwer2022" class="csl-entry">
+<div class="csl-left-margin">27. </div><div class="csl-right-inline">Devleesschauwer B. Skills building seminar:
+Redistribution of ill-defined deaths: A methodological conundrum. In:
+European journal of public health. Oxford University Press; 2022. p.
+ckac129–618. doi:<a href="https://doi.org/10.1093/eurpub/ckac129.618">10.1093/eurpub/ckac129.618</a></div>
+</div>
+<div id="ref-chrysanthopoulou2021" class="csl-entry">
+<div class="csl-left-margin">28. </div><div class="csl-right-inline">Chrysanthopoulou SA, Rutter CM, Gatsonis CA.
+Bayesian versus empirical calibration of microsimulation models: A
+comparative analysis. Medical Decision Making. 2021 Aug;41(6):714–26.
+doi:<a href="https://doi.org/10.1177/0272989X211009161">10.1177/0272989X211009161</a></div>
+</div>
+<div id="ref-salerno2025" class="csl-entry">
+<div class="csl-left-margin">29. </div><div class="csl-right-inline">Salerno P, Cotton A, Chen Z, Nascimento B,
+Petermann-Rocha F, Deo S. Forecasting ischemic heart disease, stroke,
+and peripheral artery disease mortality in brazil through 2030. Arquivos
+Brasileiros de Cardiologia. 2025;122(1):e2024012.</div>
+</div>
+<div id="ref-foreman2018" class="csl-entry">
+<div class="csl-left-margin">30. </div><div class="csl-right-inline">Foreman KJ, Marquez N, Dolgert A, Fukutaki K,
+Fullman N, McGaughey M, et al. Forecasting life expectancy, years of
+life lost, and all-cause and cause-specific mortality for 250 causes of
+death: Reference and alternative scenarios for 2016<span></span>40 for
+195 countries and territories. The Lancet. 2018;392(10159):2052–90.
+doi:<a href="https://doi.org/10.1016/S0140-6736(18)31694-5">10.1016/S0140-6736(18)31694-5</a></div>
 </div>
 <div id="ref-franca2014" class="csl-entry">
-<div class="csl-left-margin">11. </div><div class="csl-right-inline"><span class="nocase">França E et al.</span>
+<div class="csl-left-margin">31. </div><div class="csl-right-inline"><span class="nocase">França E et al.</span>
 Ill-defined causes of death in brazil: A redistribution method based on
 the investigation of such causes. Rev Sa<span class="nocase">ú</span>de
 P<span class="nocase">ú</span>blica. 2014;48(4):671–81.</div>
 </div>
 <div id="ref-wickham2016" class="csl-entry">
-<div class="csl-left-margin">12. </div><div class="csl-right-inline">Wickham H. ggplot2: Elegant graphics for data
+<div class="csl-left-margin">32. </div><div class="csl-right-inline">Wickham H. ggplot2: Elegant graphics for data
 analysis. New York: Springer-Verlag; 2016.</div>
 </div>
 <div id="ref-csardi2006" class="csl-entry">
-<div class="csl-left-margin">13. </div><div class="csl-right-inline">Csardi G, Nepusz T. The igraph software package
+<div class="csl-left-margin">33. </div><div class="csl-right-inline">Csardi G, Nepusz T. The igraph software package
 for complex network research. InterJournal, Complex Systems.
 2006;1695:1–9.</div>
 </div>

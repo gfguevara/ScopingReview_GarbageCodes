@@ -1,11 +1,15 @@
 ---
-title: "Methodologies for the correction of `Garbage codes` in mortality records and their applicability in microsimulation models: Protocol for a scoping review"
+title: "Methodologies for the correction of Garbage codes in mortality records and their applicability in microsimulation models: Protocol for a scoping review"
 author: 
-  - Guevara-Vásquez, GF (1)
-  - Tejada-Peña, DA (2)
-institute: 
-  - (1) Universidad de Padova, Italia.
-  - (2) Instituto Nacional de Salud, El Salvador.
+  - name: Guevara-Vásquez, GF
+    affiliation: 1 
+  - name: Tejada-Peña, DA
+    affiliation: 2 
+affiliation:
+  - id: 1
+    institution: Padova University, Italia
+  - id: 2
+    institution: Instituto Nacional de Salud, El Salvador
 date: "`r Sys.Date()`"
 output:
   html_document:
@@ -14,7 +18,7 @@ output:
     theme: flatly
 bibliography: referencias.bib
 csl: https://raw.githubusercontent.com/citation-style-language/styles/master/nlm-citation-sequence-superscript.csl
-link-citations: yes
+link-citations: true
 ---
 
 ```{r setup, include=FALSE}
@@ -43,19 +47,19 @@ knitr::opts_chunk$set(
 
 # 1. INTRODUCTION
 
-Mortality statistics derived from Civil Registration and Vital Statistics (CRVS) systems serve as the bedrock of global epidemiological surveillance and public health planning [@abouzahr2015]. However, their utility is frequently undermined by inconsistencies in the medical certification of causes of death.
+Mortality statistics derived from Civil Registration and Vital Statistics (CRVS) systems serve as the bedrock of global epidemiological surveillance and public health planning [@abouzahr2005; @setel2007; @who2013crvs; @abouzahr2015]. However, their utility is frequently undermined by inconsistencies in the medical certification of causes of death [@mathers2005; @naghavi2010; @miki2018; @hart2020; @johnson2021].
 
-A critical challenge is the assignment of deaths to "garbage codes", defined in the Global Burden of Disease (GBD) literature as International Classification of Diseases (ICD) codes that represent ambiguous, non-specific, or biologically implausible underlying causes [@murray1996]. These include ill-defined symptoms (e.g., R-codes), intermediate conditions (e.g., heart failure, septicemia), or unspecified tumor sites [@naghavi2010; @naghavi2020].
+A critical challenge is the assignment of deaths to "garbage codes", defined in the Global Burden of Disease (GBD) literature as International Classification of Diseases (ICD) codes that represent ambiguous, non-specific, or biologically implausible underlying causes [@murray1996; @naghavi2020]. These include ill-defined symptoms (e.g., R-codes), intermediate conditions (e.g., heart failure, septicemia), or unspecified tumor sites [@naghavi2010; @gbd2017; @naghavi2020; @iburg2020]. The WHO classifies these ambiguous and biologically implausible diagnoses as 'ill-defined conditions' or 'conditions unlikely to cause death', implementing strict coding rules (such as steps SP7 and SP8) that explicitly prohibit their selection as the underlying cause of death [@who2022]. Consequently, this underscores the global urgency of applying redistribution methodologies whenever original medical certificates exhibit these reporting deficiencies.
 
-To standardize the assessment of these data quality issues, garbage codes are systematically classified into four hierarchical levels based on their degree of specificity and their potential to distort public health inferences. Level 1 codes are the least specific, encompassing broad categories that can hinder identification across major disease groups, while Levels 2 through 4 represent increasing, yet still insufficient, degrees of specificity—ranging from intermediate or immediate causes of death to unspecified sites within larger disease groupings. By categorizing these unusable codes, researchers can better prioritize redistribution efforts, focusing on the most damaging "major" garbage codes (Levels 1 and 2) that pose the greatest risk to accurate health policy and planning [@naghavi2020].
+To standardize the assessment of these data quality issues, garbage codes are systematically classified into four hierarchical levels based on their degree of specificity and their potential to distort public health inferences. Level 1 codes are the least specific, encompassing broad categories that can hinder identification across major disease groups, while Levels 2 through 4 represent increasing, yet still insufficient, degrees of specificity—ranging from intermediate or immediate causes of death to unspecified sites within larger disease groupings. By categorizing these unusable codes, researchers can better prioritize redistribution efforts, focusing on the most damaging "major" garbage codes (Levels 1 and 2) that pose the greatest risk to accurate health policy and planning [@gbd2016; @iburg2020; @naghavi2020; @johnson2021].
 
-The prevalence of "garbage codes" within official mortality databases severely obscures population health trends, underestimating the true burden of critical pathologies—such as ischemic heart disease and specific malignancies [@hart2020; @miki2018]. To mitigate these systematic biases, a diverse array of correction and redistribution methodologies has evolved over the last two decades. These approaches range from traditional proportional redistribution stratified by age and sex to multiple imputation and regression modeling. More recently, sophisticated methods have emerged, involving record linkage with clinical datasets and advanced machine learning algorithms [@foreman2016; @grigoriev2024; @johnson2021].
+The prevalence of "garbage codes" within official mortality databases severely obscures population health trends, underestimating the true burden of critical pathologies [@miki2018; @hart2020; @iburg2020; @johnson2021] —such as ischemic heart disease [@ahern2011] and specific malignancies [@bigoni2021; @dearaujo2026; @hart2020; @miki2018]. To mitigate these systematic biases, a diverse array of correction and redistribution methodologies has evolved over the last two decades. These approaches range from traditional proportional redistribution stratified by age and sex [@johnson2021] to multiple imputation and regression modeling [@foreman2016; @johnson2021; @grigoriev2024; @ng2020]. More recently, sophisticated methods have emerged, involving record linkage with clinical datasets [@bierrenbach2019; @costa2020] and advanced machine learning algorithms [@ng2020; @teixeira2020; @desouza2025; @foreman2016; @grigoriev2024; @johnson2021].
 
-Despite the proliferation of "garbage code" redistribution algorithms spearheaded by international bodies like the WHO and IHME, the extant literature remains fragmented. Current research is predominantly localized, focusing on specific causes or geographical regions in isolation. Consequently, systematic mapping is lacking to consolidate the methodological diversity, underlying mathematical assumptions, and data structures of these approaches. This review aims to bridge this gap by synthesizing the existing evidence and evaluating the technical transferability of these methodologies to microsimulation models.
+Despite the proliferation of "garbage code" redistribution algorithms spearheaded by international bodies like the WHO and IHME [@scohy2025], the extant literature remains fragmented. Current research is predominantly localized, focusing on specific causes or geographical regions in isolation [@ng2020; @zhang2025] . Consequently, systematic mapping is lacking to consolidate the methodological diversity, underlying mathematical assumptions, and data structures of these approaches [@devleesschauwer2022] . This review aims to bridge this gap *—*a need recently highlighted in the literature[@scohy2025] *—* by synthesizing the existing evidence and evaluating the technical transferability of these methodologies to microsimulation models [@chrysanthopoulou2021].
 
-This knowledge gap becomes critical when addressing the transition from population-level mortality records to stochastic microsimulation models. Unlike aggregated demographic models that rely on macroscopic trends, microsimulation platforms operate at the individual level. They simulate single life trajectories, chronic disease progression, and the dynamic impact of public health interventions. To remain predictive, these frameworks require parameterization with highly disaggregated baseline mortality risks. Consequently, "garbage codes" create a fundamental barrier to valid modeling by obscuring the individual-level precision necessary for simulation. When input data used to calibrate microsimulation models incorporate "garbage codes", the models inevitably propagate and exacerbate systematic biases in individual-level projections.
+This knowledge gap becomes critical when addressing the transition from population-level mortality records to stochastic microsimulation models. Unlike aggregated demographic models that rely on macroscopic trends, microsimulation platforms operate at the individual level. They simulate single life trajectories, chronic disease progression, and the dynamic impact of public health interventions [@chrysanthopoulou2021] . To remain predictive, these frameworks require parameterization with highly disaggregated baseline mortality risks [@chrysanthopoulou2021] . Consequently, "garbage codes" create a fundamental barrier to valid modeling by obscuring the individual-level precision necessary for simulation. When input data used to calibrate microsimulation models incorporate "garbage codes", the models inevitably propagate and exacerbate systematic biases in individual-level projections [@ng2020; @salerno2025].
 
-Currently, no evidence synthesis exists on how to adapt or transfer redistribution methodologies—originally designed for aggregated mortality data—to generate granular datasets suitable for stochastic microsimulation. Consequently, this scoping review will map the current state-of-the-art, evaluate the technical feasibility of these approaches within simulation environments, and provide a framework for future public health mathematical modeling.
+Currently, no evidence synthesis exists on how to adapt or transfer redistribution methodologies [@ng2020]—originally designed for aggregated mortality data—to generate granular datasets suitable for stochastic microsimulation. Consequently, this scoping review will map the current state-of-the-art*—*a gap explicitly identified as a priority in recent literature[@scohy2025]*—* evaluate the technical feasibility of these approaches within simulation environments [@chrysanthopoulou2021], and provide a framework for future public health mathematical modeling [@foreman2018] .
 
 This scoping review aims to systematically map and synthesize evidence on "garbage code" identification and redistribution methodologies in low- and middle-income country mortality registries. Concurrently, it will evaluate their technical characteristics and applicability for calibrating and parameterizing health microsimulation models.
 
@@ -185,7 +189,7 @@ The authors declare no competing interests. This scoping review was conducted fo
 **Planned Limits:** \* **Date restrictions:** from 1996 to present to capture historical development of algorithms like GBD. \* **Language restrictions:** None at search level (any required filters based on reviewer capacities will be applied during the programmatic screening stage). \* **Document types:** All source types (including technical notes, methodology papers, and electronic articles).
 
 | Line | Search Query (Terms, Truncations, and Syntax) | Conceptual Block / Target |
-|:---|:---|:---|
+|:-----------------------|:-----------------------|:-----------------------|
 | #1 | exp Mortality/ or exp Cause of Death/ | PCC: Population / Focus (Core mortality registry filters) |
 | #2 | (mortality data\* or death certificate\* or vital statistic\* or vital registration or CRVS).tw,kf,ot. | Keywords for vital statistics and national death registry systems |
 | #3 | 1 or 2 | Result: Core Mortality Data |
@@ -205,7 +209,7 @@ The authors declare no competing interests. This scoping review was conducted fo
 ## Appendix II: Data extraction instrument
 
 | Block | Variable | Description / Purpose | Suggested Format / Values |
-|:---|:---|:---|:---|
+|:-----------------|:-----------------|:-----------------|:-----------------|
 | **I. Identification & Metadata** | Study ID | Unique identifier assigned by R workflow | Numeric (e.g., 001) |
 |  | Bibliographic Data | Author, year, title, and journal/institution | Text |
 |  | Evidence Type | Original article, technical report, or method book | Dropdown |
