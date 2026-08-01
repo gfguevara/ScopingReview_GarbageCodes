@@ -1,23 +1,20 @@
 ---
 title: "Methodologies for the correction of Garbage codes in mortality records and their applicability in microsimulation models: Protocol for a scoping review"
-author: 
-  - name: Guevara-Vásquez, GF
-    affiliation: 1 
-  - name: Tejada-Peña, DA
-    affiliation: 2 
-affiliation:
-  - id: 1
-    institution: Padova University, Italia
-  - id: 2
-    institution: Instituto Nacional de Salud, El Salvador
-date: "`r Sys.Date()`"
+author: "Guevara-Vásquez, Giovanni^1^, Salazar-Colocho, Pablo^2^, Tejada-Peña, David^3^, García-Sanchez, Hazel^4^, Gavidia-Leiva, César^5^, Melendez-Gálvez, Mirna^6^"
 output:
   html_document:
-    toc: true
-    toc_float: true
-    theme: flatly
+    toc: false
+    df_print: paged
+  pdf_document:
+    latex_engine: xelatex
+    toc: false
+    number_sections: true
+  word_document:
+    reference_docx: template.docx
+    toc: false
+    number_sections: true
 bibliography: referencias.bib
-csl: https://raw.githubusercontent.com/citation-style-language/styles/master/nlm-citation-sequence-superscript.csl
+csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/nlm-citation-sequence-superscript.csl"
 link-citations: true
 ---
 
@@ -33,35 +30,27 @@ knitr::opts_chunk$set(
 )
 ```
 
+^1^PhD candidate at Program in Translation Specialistic Medicine “G.B. Morgagni”, Curriculum “Biostatistics and Clinic Epidemiology” – University of Padua. Italy; ^2^Dr. José Matías Delgado's University, El Salvador; ^3,4,5,6^National Health Institute, El Salvador. El Salvador.
+
 # Abstract
 
-**Objective:** To systematically map and synthesize the scientific evidence on the quantitative methodologies used for the identification, cleaning and redistribution of junk codes in population-based mortality registries in low- and middle-income countries (LMICs), evaluating their technical applicability for the parameterization of microsimulation models in health.
+**Objective:** To systematically map and synthesize the scientific evidence on the quantitative methodologies used for the identification, cleaning and redistribution of "garbage codes" in population-based mortality registries in low- and middle-income countries (LMICs), evaluating their technical applicability for the parameterization of microsimulation models in health.
 
 **Inclusion criteria:** This review will consider studies utilizing population-based mortality records or vital statistics from low- and middle-income countries (Population). Eligible literature must describe or apply traditional statistical methods, multiple imputation, Bayesian models, record linkage, or machine learning algorithms to correct ill-defined causes of death and "garbage codes" (Concept). The context includes health information systems characterized by scarce or heterogeneous data, specifically where the feasibility of disaggregating results to the individual level to parameterize stochastic microsimulation models is analyzed (Context).
 
-**Methods:** This scoping review will follow the JBI methodology and the PRISMA Extension for Scoping Reviews (PRISMA-ScR). Comprehensive searches will be performed across PubMed, Scopus, Web of Science, LILACS, and SciELO, supplemented by grey literature from the WHO, PAHO, and IHME. To ensure reproducibility, the workflow will be executed within the R statistical environment. We will utilize `litsearchr` for search syntax optimization, `synthesisr` for deduplication, and `revtools` for blinded screening supported by latent Dirichlet allocation topic clustering. Discrepancies will be resolved by discussion or a third reviewer. Following paired data extraction, findings will be synthesized narratively and visualized using `ggplot2` matrix heatmaps and `igraph` flow networks.
+**Methods:** This scoping review will follow the JBI methodology and the PRISMA Extension for Scoping Reviews (PRISMA-ScR). Comprehensive searches will be performed across PubMed, Scopus, Web of Science, LILACS, and SciELO, supplemented by grey literature from the WHO, PAHO, and IHME. To ensure reproducibility, the workflow will be executed within the R statistical environment. We will utilize litsearchr for search syntax optimization, synthesisr for deduplication, and revtools for blinded screening supported by latent Dirichlet allocation topic clustering. Discrepancies will be resolved by discussion or a third reviewer. Following paired data extraction, findings will be synthesized narratively and visualized using ggplot2 matrix heatmaps and igraph flow networks.
 
-**Keywords:** health information systems; causes of death; vital statistics; data quality; machine learning algorithms; proportional redistribution; Computer simulation.
+**Keywords:** health information systems; causes of death; vital statistics; data quality; machine learning algorithms; proportional redistribution; computer simulation.
 
 ------------------------------------------------------------------------
 
 # 1. INTRODUCTION
 
-Mortality statistics derived from Civil Registration and Vital Statistics (CRVS) systems serve as the bedrock of global epidemiological surveillance and public health planning [@abouzahr2005; @setel2007; @who2013crvs; @abouzahr2015]. However, their utility is frequently undermined by inconsistencies in the medical certification of causes of death [@mathers2005; @naghavi2010; @miki2018; @hart2020; @johnson2021].
+Mortality statistics derived from Civil Registration and Vital Statistics systems serve as the bedrock of global epidemiological surveillance and public health planning [@setel2007; @mathers2005]. However, progress remains sluggish, and the utility of these databases is frequently undermined by medical certification errors [@abouzahr2015; @iburg2020]. The primary challenge is the assignment of deaths to "garbage codes", defined as International Classification of Diseases codes that represent ambiguous, non-specific, or biologically implausible underlying causes [@murray1996; @naghavi2020; @who2022]. Because raw mortality data frequently lack diagnostic precision, the application of indirect statistical correction remains a crucial public health priority, particularly given the escalating toll of non-communicable diseases and cancers in data-scarce regions [@ahern2011; @salerno2025; @bigoni2021; @cunha2022]. Furthermore, because clinical interventions and medical training alone cannot fully eliminate these diagnostic errors at the source, post-hoc redistribution is absolutely necessary [@hart2020; @miki2018].
 
-A critical challenge is the assignment of deaths to "garbage codes", defined in the Global Burden of Disease (GBD) literature as International Classification of Diseases (ICD) codes that represent ambiguous, non-specific, or biologically implausible underlying causes [@murray1996; @naghavi2020]. These include ill-defined symptoms (e.g., R-codes), intermediate conditions (e.g., heart failure, septicemia), or unspecified tumor sites [@naghavi2010; @gbd2017; @naghavi2020; @iburg2020]. The WHO classifies these ambiguous and biologically implausible diagnoses as 'ill-defined conditions' or 'conditions unlikely to cause death', implementing strict coding rules (such as steps SP7 and SP8) that explicitly prohibit their selection as the underlying cause of death [@who2022]. Consequently, this underscores the global urgency of applying redistribution methodologies whenever original medical certificates exhibit these reporting deficiencies.
+To mitigate these systematic biases, a diverse array of correction methodologies has evolved over the past two decades [@naghavi2010; @gbd2016; @gbd2017; @murray2008; @foreman2016]. Modern redistribution strategies are typically classified into four distinct mathematical approaches: multiple cause analysis, negative correlation, impairment reallocation, and proportional redistribution [@johnson2021]. Beyond these foundational methods, researchers have increasingly utilized individual-level multiple cause of death data to capture hidden etiologies [@franca2014; @franca2019a; @franca2019b]. This led to the development of advanced computational techniques, including data linkage algorithms and coarsened exact matching [@stevens2010; @bierrenbach2019; @fihel2021]. Recent innovations also feature subnational regression models [@grigoriev2024; @giraldo2017; @masquelier2019], four-step probabilistic algorithms [@scohy2025], the application of pathophysiological redistribution packages [@kyu2021], and the integration of international rules with exact matching [@zhang2025]. Moreover, cutting edge spatial and machine learning approaches have emerged, such as using spatial scan statistics and Local Moran's I autocorrelation to adjust for spurious geographical clusters [@teixeira2020; @dearaujo2026], and deploying random forest algorithms or decision trees to map spatial inconsistencies and hierarchical clinical interactions [@zimeomorais2023; @desouza2025].
 
-To standardize the assessment of these data quality issues, garbage codes are systematically classified into four hierarchical levels based on their degree of specificity and their potential to distort public health inferences. Level 1 codes are the least specific, encompassing broad categories that can hinder identification across major disease groups, while Levels 2 through 4 represent increasing, yet still insufficient, degrees of specificity—ranging from intermediate or immediate causes of death to unspecified sites within larger disease groupings. By categorizing these unusable codes, researchers can better prioritize redistribution efforts, focusing on the most damaging "major" garbage codes (Levels 1 and 2) that pose the greatest risk to accurate health policy and planning [@gbd2016; @iburg2020; @naghavi2020; @johnson2021].
-
-The prevalence of "garbage codes" within official mortality databases severely obscures population health trends, underestimating the true burden of critical pathologies [@miki2018; @hart2020; @iburg2020; @johnson2021] —such as ischemic heart disease [@ahern2011] and specific malignancies [@bigoni2021; @dearaujo2026; @hart2020; @miki2018]. To mitigate these systematic biases, a diverse array of correction and redistribution methodologies has evolved over the last two decades. These approaches range from traditional proportional redistribution stratified by age and sex [@johnson2021] to multiple imputation and regression modeling [@foreman2016; @johnson2021; @grigoriev2024; @ng2020]. More recently, sophisticated methods have emerged, involving record linkage with clinical datasets [@bierrenbach2019; @costa2020] and advanced machine learning algorithms [@ng2020; @teixeira2020; @desouza2025; @foreman2016; @grigoriev2024; @johnson2021].
-
-Despite the proliferation of "garbage code" redistribution algorithms spearheaded by international bodies like the WHO and IHME [@scohy2025], the extant literature remains fragmented. Current research is predominantly localized, focusing on specific causes or geographical regions in isolation [@ng2020; @zhang2025] . Consequently, systematic mapping is lacking to consolidate the methodological diversity, underlying mathematical assumptions, and data structures of these approaches [@devleesschauwer2022] . This review aims to bridge this gap *—*a need recently highlighted in the literature[@scohy2025] *—* by synthesizing the existing evidence and evaluating the technical transferability of these methodologies to microsimulation models [@chrysanthopoulou2021].
-
-This knowledge gap becomes critical when addressing the transition from population-level mortality records to stochastic microsimulation models. Unlike aggregated demographic models that rely on macroscopic trends, microsimulation platforms operate at the individual level. They simulate single life trajectories, chronic disease progression, and the dynamic impact of public health interventions [@chrysanthopoulou2021] . To remain predictive, these frameworks require parameterization with highly disaggregated baseline mortality risks [@chrysanthopoulou2021] . Consequently, "garbage codes" create a fundamental barrier to valid modeling by obscuring the individual-level precision necessary for simulation. When input data used to calibrate microsimulation models incorporate "garbage codes", the models inevitably propagate and exacerbate systematic biases in individual-level projections [@ng2020; @salerno2025].
-
-Currently, no evidence synthesis exists on how to adapt or transfer redistribution methodologies [@ng2020]—originally designed for aggregated mortality data—to generate granular datasets suitable for stochastic microsimulation. Consequently, this scoping review will map the current state-of-the-art*—*a gap explicitly identified as a priority in recent literature[@scohy2025]*—* evaluate the technical feasibility of these approaches within simulation environments [@chrysanthopoulou2021], and provide a framework for future public health mathematical modeling [@foreman2018] .
-
-This scoping review aims to systematically map and synthesize evidence on "garbage code" identification and redistribution methodologies in low- and middle-income country mortality registries. Concurrently, it will evaluate their technical characteristics and applicability for calibrating and parameterizing health microsimulation models.
+Before applying these algorithms, baseline data quality is now objectively assessed using standardized metrics like the Vital Statistics Performance Index and automated diagnostic tools like ANACONDA [@mikkelsen2015; @mikkelsen2020]. However, despite this proliferation of techniques, current literature remains fragmented [@devleesschauwer2022]. Specifically, no evidence synthesis exists on how to evaluate the transferability of these macro-level assumptions to individual level microsimulation models [@ng2020; @chrysanthopoulou2021]. Unlike aggregated demographic models that rely on macroscopic trends, microsimulations require highly disaggregated baseline mortality risks, and uncounted or misclassified deaths are rarely randomly distributed [@costa2020]. Consequently, this scoping review will map the current state of the art, evaluate the technical feasibility of these approaches within simulation environments, and provide a framework for future public health mathematical modeling [@foreman2018].
 
 ## 1.1 Research Questions
 
@@ -138,34 +127,31 @@ To ensure the methodological reproducibility and transparency required by the PR
 
 ## 3.3 Data Extraction and Charting
 
-To ensure integrity, traceability, and reproducibility, we will conduct data extraction programmatically within the R statistical environment (v4.5 or higher). This automated approach mitigates the transcription errors inherent in manual processes and ensures a standardized workflow. We have designed an electronic data charting form to capture information across six dimensions: study metadata, geographic and health system context, mortality database characteristics, "garbage code" typology, correction methodologies (including algorithmic and software ecosystems), and microsimulation applicability.
+To ensure integrity, traceability, and reproducibility, we will conduct data extraction programmatically within the R statistical environment (v4.5 or higher). This automated approach mitigates the transcription errors inherent in manual processes and ensures a standardized workflow. We have designed an electronic data charting form to capture information across six dimensions:
 
-This form will be piloted with a random sample of three included studies to refine consistency and ensure variable granularity. Two reviewers will perform the extraction independently, resolving discrepancies through consensus. The resulting data will be consolidated into a relational structure (e.g., `tibble` or `data.frame`) to facilitate transparent downstream analysis. The full extraction schema (exported as JSON/CSV) and corresponding R scripts will be made available via the Open Science Framework (OSF) upon study completion. For a detailed breakdown of the variables and the classification framework utilized, refer to the Data Charting Instrument (Appendix II).
+- **Study metadata:** Author, year of publication, country, and study design.
+
+- **Geographic and health system context:** Challenges encountered during implementation, such as inadequate medical training or certification capacity, and recommendations for systemic improvement [@hart2020].
+
+- **Mortality database characteristics:** Specific baseline registry quality metrics used to evaluate the initial validity of the input data. A prime example is the five-star rating system, which objectively scores mortality data based on demographic completeness and the prevalence of major garbage codes [@johnson2021], as well as the algorithmic assessment of missing or unexpected values in core demographic fields, which serves as a critical proxy for systemic data quality issues in highly deprived municipalities [@zimeomorais2023].
+
+- **"Garbage code" typology:** The specific definition of a garbage code applied by the authors [@bigoni2021], alongside the age- and sex-specific epidemiological profiles of these codes, to understand the clinical nature of the missing data at different life stages [@johnson2021].
+
+- **Correction methodologies:** The type of redistribution model used, the algorithmic and software ecosystems utilized, and the specific performance metrics reported to demonstrate data quality improvement [@ng2020].
+
+- **Microsimulation applicability:** The explicit capacity of the methodology to generate highly disaggregated microdata and handle parameter uncertainty for stochastic predictive modeling [@chrysanthopoulou2021].
+
+This form will be piloted with a random sample of three included studies to refine consistency and ensure variable granularity. Two reviewers will perform the extraction independently, resolving discrepancies through consensus. The resulting data will be consolidated into a relational structure (e.g., tibble or data.frame) to facilitate transparent downstream analysis. The full extraction schema (exported as JSON/CSV) and corresponding R scripts will be made available via the Open Science Framework (OSF) upon study completion. For a detailed breakdown of the variables and the classification framework utilized, refer to the Data Charting Instrument (Appendix II).
 
 ## 3.4 Data Analysis, Synthesis, and Presentation
 
-This scoping review adheres to the Joanna Briggs Institute (JBI) methodology and the PRISMA Extension for Scoping Reviews (PRISMA-ScR). Given the methodological scope, we will prioritize descriptive mapping, algorithmic categorization, and theoretical evaluation of data transfer flows from aggregate population (macro) levels to individual (micro) levels. We will conduct all data processing and visualization programmatically within the R statistical environment (v4.5 or higher).
+This scoping review adheres to the Joanna Briggs Institute methodology. We will conduct all data processing and visualization programmatically within the R statistical environment.
 
-- **Descriptive Quantitative Analysis:** We will perform descriptive statistical analysis on the variables extracted into our R matrix. Absolute frequencies and percentages will characterize the literature based on:
-  - **Chronological distribution:** Temporal trends from 1996 to the present.
-  - **Geographic reach:** Studies by World Bank income classification and region.
-  - **Taxonomic frameworks:** Criteria used to define "garbage codes" (e.g., GBD vs. traditional WHO typologies).
-  - **Analytical techniques:** Frequencies of techniques such as proportional redistribution, multiple imputation, Bayesian modeling, record linkage, and machine learning.
-  - **Cause categories:** Most frequently corrected ICD-10/ICD-11 chapters (e.g., cardiovascular, neoplasms, or external causes).
-- **Thematic Narrative Synthesis:** We will accompany the analyzed data with an explanatory narrative addressing the research questions derived from the PCC framework. The narrative will be structured around:
-  - **The status of "garbage codes" in LMICs:** A critical description of the magnitude and typology of ill-defined mortality causes in data-scarce settings.
-  - **Methodological diversity:** A systematic review of mathematical assumptions, technical advantages, and data infrastructure requirements for each algorithmic family.
-  - **Transferability to microsimulation:** A conceptual analysis evaluating whether existing methodologies preserve microdata validity and addressing analytical gaps in calibrating agent-based stochastic models.
-- **Mapping and Visualization:** To visualize the structure and knowledge gaps of the field, we will generate advanced graphics using `ggplot2`, `igraph` [@wickham2016; @csardi2006], and `tidyr`:
-  - **Structured Evidence Tables:** Master tables will detail the methodological characteristics of each study, cross-referencing correction methods with their minimum input data requirements.
-  - **Two-Dimensional Heatmaps:** We will generate matrix plots using `ggplot2` to map analytical correction methods against specific ICD Chapters. Color intensity will reflect literature density, facilitating the identification of consolidated methodological combinations versus underexplored areas.
-  - **Flow Network Diagrams:** Using `igraph`, we will construct network graphs where nodes represent correction methods and links map their relationship with individual-level variables. Nodes will be categorized by output granularity (macro-aggregate vs. micro-individual), visually illustrating the technical pathway required to connect traditional vital statistics with microsimulation parameterization.
+- **Descriptive Quantitative Analysis:** We will calculate absolute frequencies and percentages to characterize the literature by chronological distribution, geographic reach, taxonomic frameworks, cause categories, and analytical techniques. These analytical techniques will be categorized by their computational complexity, ranging from foundational deterministic methods to advanced predictive modeling, machine learning, and spatial analysis.
 
-## 3.5 Data Representation and Synthesis
+- **Thematic Narrative Synthesis:** A narrative will accompany the extracted data, addressing the magnitude of garbage codes in data-scarce settings, the methodological diversity of the algorithms, and the conceptual transferability of these methods to preserve microdata validity for agent-based stochastic models. This includes addressing how uncorrected garbage codes disproportionately mask the true mortality burden in populations with higher social deprivation [@malta2023] and the risk of inappropriate centralization when macro-level regression algorithms are applied to highly localized municipal datasets [@liu2022].
 
-Upon completing the data extraction process, we will synthesize the retrieved information using both qualitative and quantitative approaches. We will visualize the results by programming graphical solutions in R with the `ggplot2` and `igraph` packages to generate the following: \* **Heatmaps:** These will cross-reference analytical methods (e.g., AI-based models, Bayesian inference, proportional redistribution) with the medical causes or ICD codes where they have been successfully applied in LMIC settings. \* **Co-occurrence Network Diagrams:** These will map the methodological transitions from macro-level algorithms to individual-level parameters, illustrating their scalability for microsimulation models. \* **Structured Evidence Tables:** These will hierarchically consolidate the advantages, limitations, computational requirements, and theoretical assumptions associated with each methodological approach.
-
-------------------------------------------------------------------------
+- **Mapping and Visualization:** To visualize the structure and knowledge gaps of the field, we will generate advanced graphics using ggplot2 [@wickham2016] and igraph [@csardi2006]. This will include structured evidence tables cross-referencing correction methods with their input data requirements, two-dimensional heatmaps mapping analytical methods against specific ICD Chapters, and flow network diagrams illustrating the technical pathway required to connect traditional vital statistics with microsimulation parameterization.
 
 # Conflicts of Interest
 
