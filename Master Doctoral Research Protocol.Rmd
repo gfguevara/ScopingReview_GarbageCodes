@@ -1,0 +1,123 @@
+---
+title: "Master Doctoral Research Protocol (Triennial Framework)"
+author: "Giovanni Francisco Guevara Vásquez (MD, MPH, PhD Candidate)"
+date: "`r Sys.Date()`"
+output:
+  word_document:
+    toc: false
+    toc_depth: 3
+  pdf_document:
+    toc: false
+    toc_depth: 3
+    number_sections: true
+  html_document:
+    toc: false
+    toc_depth: 3
+    number_sections: true
+    theme: cosmo
+    highlight: tango
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+# Administrative and Institutional Context
+
+- **PhD Program:** Translational Specialistic Medicine "G.B. Morgagni"
+
+- **Curriculum:** Biostatistics and Clinical Epidemiology (Cycle XLI)
+
+- **Institution:** University of Padua, Italy
+
+- **Coordinator:** Prof. Dario Gregori
+
+- **Supervisory Team / Tutors:** Dra. Lorenzoni, Prof. Dario Gregori
+
+- **Collaborating Institutions:** Universidad Dr. José Matías Delgado (El Salvador), National Health Institute of El Salvador (INS), Pan American Health Organization (PAHO).
+
+# General Abstract and Triennial Pipeline Overview
+
+Non-communicable diseases (NCDs) driven by excessive free sugar consumption—particularly via sugar-sweetened beverages (SSBs)—represent a major public health challenge globally and in Latin America. Previous baseline assessments in data-scarce settings like El Salvador established that SSBs were responsible for over 500 deaths and USD 69.35 million in direct medical costs in 2020 using static Comparative Risk Assessment (CRA) models. However, traditional approaches rely on lagged aggregated data, static parameters, and are poorly suited to capture individual-level behavioral adaptations under changing regulatory environments.
+
+This doctoral research establishes a triennial Intelligent Epidemiological Pipeline to transition from static estimates to dynamic precision. The program is structured into three consecutive milestones:
+
+1.  **Year 1:** Methodological mapping and evidence synthesis via a scoping review on mortality garbage code correction and its transferability to microsimulation models.
+
+2.  **Year 2:** Empirical data acquisition, harmonization, and application of data quality appraisal (ANACONDA/VSPI) and redistribution methodologies to national mortality datasets in El Salvador.
+
+3.  **Year 3:** Development and validation of an AI-assisted, agent-based microsimulation framework incorporating Large Language Models (LLMs) for automated parameterization and Machine Learning (ML) for policy impact simulation.
+
+# Year 1 Protocol: Methodological Foundation and Evidence Synthesis (Scoping Review)
+
+## Objectives and Research Questions
+
+- **Objective:** To systematically map and synthesize the scientific evidence on quantitative methodologies used for the identification, cleaning, and redistribution of "garbage codes" (GCs) in population-based mortality registries in low- and middle-income countries (LMICs), evaluating their technical applicability for parameterizing health microsimulation models.
+
+- **Research Questions:**
+
+  1.  What analytical methodologies (statistical, probabilistic, deterministic, linkage-based, or machine learning) have been described in the literature for correcting and redistributing GCs in mortality records?
+
+  2.  How are they classified and what types of GCs (ill-defined ICD chapters, intermediate, or terminal causes) are targeted?
+
+  3.  What is the documented level of applicability or compatibility of these correction methods to structure databases aimed at developing, calibrating, and validating health microsimulation models?
+
+  4.  What are the main methodological challenges, limitations, and advantages when transferring correction algorithms from the macro (population) level to the micro (individual) level?
+
+## Eligibility Criteria (PCC Framework)
+
+- **Population:** Population-based mortality records, civil registration and vital statistics (CRVS) systems, or official health statistics registers from low- and middle-income countries (LMICs), specifically focusing on Latin America and the Caribbean, Sub-Saharan Africa, and South Asia.
+
+- **Concept:** Quantitative methods to identify, clean, reclassify, or redistribute garbage codes (levels 1 to 4) or ill-defined causes of death (ICD-10 Chapter XVIII or equivalent). Includes traditional demographic adjustment, advanced statistical modeling (MICE, Bayesian hierarchical models like CODEm), record linkage algorithms, and machine learning architectures (random forests, gradient boosting).
+
+- **Context:** Data-scarce or heterogeneous settings characterized by weak health information systems, low medical certification coverage, and the specific requirement of disaggregating results to individual-level microdata for parameterizing stochastic microsimulation or agent-based models.
+
+## Methodology and Search Strategy
+
+- **Guidelines:** Conducted in accordance with Joanna Briggs Institute (JBI) methodology and the PRISMA Extension for Scoping Reviews (PRISMA-ScR).
+
+- **Information Sources:** PubMed (Ovid), Scopus, Web of Science, LILACS, SciELO, and institutional gray literature (WHO, PAHO, IHME). Timeframe: 1996 to present (marking the widespread adoption of ICD-10 and the formal definition of garbage codes).
+
+- **Reproducibility & Automation in R:** Execution managed entirely within the R statistical environment utilizing `litsearchr` for Boolean syntax optimization, `synthesisr` for algorithmic deduplication, and `revtools` supported by Latent Dirichlet Allocation (LDA) topic modeling for screening.
+
+# Year 2 Protocol: Data Harmonization and National Application
+
+## Objectives
+
+To acquire official micro-level cause-specific mortality datasets from the Ministry of Health of El Salvador, evaluate baseline data quality using standardized metrics (Vital Statistics Performance Index and ANACONDA), and apply the optimal redistribution algorithms synthesized in Year 1 to correct garbage codes and misclassification biases.
+
+## Methodology
+
+1.  **Data Acquisition & Governance:** Formal institutional data transfer protocols with the Ministry of Health of El Salvador for national mortality records.
+
+2.  **Quality Appraisal:** Systematic evaluation of completeness, age-specific misreporting, and proportion of ill-defined codes across municipalities.
+
+3.  **Application of Redistribution Algorithms:** Implementation of proportional redistribution, multiple imputation, and cause-specific redistribution algorithms to reallocate garbage codes.
+
+4.  **Recalculation of Population Attributable Fractions (PAFs):** Updating baseline risk factor exposures and recalculating corrected PAFs for metabolic risks and sugar-sweetened beverage consumption.
+
+# Year 3 Protocol: Dynamic Microsimulation and Policy Forecasting
+
+## Objectives
+
+To develop and validate a hybrid "End-to-End" Intelligent Epidemiological Pipeline that transforms static burden-of-disease estimates into a dynamic agent-based microsimulation framework.
+
+## Methodology
+
+1.  **Automated Parameterization (Input Layer):** Deployment of fine-tuned Large Language Models (e.g., BioBERT, Llama 3) to execute "Living Systematic Reviews," automatically extracting real-time epidemiological parameters (Relative Risks) and policy scenarios (e.g., U.S.-inspired "Food as Medicine" initiatives and front-of-package labeling).
+
+2.  **Dynamic Simulation (Processing Layer):** Implementation of an Agent-Based Microsimulation Model powered by Machine Learning algorithms to simulate individual-level behavioral changes (substitution effects), health trajectories (e.g., healthy $\rightarrow$ pre-diabetes $\rightarrow$ T2DB $\rightarrow$ cardiovascular events), and long-term economic outcomes under alternative policy regimes.
+
+3.  **Deliverables:** Construction and deployment of an interactive policy simulator dashboard to support evidence-informed decision-making in public health.
+
+# References
+
+1.  Setel P, Macfarlane S, Szreter S, et al. A scandal of invisibility: Making everyone count by counting everyone. *Lancet*. 2007;370:1569–77.
+
+2.  Rodríguez Cairoli F, Guevara Vásquez G, Bardach A, et al. Carga de enfermedad y económica atribuible al consumo de bebidas azucaradas en El Salvador. *Rev Panam Salud Publica*. 2023;47:e80.
+
+3.  GBD 2017 Risk Factor Collaborators. Global, regional, and national comparative risk assessment of 84 behavioural, environmental and occupational, and metabolic risks or clusters of risks for 195 countries and territories, 1990-2017. *Lancet*. 2018;392(10159):1923–94.
+
+4.  Elliott JH, Synnot A, Turner T, et al. Living systematic review: 1. Introduction—the why, what, when, and how. *J Clin Epidemiol*. 2017;91:23–30.
+
+5.  Gopalakrishnan S, Garbayo L, Zadrozny W. Causality extraction from medical text using Large Language Models (LLMs). *Information*. 2025;16(1):13.

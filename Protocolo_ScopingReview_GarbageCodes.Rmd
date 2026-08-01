@@ -2,17 +2,17 @@
 title: "Methodologies for the correction of Garbage codes in mortality records and their applicability in microsimulation models: Protocol for a scoping review"
 author: "Guevara-Vásquez, Giovanni^1^, Salazar-Colocho, Pablo^2^, Tejada-Peña, David^3^, García-Sanchez, Hazel^4^, Gavidia-Leiva, César^5^, Melendez-Gálvez, Mirna^6^"
 output:
-  html_document:
-    toc: false
-    df_print: paged
-  pdf_document:
-    latex_engine: xelatex
-    toc: false
-    number_sections: true
   word_document:
     reference_docx: template.docx
     toc: false
     number_sections: true
+  pdf_document:
+    latex_engine: xelatex
+    toc: false
+    number_sections: true
+  html_document:
+    toc: false
+    df_print: paged
 bibliography: referencias.bib
 csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/nlm-citation-sequence-superscript.csl"
 link-citations: true
