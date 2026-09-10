@@ -1,0 +1,10 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/1446763/8545b1217ae845aeacdf25e64bbacae5
+bundleId: https://api.rpubs.com/api/v1/document/1446763/8545b1217ae845aeacdf25e64bbacae5
+url: http://rpubs.com/gfguevara/1446763
+version: 1
