@@ -2,17 +2,17 @@
 title: "Methodologies for the correction of Garbage codes in mortality records and their applicability in microsimulation models: Protocol for a scoping review"
 author: "Guevara-Vásquez, Giovanni^1^, Salazar-Colocho, Pablo^2^, Siliezar-Portillo, Kevin^2^, Rivas-Portillo, Alejandra^2^, Tejada-Peña, David^3^, García-Sanchez, Hazel^3^, Gavidia-Leiva, César^3^, Melendez-Gálvez, Mirna^3^"
 output:
-  html_document:
-    toc: false
-    df_print: paged
-  pdf_document:
-    latex_engine: xelatex
-    toc: false
-    number_sections: true
   word_document:
     reference_docx: template.docx
     toc: false
     number_sections: true
+  pdf_document:
+    latex_engine: xelatex
+    toc: false
+    number_sections: true
+  html_document:
+    toc: false
+    df_print: paged
 bibliography: referencias.bib
 csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/nlm-citation-sequence-superscript.csl"
 link-citations: true
@@ -55,6 +55,8 @@ Mortality statistics derived from Civil Registration and Vital Statistics system
 To mitigate these systematic biases, a diverse array of correction methodologies has evolved over the past two decades [@naghavi2010; @gbd2016; @gbd2017; @murray2008; @foreman2016]. Modern redistribution strategies are typically classified into four distinct mathematical approaches: multiple cause analysis, negative correlation, impairment reallocation, and proportional redistribution [@johnson2021]. Beyond these foundational methods, researchers have increasingly utilized individual-level multiple cause of death data to capture hidden etiologies [@franca2014; @franca2019a; @franca2019b]. This led to the development of advanced computational techniques, including data linkage algorithms and coarsened exact matching [@stevens2010; @bierrenbach2019; @fihel2021]. Recent innovations also feature subnational regression models [@grigoriev2024; @giraldo2017; @masquelier2019], four-step probabilistic algorithms [@scohy2025], the application of pathophysiological redistribution packages [@kyu2021], and the integration of international rules with exact matching [@zhang2025]. Moreover, cutting edge spatial and machine learning approaches have emerged, such as using spatial scan statistics and Local Moran's I autocorrelation to adjust for spurious geographical clusters [@teixeira2020; @dearaujo2026], and deploying random forest algorithms or decision trees to map spatial inconsistencies and hierarchical clinical interactions [@zimeomorais2023; @desouza2025].
 
 Before applying these algorithms, baseline data quality is now objectively assessed using standardized metrics like the Vital Statistics Performance Index and automated diagnostic tools like ANACONDA [@mikkelsen2015; @mikkelsen2020]. However, despite this methodological proliferation, current literature exhibits a critical translational gap [@devleesschauwer2022]. Specifically, there is a lack of evidence evaluating how macro-level redistribution assumptions can be rigorously transfer to individual level simulation environments [@ng2020; @chrysanthopoulou2021]. Unlike aggregated demographic models that rely on macroscopic trends, stochastic and agent-based microsimulations require highly disaggregated baseline mortality risks, as uncounted or misclassified deaths are rarely distributed randomly across populations [@costa2020]. Naïve translation of macro-level proportions into microdata risks compounding structural errors. Consequently, this scoping review will map the current state of the art, evaluate the technical feasibility of these approaches within simulation environments, and establish a conceptual framework to guide future public health mathematical modeling [@foreman2018].
+
+Despite the widespread adoption of macro-level garbage code redistribution frameworks, current literature exhibits a critical translational gap. Specifically, aggregated population-level corrections assume that misclassified or ill-defined causes of death are randomly distributed across demographic strata. However, stochastic microsimulations and agent-based models require highly disaggregated baseline mortality risks, as structural diagnostic errors often disproportionately mask true epidemiological burdens in vulnerable or socially deprived settings. Translating uncorrected macro-level proportions directly into individual-level simulation environments risks compounding classification errors and propagating systematic bias into microdata risk matrices. Therefore, this scoping review aims to evaluate the technical feasibility and methodological assumptions required to adapt macro-level correction algorithms for individual-level microsimulation parameterization.
 
 ## Research Questions
 
@@ -156,7 +158,7 @@ This scoping review adheres to the Joanna Briggs Institute methodology. We will 
 
 - **Descriptive Quantitative Analysis:** We will calculate absolute frequencies and percentages to characterize the literature by chronological distribution, geographic reach, taxonomic frameworks, cause categories, and analytical techniques. These analytical techniques will be categorized by their computational complexity, ranging from foundational deterministic methods to advanced predictive modeling, machine learning, and spatial analysis.
 
-- **Thematic Narrative Synthesis:** A narrative will accompany the extracted data, addressing the magnitude of garbage codes in data-scarce settings, the methodological diversity of the algorithms, and the conceptual transferability of these methods to preserve microdata validity for agent-based stochastic models. This includes addressing how uncorrected garbage codes disproportionately mask the true mortality burden in populations with higher social deprivation [@malta2023] and the risk of inappropriate centralization when macro-level regression algorithms are applied to highly localized municipal datasets [@liu2022].
+- **Thematic Narrative Synthesis:** A narrative will accompany the extracted data, addressing the magnitude of garbage codes in data-scarce settings, the methodological diversity of the algorithms, and the conceptual transferability of these methods to preserve microdata validity for agent-based stochastic models. This includes addressing how uncorrected garbage codes disproportionately mask the true mortality burden in populations with higher social deprivation [@malta2023] and the risk of inappropriate centralization when macro-level regression algorithms are applied to highly localized municipal datasets [@liu2022]. The synthesis will specifically evaluate how included methodologies handle parameter uncertainty and individual-level risk heterogeneity when descending from population-level aggregates to stochastic microdata. Drawing upon methodological precedents from prior comparative risk assessments in Latin America (such as the 2020 baseline burden estimations of sugar-sweetened beverages in El Salvador [@rodriguezcairoli2023]) the synthesis will critically appraise how uncorrected vital statistics distort baseline mortality risks for non-communicable diseases (e.g., type 2 diabetes and ischemic heart disease). Furthermore, we will synthesize evidence on whether current redistribution algorithms can be rigorously integrated into agent-based simulation platforms without violating the local validity required for policy modeling and health technology assessments.
 
 - **Mapping and Visualization:** To visualize the structure and knowledge gaps of the field, we will generate advanced graphics using ggplot2 [@wickham2016] and igraph [@csardi2006]. This will include structured evidence tables cross-referencing correction methods with their input data requirements, two-dimensional heatmaps mapping analytical methods against specific ICD Chapters, and flow network diagrams illustrating the technical pathway required to connect traditional vital statistics with microsimulation parameterization.
 
