@@ -216,35 +216,58 @@ This research received no specific grant from any funding agency in the public, 
 
 # Appendices
 
-## Appendix I: Search strategy
+### Appendix I: Search Strategy (Ovid MEDLINE) 
 
-**Database:** MEDLINE (via Pubmed)\
-**Search will be conducted on:** October 2026\
-**Planned Limits:**
+**Database:** Ovid MEDLINE(R) ALL 1946 to October 14, 2026.\
+**Date of Search:** October 17, 2026.\
+**Limits:** None.
 
-\* **Date restrictions:** None.
-
-\* **Language restrictions:** None at search level (any required filters based on reviewer capacities will be applied during the programmatic screening stage).
-
-\* **Document types:** All source types (including technical notes, methodology papers, and electronic articles).
-
-| Line | Search Query (Terms, Truncations, and Syntax) | Conceptual Block / Target |
-|:-----------------------|:-----------------------|:-----------------------|
-| #1 | exp Mortality/ or exp Cause of Death/ | PCC: Population / Focus (Core mortality registry filters) |
-| #2 | (mortality data\* or death certificate\* or vital statistic\* or vital registration or CRVS).tw,kf,ot. | Keywords for vital statistics and national death registry systems |
-| #3 | 1 or 2 | Result: Core Mortality Data |
-| #4 | (garbage code\* or ill-defined or misclassified or misclassification\* or undefined cause\* or ill-defined cause\* or unspecific cause\* or vague code\* or redistribution algorithm\*).tw,kf,ot. | PCC: Concept (Block A) - Specific typology of Data Errors ("Garbage Codes") |
-| #5 | (data cleaning or data correction or diagnostic accuracy or underlying cause of death).tw,kf,ot. | Data quality attributes specific to mortality databases |
-| #6 | 4 or 5 | Result: Garbage Code Concepts |
-| #7 | exp Algorithms/ or exp Models, Statistical/ or exp Computer Simulation/ | MeSH Indexing for Analytical Methods |
-| #8 | (demographic redistribution or multiple imputation or MICE or Bayesian model\* or Markov chain\* or machine learning or random forest\* or neural network\* or artificial intelligence or algorithmic correction or fractional assignment).tw,kf,ot. | PCC: Concept (Block B) - Specific statistical and computational correction frameworks |
-| #9 | (microsimulation\* or micro-simulation\* or agent-based model\* or stochastic simulation\* or individual-level dynamic\* or synthetic population\*).tw,kf,ot. | PCC: Context / Transferability - Target micro-level application architectures |
-| #10 | 7 or 8 or 9 | Result: Methodological Ecosystem |
-| #11 | exp "Developing Countries"/ | MeSH Indexing for LMICs |
-| #12 | (low income country or low-and-middle income countr\* or LMIC or LMICs or developing nation\* or resource-constrained setting\* or transitional econom\*).tw,kf,ot. | Geographic Context Keywords (Based on World Bank specifications) |
-| #13 | (Africa\* or Asia\* or South America\* or Central America\* or Latin America\*).tw,kf,ot. | Broad regional geographic filters |
-| #14 | 11 or 12 or 13 | Result: Developing Context (LMIC) |
-| #15 | 3 and 6 and 10 and 14 | COMBINED STRATEGY (Boolean Intersection) |
+| Line | Search Strategy | Results |
+|:------------------------:|:--------------------|:------------------------:|
+| **POBLACIÓN: registros de mortalidad** |  |  |
+| 1 | exp Vital Statistics/ | 5329 |
+| 2 | Death Certificates/ | 5750 |
+| 3 | Cause of Death/ | 59267 |
+| 4 | exp Mortality/ | 459099 |
+| 5 | (vital statistics or vital statistics registration\* or registration of vital statistics or vital registration or civil registration or CRVS or population register\* or mortality regist\* or death regist\* or death certificat\* or death record\* or cause of death or causes of death or death cause\* or underlying cause\* or mortality data or mortality statistic\* or mortality record\* or mortality information system\* or mortality rate\* or death rate\*).ti,ab,kf. | 432175 |
+| 6 | (population surveillance or public health surveillance or international classification of disease\* or ICD-9 or ICD-10 or ICD-11 or clinical coding or medical coding or health information system\*).ti,ab,kf. | 65552 |
+| 7 | (mortality or cause of death or death certificat\*).ti,ab,kf. | 1328682 |
+| 8 | 6 and 7 | 14260 |
+| 9 | 1 or 2 or 3 or 4 or 5 or 8 | 818728 |
+| **CONCEPTO, PARTE A: códigos basura y causas mal definidas** |  |  |
+| 10 | (garbage code\* or garbage cause\* or garbage categor\* or garbage diagnos\* or ill-defined cause\* or ill-defined death\* or ill-defined condition\* or poorly defined cause\* or causas mal definidas or codigos basura or codigos lixo or codigos garbage or R00-R99).ti,ab,kf. | 573 |
+| 11 | (ill-defined or unknown cause\* or unspecified cause\* or nonspecific cause\* or non-specific cause\* or unspecific cause\* or undetermined cause\* or vague code\* or cause of death assignment or underlying cause assignment).ti,ab,kf. | 22007 |
+| 12 | ((ill-defined or ill defined or poorly defined or insufficiently defined or unspecified or unspecific or nonspecific or non-specific or unknown or undetermined or vague or imprecise) adj3 (cause\* or death\* or code\* or coding or categor\* or diagnos\* or condition\*)).ti,ab,kf. | 34452 |
+| 13 | ((misclassif\* or miscod\* or misattribut\* or miscertif*) adj3 (cause* or death\* or code\* or coding or certificat\* or diagnos\*)).ti,ab,kf. | 1246 |
+| 14 | 11 or 12 or 13 | 47215 |
+| **CONCEPTO, PARTE B: métodos de corrección / redistribución** |  |  |
+| 15 | exp Models, Statistical/ | 494115 |
+| 16 | exp Data Interpretation, Statistical/ | 62079 |
+| 17 | exp Bayes Theorem/ | 62547 |
+| 18 | exp Spatio-Temporal Analysis/ | 10684 |
+| 19 | exp Medical Record Linkage/ | 4965 |
+| 20 | exp Autopsy/ | 47524 |
+| 21 | exp Patient Discharge/ | 45591 |
+| 22 | exp Artificial Intelligence/ | 306786 |
+| 23 | exp Decision Trees/ | 16591 |
+| 24 | exp Data Mining/ | 13321 |
+| 25 | exp Random Forest/ | 3361 |
+| 26 | exp Life Tables/ | 6740 |
+| 27 | Demography/ | 65583 |
+| 28 | exp Algorithms/ | 596532 |
+| 29 | exp Computer Simulation/ | 374941 |
+| 30 | (proportional redistribution or proportional distribution or fractional algorithm\* or Brass technique or Brass technic or reverse survival or stable population or demographic analys\* or life table\* or statistical model\* or probabilistic model\* or bayesian or empirical bayes or spatiotemporal or spatio-temporal or spatial regression or imput\* or CODEm or CoDCorrect or cause of death ensemble model\* or coarsened exact matching).ti,ab,kf. | 254598 |
+| 31 | (reallocat\* or reassign\* or recod\* or algorithm\* or multiple cause\* or linkage).ti,ab,kf. | 653011 |
+| 32 | (verbal autops\* or hospital discharge or discharge record\* or discharge data or artificial intelligence or machine learning or decision tree\* or data mining or random forest\* or gradient boosting or deep learning or neural network\*).ti,ab,kf. | 569421 |
+| 33 | (microsimulat\* or micro-simulation\* or agent-based or synthetic population\*).ti,ab,kf. | 10824 |
+| 34 | (global burden of disease or GBD or InterVA or InSilicoVA or SmartVA or tariff method or bridge coding or comparability ratio\* or IRIS software or automated coding or automated classification or small area estimation or correction factor\*).ti,ab,kf. | 23155 |
+| 35 | or/15-34 | 2448628 |
+| 36 | (redistribut\* or reclassif\*).ti,ab,kf. | 74738 |
+| **COMBINACIÓN** |  |  |
+| 37 | 14 and (35 or 36) | 4056 |
+| 38 | 35 and 36 | 7894 |
+| 39 | 10 or 37 or 38 | 12245 |
+| 40 | 9 and 39 | 1952 |
 
 ## Appendix II: PRISMA-S audit and mapping table
 
