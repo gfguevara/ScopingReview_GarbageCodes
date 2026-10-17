@@ -107,7 +107,8 @@ This component defines eligible data records, populations, and geographic or dem
   - **Technical Exception:** Global or multinational studies (e.g., Global Burden of Disease [GBD] analyses), provided they independently disaggregate methodologies and data applicable to LMIC geographies.
   - **Demography:** Records tracking general human mortality without restrictions on age groups (including neonatal, infant, adult, or geriatric mortality) or sex and gender.
 - **Exclusion Criteria:**
-  - Clinical studies restricted to hyper-specific hospital specimens or controlled trials that do not utilize—or aim to correct—population-based records or broader epidemiological information systems.
+  - Clinical and hospital-bound cohorts: Studies restricted to hyper-specific hospital specimens, controlled trials, or clinical registries (e.g., in-hospital mortality tracking for acute coronary syndromes or percutaneous coronary interventions) that do not utilize or aim to correct broader population-based mortality records or epidemiological vital statistics systems.
+  - Clinical prognostication and risk prediction models: Studies utilizing machine learning, decision trees, or advanced statistical models exclusively for patient-level risk prediction, therapeutic evaluation, or prognostic forecasting (e.g., predicting survival rates following clinical interventions) without the explicit aim of reclassifying, correcting, or redistributing ill-defined causes of death ("garbage codes") in demographic datasets.
 
 ## 2.2 Concept
 
@@ -138,14 +139,14 @@ This component defines the data environments and final fields of application tow
 ## 2.4 Sources of Evidence
 
 - **Publication Types:** Peer-reviewed original research articles published in indexed journals, methodological book chapters, and authoritative institutional gray literature (e.g., technical reports from the WHO, PAHO, or IHME).
-- **Timeframe:** Material published from 1996 onwards, capturing the global introduction and widespread adoption of the Tenth Revision of the International Classification of Diseases (ICD-10), which consolidated the term "garbage codes."
+- **Timeframe:** No publication date restrictions will be applied. Although the concept of “garbage codes” was formally consolidated with the widespread adoption of ICD-10 in the late 1990s, an unrestricted timeframe ensures the comprehensive capture of earlier foundational demographic methods, fractional algorithms, and historical approaches used to reclassify ill-defined causes of death under previous ICD revisions.
 - **Languages:** Studies published in English, Spanish, and Portuguese, reflecting the substantial volume of methodological literature generated in Latin America (particularly Brazil).
 
 # 3. METHODS
 
 ## 3.1 Search Strategy
 
-The search strategy will locate published academic literature and online grey literature. The search will focus on evidence published from 1996 onwards, corresponding to the global implementation and widespread adoption of the International Classification of Diseases, Tenth Revision (ICD-10)—a timeframe during which the term "garbage codes" became conceptually consolidated.
+The search strategy is designed to capture the entire historical continuum of the scientific literature concerning mortality data correction. By encompassing the complete available timeframe, the search guarantees the retrieval of both contemporary machine learning frameworks and the foundational demographic methodologies used to reclassify ill-defined causes of death across all iterations of the International Classification of Diseases.
 
 - **Academic Literature:** To identify academic literature, a three-step search strategy will be developed in collaboration with a medical librarian:
   1.  **Initial Limited Search:** An initial search of MEDLINE (Ovid) will be undertaken to analyze text words in titles and abstracts, Medical Subject Headings (MeSH), and author-supplied keywords from relevant articles.
@@ -236,10 +237,10 @@ The authors declare no competing interests. This scoping review was conducted fo
 
 **Database:** MEDLINE (via Ovid)\
 **Search conducted on:** July 2026\
-**Planned Limits:** \* **Date restrictions:** from 1996 to present to capture historical development of algorithms like GBD. \* **Language restrictions:** None at search level (any required filters based on reviewer capacities will be applied during the programmatic screening stage). \* **Document types:** All source types (including technical notes, methodology papers, and electronic articles).
+**Planned Limits:** \* **Date restrictions:** None. \* **Language restrictions:** None at search level (any required filters based on reviewer capacities will be applied during the programmatic screening stage). \* **Document types:** All source types (including technical notes, methodology papers, and electronic articles).
 
 | Line | Search Query (Terms, Truncations, and Syntax) | Conceptual Block / Target |
-|:-----------------------|:-----------------------|:-----------------------|
+|:---|:---|:---|
 | #1 | exp Mortality/ or exp Cause of Death/ | PCC: Population / Focus (Core mortality registry filters) |
 | #2 | (mortality data\* or death certificate\* or vital statistic\* or vital registration or CRVS).tw,kf,ot. | Keywords for vital statistics and national death registry systems |
 | #3 | 1 or 2 | Result: Core Mortality Data |
@@ -259,7 +260,7 @@ The authors declare no competing interests. This scoping review was conducted fo
 ## Appendix II: Data extraction instrument
 
 | Block | Variable | Description / Purpose | Suggested Format / Values |
-|:-----------------|:-----------------|:-----------------|:-----------------|
+|:---|:---|:---|:---|
 | **I. Identification & Metadata** | Study ID | Unique identifier assigned by R workflow | Numeric (e.g., 001) |
 |  | Bibliographic Data | Author, year, title, and journal/institution | Text |
 |  | Evidence Type | Original article, technical report, or method book | Dropdown |
@@ -273,6 +274,67 @@ The authors declare no competing interests. This scoping review was conducted fo
 | **IV. Junk Code Typology** | Definition Framework | Criteria used to identify "junk" (e.g., GBD list) | Text |
 |  | Evaluated ICD Codes | Specific codes being targeted for correction | Text |
 |  | Baseline Magnitude | Percentage/volume of junk codes in original records | Percentage (%) |
+| **V. Correction Methodology** | Central Technique | Algorithmic classification | Dropdown (e.g., MICE, Bayesian, ML) |
+|  | Theoretical Assumptions | Underlying mathematical principles/assumptions | Text |
+|  | Software Ecosystem | Tools used (R, SAS, Stata, etc.) | Text |
+|  | Uncertainty/Bias Report | Reported confidence intervals or limitations | Yes / No / Partial |
+| **VI. Microsimulation Applicability** | TRL (Technology Readiness Level) | Maturity of the development method (1-4) | Scale (1-4) |
+|  | Output Format | Aggregate vs. individual-level data output | Dropdown |
+|  | Demographic Granularity | Consistency at sub-group/small-area levels | Scale (1-5) |
+|  | Parametrization Potential | Capability to feed agent-based/microsimulation models | Scale (1-5) |
+|  | Reviewer Notes | Professional notes on applicability and transferability | Free text |
+
+### Appendix III: Preferred Reporting Items for Systematic Reviews and Meta-Analyses Extension for Scoping Reviews (PRISMA-ScR) Checklist
+
+| Section / Topic | Item \# | PRISMA-ScR Checklist Item | Reported on Page / Section | Specific Implementation in Protocol |
+|:---|:--:|:---|:---|:---|
+| **TITLE** |  |  |  |  |
+| Title | 1 | Identify the report as a scoping review. | Title Page & Section 1 | Declared as a Scoping Review Protocol in the main title. |
+| **ABSTRACT** |  |  |  |  |
+| Structured summary | 2 | Provide a structured summary including: background, objectives, eligibility criteria, sources of evidence, charting methods, and main synthesis plan. | Section 1 (Abstract) | Structured abstract following JBI and PRISMA-ScR standards. |
+| **INTRODUCTION** |  |  |  |  |
+| Rationale | 3 | Describe the rationale for the review in the context of what is already known. | Section 1.1 (Background) | Details the “garbage codes” problem, limitations of macro-level corrections, and the translational gap toward microsimulation. |
+| Objectives | 4 | Provide an explicit statement of the question(s) or objective(s) being addressed. | Section 1.2 (Research Questions) | Formulates 4 explicit research questions using the Population, Concept, and Context (PCC) framework. |
+| **METHODS** |  |  |  |  |
+| Protocol & registration | 5 | Indicate if a review protocol exists; state if registered and supply registration info. | Section 3.2 & OSF Link | Registered *a priori* on the Open Science Framework (OSF ID: 10.17605/OSF.IO/ZP9AQ). |
+| Eligibility criteria | 6 | Specify characteristics used to decide eligibility (e.g., PCC, study design, temporal limits). | Section 2 (Eligibility Criteria) | Structured according to Population (mortality records/LMICs), Concept (garbage code algorithms), and Context (microsimulation applicability). |
+| Information sources | 7 | Describe all information sources (databases, grey literature, contact with authors). | Section 3.1 & Appendix I/III | MEDLINE/Ovid, Scopus, Web of Science, LILACS, SciELO, plus WHO, PAHO, IHME grey literature repositories. |
+| Search strategy | 8 | Present full electronic search strategy for at least one database, including limits. | Appendix I (Section 7.1) | Complete Ovid MEDLINE syntax provided with Boolean operators, MeSH terms, and line-by-line targets. |
+| Selection process | 9 | State process for selecting sources (screening, eligibility, deduplication tools). | Section 3.2 | Programmatic deduplication (synthesisr), dual independent screening (revtools), assisted by LDA topic modeling. |
+| Data charting process | 10 | Describe methods of charting data (forms, piloting, reviewer duplication). | Section 3.3 & Appendix II | Dual independent programmatic charting using a 6-block relational data extraction schema in R. |
+| Data items | 11 | List and define all variables for which data were sought. | Section 3.3 & Appendix II | Defines 20 variables across metadata, health context, registry quality, garbage code typology, methods, and TRL/microsimulation applicability. |
+| Critical appraisal | 12 | State whether critical appraisal was conducted; if not, state why. | Section 3.3 | In accordance with JBI scoping review guidelines, formal risk-of-bias/critical appraisal is omitted as the objective is to map methodologies. |
+| Synthesis of results | 13 | Describe methods of handling and summarizing data (tables, charts, narrative). | Section 3.4 & 3.5 | Combines descriptive quantitative metrics, thematic narrative synthesis, ggplot2 matrix heatmaps, and igraph network diagrams. |
+| **RESULTS** |  |  |  |  |
+| Selection of sources | 14 | Report numbers of records screened, assessed for eligibility, and included. | *Pending Execution* | To be reported in the PRISMA-ScR Flow Diagram upon study completion (September 2026). |
+| Characteristics of sources | 15 | Describe characteristics of included sources of evidence. | *Pending Execution* | To be tabulated in the final review using the Appendix II extraction schema. |
+| Critical appraisal results | 16 | Share results of any critical appraisal of individual sources. | *Not Applicable* | Not conducted, in strict adherence to JBI scoping review methodology. |
+| Results of individual sources | 17 | For each source, present relevant data charted. | *Pending Execution* | Will be archived as open CSV/JSON matrices on the OSF project repository. |
+| Synthesis of results | 18 | Summarize and/or present the charting results in relation to objectives. | *Pending Execution* | Will map analytical techniques against microsimulation parameterization potential. |
+| **DISCUSSION** |  |  |  |  |
+| Summary of evidence | 19 | Summarize main findings; link to objectives and broader literature. | *Pending Execution* | To be drafted upon synthesis completion. |
+| Limitations | 20 | Discuss limitations of the scoping review process. | *Pending Execution* | To be discussed in the final review report. |
+| Conclusions | 21 | Provide explicit conclusions linked to objectives and implications. | *Pending Execution* | To be provided in the final manuscript. |
+| **FUNDING** |  |  |  |  |
+| Funding | 22 | Describe sources of funding and role of funders. | Section 7 | Self-funded through institutional academic time; no commercial or external grants. |
+
+### Appendix IV: Data Extraction Instrument
+
+| Block | Variable | Description / Purpose | Suggested Format / Values |
+|:---|:---|:---|:---|
+| **I. Identification & Metadata** | Study ID | Unique identifier assigned by R workflow | Numeric (e.g., 001) |
+|  | Bibliographic Data | Author, year, title, and journal/institution | Text |
+|  | Evidence Type | Original article, technical report, or method book | Dropdown |
+| **II. Geographic & Health Context** | Geographic Scope | Country, region, or sub-national area | Text |
+|  | Economic Classification | World Bank income level | Dropdown (Low, Lower-Middle, Upper-Middle) |
+|  | CRVS System Status | Description of Civil Registration and Vital Statistics status | Text |
+| **III. Mortality Database** | Data Periodicity | Years covered by mortality records | Text / Numeric |
+|  | Data Volume | Sample size (number of deaths analyzed) | Numeric |
+|  | Primary Source | Origin of data (e.g., forensic, hospital, surveys) | Text |
+|  | ICD Framework | Version of the ICD utilized (ICD-9, ICD-10, ICD-11) | Dropdown |
+| **IV. Garbage Code Typology** | Definition Framework | Criteria used to identify “garbage” (e.g., GBD list) | Text |
+|  | Evaluated ICD Codes | Specific codes being targeted for correction | Text |
+|  | Baseline Magnitude | Percentage/volume of garbage codes in original records | Percentage (%) |
 | **V. Correction Methodology** | Central Technique | Algorithmic classification | Dropdown (e.g., MICE, Bayesian, ML) |
 |  | Theoretical Assumptions | Underlying mathematical principles/assumptions | Text |
 |  | Software Ecosystem | Tools used (R, SAS, Stata, etc.) | Text |

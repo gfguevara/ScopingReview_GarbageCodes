@@ -75,11 +75,9 @@ This component defines eligible data records, populations, and geographic or dem
 
 - **Inclusion criteria:**
   - **Data type:** Studies utilizing population-based mortality databases, vital statistics systems, official national or subnational health statistics registers, or civil registration and vital statistics (CRVS) systems.
-  - **Geography and income level:** Research focusing on populations within low- and middle-income countries (LMICs) as defined by historical or current World Bank classifications (e.g., regions within Latin America and the Caribbean, Sub-Saharan Africa, and South Asia).
-  - **Technical exception:** Global or multinational studies (e.g., Global Burden of Disease [GBD] analyses), provided they independently disaggregate methodologies and data applicable to LMIC geographies.
   - **Demography:** Records tracking general human mortality without restrictions on age groups (including neonatal, infant, adult, or geriatric mortality) or sex and gender.
 - **Exclusion criteria:**
-  - Clinical studies restricted to hyper-specific hospital specimens or controlled trials that do not utilize—or aim to correct—population-based records or broader epidemiological information systems.
+  - Studies restricted to hyper-specific hospital specimens, controlled trials, or clinical registries (e.g., in-hospital mortality tracking for acute coronary syndromes or percutaneous coronary interventions) that do not utilize—or aim to correct—broader population-based mortality records or epidemiological vital statistics systems.
 
 ## Concept
 
@@ -95,6 +93,7 @@ This component delineates the core methodologies, algorithms, and analytical too
 - **Exclusion criteria:**
   - Studies analyzing mortality data quality in a purely descriptive manner (e.g., reporting isolated completeness percentages or garbage code prevalences) without implementing or evaluating an active mathematical or algorithmic correction method.
   - Research focused solely on correcting numerical under-registration (omission of death capture), unless the methodology explicitly integrates cause-of-death redistribution.
+  - Studies utilizing machine learning, decision trees, or advanced statistical models exclusively for patient-level risk prediction, therapeutic evaluation, or prognostic forecasting (e.g., predicting survival rates following clinical interventions) without the explicit aim of reclassifying, correcting, or redistributing ill-defined causes of death ("garbage codes") in demographic datasets.
 
 ## Context
 
@@ -119,7 +118,7 @@ The operational boundaries for this component are structured as follows:
 
 ## Search strategy
 
-The search strategy will locate published academic literature and online grey literature. The search will focus on evidence published from 1996 onwards, corresponding to the global implementation and widespread adoption of the International Classification of Diseases, Tenth Revision (ICD-10)—a timeframe during which the term "garbage codes" became conceptually consolidated.
+The search strategy will be designed to capture the entire historical continuum of the scientific literature concerning mortality data correction. By encompassing the complete available timeframe, the search guarantees the retrieval of both contemporary machine learning frameworks and the foundational demographic methodologies used to reclassify ill-defined causes of death across all iterations of the International Classification of Diseases.
 
 - **Academic Literature:** To identify academic literature, a three-step search strategy will be developed in collaboration with a medical librarian:
   1.  **Initial limited search:** An initial search of MEDLINE (Pubmed) will be undertaken to analyze text words in titles and abstracts, Medical Subject Headings (MeSH), and author-supplied keywords from relevant articles. (Appendix I)
@@ -223,7 +222,7 @@ This research received no specific grant from any funding agency in the public, 
 **Search will be conducted on:** October 2026\
 **Planned Limits:**
 
-\* **Date restrictions:** from 1996 to present to capture historical development of algorithms like GBD.
+\* **Date restrictions:** None.
 
 \* **Language restrictions:** None at search level (any required filters based on reviewer capacities will be applied during the programmatic screening stage).
 
@@ -257,7 +256,7 @@ The following table details the adherence to the 16 items of the PRISMA-S guidel
 | **2. Electronic search strategy** | Present the full electronic search strategy for at least one major database, including syntax and operators. | Complete search query designed for MEDLINE (via Ovid) structured under the Population, Concept, and Context (PCC) framework. | Section 6.1 (Appendix I) |
 | **3. Database platforms and vendors** | Specify the database platforms or interface vendors used for each search. | Programmatic querying via Application APIs and specialized R libraries (`rentrez` for PubMed, `rscopus` for Scopus) and Ovid interface for MEDLINE. | Section 3.2 |
 | **4. Translation of search strategy** | Describe how the search strategy was adapted for different thesauri and syntaxes. | Adaptation of MeSH descriptors and free-text terms optimized via term co-occurrence networks using the `litsearchr` package in R. | Section 3.2 |
-| **5. Limits and restrictions** | Specify any search-level restrictions applied (dates, languages, document types). | Temporal restriction from 1996 onwards (marking global ICD-10 implementation and consolidation). No initial language restrictions (English, Spanish, Portuguese). | Section 2.4 & Section 6.1 |
+| **5. Limits and restrictions** | Specify any search-level restrictions applied (dates, languages, document types). | No temporal or publication date restrictions were applied. No initial language restrictions (English, Spanish, Portuguese). | Section 2.4 & Section 6.1 |
 | **6. Search dates** | Indicate the exact date when searches were executed or scheduled for each source. | Primary literature search scheduled *a priori* for **October 2026**, with a final verification re-run prior to synthesis. | Section 3.1 & Section 6.1 |
 | **7. Contacting authors** | Indicate if study authors, experts, or key researchers were contacted to identify unpublished studies. | Planned consultations with vital statistics epidemiologists, public health officials, and key regional collaborators in Latin America. | Section 3.1 |
 | **8. Registration** | Cite the *a priori* protocol registration and registry platform used. | Registered *a priori* on the **Open Science Framework (OSF)**. | Introduction & Section 3.3 |
@@ -283,7 +282,7 @@ The following table details the adherence to the 16 items of the PRISMA-S guidel
 | Objectives | 4 | Provide an explicit statement of the question(s) or objective(s) being addressed. | Section 1.2 (Research Questions) | Formulates 4 explicit research questions using the Population, Concept, and Context (PCC) framework. |
 | **METHODS** |  |  |  |  |
 | Protocol & registration | 5 | Indicate if a review protocol exists; state if registered and supply registration info. | Section 3.2 & OSF Link | Registered *a priori* on the Open Science Framework (OSF ID: `10.17605/OSF.IO/ZP9AQ`). |
-| Eligibility criteria | 6 | Specify characteristics used to decide eligibility (e.g., PCC, study design, temporal limits). | Section 2 (Eligibility Criteria) | Structured according to Population (mortality records/LMICs), Concept (garbage code algorithms), and Context (microsimulation applicability). |
+| Eligibility criteria | 6 | Specify characteristics used to decide eligibility (e.g., PCC, study design). | Section 2 (Eligibility Criteria) | Structured according to Population (mortality records/LMICs), Concept (garbage code algorithms), and Context (microsimulation applicability). |
 | Information sources | 7 | Describe all information sources (databases, grey literature, contact with authors). | Section 3.1 & Appendix I/III | MEDLINE/Ovid, Scopus, Web of Science, LILACS, SciELO, plus WHO, PAHO, IHME grey literature repositories. |
 | Search strategy | 8 | Present full electronic search strategy for at least one database, including limits. | Appendix I (Section 7.1) | Complete Ovid MEDLINE syntax provided with Boolean operators, MeSH terms, and line-by-line targets. |
 | Selection process | 9 | State process for selecting sources (screening, eligibility, deduplication tools). | Section 3.2 | Programmatic deduplication (`synthesisr`), dual independent screening (`revtools`), assisted by LDA topic modeling. |
