@@ -2,17 +2,17 @@
 title: 'Methodologies for the correction of "Garbage Codes" in mortality records and their applicability in microsimulation models: Protocol for a scoping review'
 author: "Guevara-Vásquez, Giovanni^1^, Salazar-Colocho, Pablo^2^, Siliezar-Portillo, Kevin^2^, Rivas-Portillo, Alejandra^2^, Tejada-Peña, David^3^, García-Sanchez, Hazel^3^, Gavidia-Leiva, César^3^, Melendez-Gálvez, Mirna^3^"
 output:
-  html_document:
-    toc: false
-    df_print: paged
-  pdf_document:
-    latex_engine: xelatex
-    toc: false
-    number_sections: true
   word_document:
     reference_docx: template.docx
     toc: false
     number_sections: true
+  pdf_document:
+    latex_engine: xelatex
+    toc: false
+    number_sections: true
+  html_document:
+    toc: false
+    df_print: paged
 bibliography: referencias.bib
 csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/nlm-citation-sequence-superscript.csl"
 link-citations: true
@@ -216,58 +216,104 @@ This research received no specific grant from any funding agency in the public, 
 
 # Appendices
 
-### Appendix I: Search Strategy (Ovid MEDLINE) 
+### Appendix I: Search Strategy (PubMed / MEDLINE)
 
-**Database:** Ovid MEDLINE(R) ALL 1946 to October 14, 2026.\
-**Date of Search:** October 17, 2026.\
-**Limits:** None.
+**Database:** PubMed (via NCBI API) **Date of Search:** October 17, 2026 **Limits:** None (No temporal or language restrictions applied). **Note:** The syntax was optimized using the `litsearchr` package to assemble free-text terms, combined manually with National Library of Medicine controlled vocabulary (`[Mesh]`).
 
-| Line | Search Strategy | Results |
-|:------------------------:|:--------------------|:------------------------:|
-| **POBLACIÓN: registros de mortalidad** |  |  |
-| 1 | exp Vital Statistics/ | 5329 |
-| 2 | Death Certificates/ | 5750 |
-| 3 | Cause of Death/ | 59267 |
-| 4 | exp Mortality/ | 459099 |
-| 5 | (vital statistics or vital statistics registration\* or registration of vital statistics or vital registration or civil registration or CRVS or population register\* or mortality regist\* or death regist\* or death certificat\* or death record\* or cause of death or causes of death or death cause\* or underlying cause\* or mortality data or mortality statistic\* or mortality record\* or mortality information system\* or mortality rate\* or death rate\*).ti,ab,kf. | 432175 |
-| 6 | (population surveillance or public health surveillance or international classification of disease\* or ICD-9 or ICD-10 or ICD-11 or clinical coding or medical coding or health information system\*).ti,ab,kf. | 65552 |
-| 7 | (mortality or cause of death or death certificat\*).ti,ab,kf. | 1328682 |
-| 8 | 6 and 7 | 14260 |
-| 9 | 1 or 2 or 3 or 4 or 5 or 8 | 818728 |
-| **CONCEPTO, PARTE A: códigos basura y causas mal definidas** |  |  |
-| 10 | (garbage code\* or garbage cause\* or garbage categor\* or garbage diagnos\* or ill-defined cause\* or ill-defined death\* or ill-defined condition\* or poorly defined cause\* or causas mal definidas or codigos basura or codigos lixo or codigos garbage or R00-R99).ti,ab,kf. | 573 |
-| 11 | (ill-defined or unknown cause\* or unspecified cause\* or nonspecific cause\* or non-specific cause\* or unspecific cause\* or undetermined cause\* or vague code\* or cause of death assignment or underlying cause assignment).ti,ab,kf. | 22007 |
-| 12 | ((ill-defined or ill defined or poorly defined or insufficiently defined or unspecified or unspecific or nonspecific or non-specific or unknown or undetermined or vague or imprecise) adj3 (cause\* or death\* or code\* or coding or categor\* or diagnos\* or condition\*)).ti,ab,kf. | 34452 |
-| 13 | ((misclassif\* or miscod\* or misattribut\* or miscertif*) adj3 (cause* or death\* or code\* or coding or certificat\* or diagnos\*)).ti,ab,kf. | 1246 |
-| 14 | 11 or 12 or 13 | 47215 |
-| **CONCEPTO, PARTE B: métodos de corrección / redistribución** |  |  |
-| 15 | exp Models, Statistical/ | 494115 |
-| 16 | exp Data Interpretation, Statistical/ | 62079 |
-| 17 | exp Bayes Theorem/ | 62547 |
-| 18 | exp Spatio-Temporal Analysis/ | 10684 |
-| 19 | exp Medical Record Linkage/ | 4965 |
-| 20 | exp Autopsy/ | 47524 |
-| 21 | exp Patient Discharge/ | 45591 |
-| 22 | exp Artificial Intelligence/ | 306786 |
-| 23 | exp Decision Trees/ | 16591 |
-| 24 | exp Data Mining/ | 13321 |
-| 25 | exp Random Forest/ | 3361 |
-| 26 | exp Life Tables/ | 6740 |
-| 27 | Demography/ | 65583 |
-| 28 | exp Algorithms/ | 596532 |
-| 29 | exp Computer Simulation/ | 374941 |
-| 30 | (proportional redistribution or proportional distribution or fractional algorithm\* or Brass technique or Brass technic or reverse survival or stable population or demographic analys\* or life table\* or statistical model\* or probabilistic model\* or bayesian or empirical bayes or spatiotemporal or spatio-temporal or spatial regression or imput\* or CODEm or CoDCorrect or cause of death ensemble model\* or coarsened exact matching).ti,ab,kf. | 254598 |
-| 31 | (reallocat\* or reassign\* or recod\* or algorithm\* or multiple cause\* or linkage).ti,ab,kf. | 653011 |
-| 32 | (verbal autops\* or hospital discharge or discharge record\* or discharge data or artificial intelligence or machine learning or decision tree\* or data mining or random forest\* or gradient boosting or deep learning or neural network\*).ti,ab,kf. | 569421 |
-| 33 | (microsimulat\* or micro-simulation\* or agent-based or synthetic population\*).ti,ab,kf. | 10824 |
-| 34 | (global burden of disease or GBD or InterVA or InSilicoVA or SmartVA or tariff method or bridge coding or comparability ratio\* or IRIS software or automated coding or automated classification or small area estimation or correction factor\*).ti,ab,kf. | 23155 |
-| 35 | or/15-34 | 2448628 |
-| 36 | (redistribut\* or reclassif\*).ti,ab,kf. | 74738 |
-| **COMBINACIÓN** |  |  |
-| 37 | 14 and (35 or 36) | 4056 |
-| 38 | 35 and 36 | 7894 |
-| 39 | 10 or 37 or 38 | 12245 |
-| 40 | 9 and 39 | 1952 |
+| Line | Search Strategy (PubMed Syntax) | Conceptual Block |
+|:--------------------------:|:---------------------|:---------------------|
+| **1** | `Vital Statistics[Mesh] OR Death Certificates[Mesh] OR Cause of Death[Mesh] OR Mortality[Mesh]` | **Population (MeSH):** Core mortality registry indexing |
+| **2** | `("vital statistics" OR "registration of vital statistics" OR "vital registration" OR "civil registration" OR CRVS OR "population register*" OR "death regist*" OR "death certificat*" OR "death record*" OR "cause of death" OR "causes of death" OR "death cause*" OR "underlying cause*" OR "death rate*" OR "population surveillance" OR "public health surveillance" OR "international classification of disease*" OR ICD-9 OR ICD-10 OR ICD-11 OR "clinical coding" OR "medical coding" OR "health information system*" OR mortality)[tiab]` | **Population (Text Words):** Vital statistics and national death registry systems |
+| **3** | `#1 OR #2` | **Result:** Core Mortality Data |
+| **4** | `("garbage code*" OR "garbage cause*" OR "garbage categor*" OR "garbage diagnos*" OR "poorly defined cause*" OR "causas mal definidas" OR "codigos basura" OR "codigos lixo" OR "codigos garbage" OR R00-R99 OR ill-defined OR "unknown cause*" OR "unspecified cause*" OR "nonspecific cause*" OR "non-specific cause*" OR "unspecific cause*" OR "undetermined cause*" OR "vague code*" OR "cause of death assignment" OR "underlying cause assignment" OR misclassif* OR miscod* OR misattribut* OR miscertif*)[tiab]` | **Concept A (Text Words):** Specific typology of data errors ("Garbage Codes") |
+| **5** | `Models, Statistical[Mesh] OR Data Interpretation, Statistical[Mesh] OR Bayes Theorem[Mesh] OR Spatio-Temporal Analysis[Mesh] OR Medical Record Linkage[Mesh] OR Autopsy[Mesh] OR Patient Discharge[Mesh] OR Artificial Intelligence[Mesh] OR Decision Trees[Mesh] OR Data Mining[Mesh] OR Random Forest[Mesh] OR Life Tables[Mesh] OR Demography[Mesh] OR Algorithms[Mesh] OR Computer Simulation[Mesh]` | **Concept B (MeSH):** Indexing for analytical and computational methods |
+| **6** | `("proportional redistribution" OR "proportional distribution" OR "fractional algorithm*" OR "Brass technique" OR "Brass technic" OR "reverse survival" OR "stable population" OR "demographic analys*" OR "life table*" OR "statistical model*" OR "probabilistic model*" OR bayesian OR "empirical bayes" OR spatiotemporal OR spatio-temporal OR "spatial regression" OR imput* OR CODEm OR CoDCorrect OR "cause of death ensemble model*" OR "coarsened exact matching" OR reallocat* OR reassign* OR recod* OR algorithm* OR "multiple cause*" OR linkage OR "verbal autops*" OR "hospital discharge" OR "discharge record*" OR "discharge data" OR "artificial intelligence" OR "machine learning" OR "decision tree*" OR "data mining" OR "random forest*" OR "gradient boosting" OR "deep learning" OR "neural network*" OR microsimulat* OR micro-simulation* OR agent-based OR "synthetic population*" OR "global burden of disease" OR GBD OR InterVA OR InSilicoVA OR SmartVA OR "tariff method" OR "bridge coding" OR "comparability ratio*" OR "IRIS software" OR "automated coding" OR "automated classification" OR "small area estimation" OR "correction factor*" OR redistribut* OR reclassif*)[tiab]` | **Concept B (Text Words):** Specific statistical, computational, and redistribution frameworks |
+| **7** | `#5 OR #6` | **Result:** Methodological Ecosystem |
+| **8** | `#3 AND #4 AND #7` | **FINAL COMBINED STRATEGY** |
+
+#### Programmatic Search Execution (R Environment)
+
+In adherence to PRISMA-S guidelines for computational reproducibility, the final search query will be executed programmatically via the NCBI API using the `rentrez` package. The exact search string assembled for the programmatic query is documented below:
+
+```{r pubmed-search-query, eval=FALSE, echo=TRUE}
+# Full query assembly for rentrez implementation
+query_pubmed <- paste0(
+  "((Vital Statistics[Mesh] OR Death Certificates[Mesh] OR Cause of Death[Mesh] OR Mortality[Mesh]) OR ",
+  '("vital statistics" OR "registration of vital statistics" OR "vital registration" OR "civil registration" OR CRVS OR "population register*" OR "death regist*" OR "death certificat*" OR "death record*" OR "cause of death" OR "causes of death" OR "death cause*" OR "underlying cause*" OR "death rate*" OR "population surveillance" OR "public health surveillance" OR "international classification of disease*" OR ICD-9 OR ICD-10 OR ICD-11 OR "clinical coding" OR "medical coding" OR "health information system*" OR mortality)[tiab])',
+  " AND ",
+  '("garbage code*" OR "garbage cause*" OR "garbage categor*" OR "garbage diagnos*" OR "poorly defined cause*" OR "causas mal definidas" OR "codigos basura" OR "codigos lixo" OR "codigos garbage" OR R00-R99 OR ill-defined OR "unknown cause*" OR "unspecified cause*" OR "nonspecific cause*" OR "non-specific cause*" OR "unspecific cause*" OR "undetermined cause*" OR "vague code*" OR "cause of death assignment" OR "underlying cause assignment" OR misclassif* OR miscod* OR misattribut* OR miscertif*)[tiab]',
+  " AND ",
+  "((Models, Statistical[Mesh] OR Data Interpretation, Statistical[Mesh] OR Bayes Theorem[Mesh] OR Spatio-Temporal Analysis[Mesh] OR Medical Record Linkage[Mesh] OR Autopsy[Mesh] OR Patient Discharge[Mesh] OR Artificial Intelligence[Mesh] OR Decision Trees[Mesh] OR Data Mining[Mesh] OR Random Forest[Mesh] OR Life Tables[Mesh] OR Demography[Mesh] OR Algorithms[Mesh] OR Computer Simulation[Mesh]) OR ",
+  '("proportional redistribution" OR "proportional distribution" OR "fractional algorithm*" OR "Brass technique" OR "Brass technic" OR "reverse survival" OR "stable population" OR "demographic analys*" OR "life table*" OR "statistical model*" OR "probabilistic model*" OR bayesian OR "empirical bayes" OR spatiotemporal OR spatio-temporal OR "spatial regression" OR imput* OR CODEm OR CoDCorrect OR "cause of death ensemble model*" OR "coarsened exact matching" OR reallocat* OR reassign* OR recod* OR algorithm* OR "multiple cause*" OR linkage OR "verbal autops*" OR "hospital discharge" OR "discharge record*" OR "discharge data" OR "artificial intelligence" OR "machine learning" OR "decision tree*" OR "data mining" OR "random forest*" OR "gradient boosting" OR "deep learning" OR "neural network*" OR microsimulat* OR micro-simulation* OR agent-based OR "synthetic population*" OR "global burden of disease" OR GBD OR InterVA OR InSilicoVA OR SmartVA OR "tariff method" OR "bridge coding" OR "comparability ratio*" OR "IRIS software" OR "automated coding" OR "automated classification" OR "small area estimation" OR "correction factor*" OR redistribut* OR reclassif*)[tiab])'
+)
+```
+
+### Search Strategy: Scopus (Elsevier)
+
+**Database:** Scopus **Date of Search:** October 17, 2026 **Limits:** None (No publication date or language restrictions applied). **Note:** The search syntax was adapted for Scopus using the `TITLE-ABS-KEY` field code to simultaneously search across titles, abstracts, and keywords. Due to strict API character and boolean operator constraints for highly complex queries, this search is executed directly via the Scopus Advanced Search web interface. The retrieved records are exported in `.ris` format for programmatic deduplication via the `synthesisr` package in R.
+
+| Line | Search Strategy (Scopus Syntax) | Conceptual Block |
+|:--------------------------:|:---------------------|:---------------------|
+| **1** | `TITLE-ABS-KEY("vital statistics" OR "registration of vital statistics" OR "vital registration" OR "civil registration" OR CRVS OR "population register*" OR "death regist*" OR "death certificat*" OR "death record*" OR "cause of death" OR "causes of death" OR "death cause*" OR "underlying cause*" OR "death rate*" OR "population surveillance" OR "public health surveillance" OR "international classification of disease*" OR ICD-9 OR ICD-10 OR ICD-11 OR "clinical coding" OR "medical coding" OR "health information system*" OR mortality)` | **Population:** Vital statistics and national death registry systems |
+| **2** | `TITLE-ABS-KEY("garbage code*" OR "garbage cause*" OR "garbage categor*" OR "garbage diagnos*" OR "poorly defined cause*" OR "causas mal definidas" OR "codigos basura" OR "codigos lixo" OR "codigos garbage" OR R00-R99 OR ill-defined OR "unknown cause*" OR "unspecified cause*" OR "nonspecific cause*" OR "non-specific cause*" OR "unspecific cause*" OR "undetermined cause*" OR "vague code*" OR "cause of death assignment" OR "underlying cause assignment" OR misclassif* OR miscod* OR misattribut* OR miscertif*)` | **Concept A:** Specific typology of data errors ("Garbage Codes") |
+| **3** | `TITLE-ABS-KEY("statistical model*" OR "statistical data interpretation" OR "Bayes theorem" OR "spatiotemporal analysis" OR "medical record linkage" OR autopsy OR "patient discharge" OR "artificial intelligence" OR "decision tree*" OR "data mining" OR "random forest*" OR "life table*" OR demography OR algorithm* OR "computer simulation" OR "proportional redistribution" OR "proportional distribution" OR "fractional algorithm*" OR "Brass technique" OR "Brass technic" OR "reverse survival" OR "stable population" OR "demographic analys*" OR "probabilistic model*" OR bayesian OR "empirical bayes" OR spatiotemporal OR spatio-temporal OR "spatial regression" OR imput* OR CODEm OR CoDCorrect OR "cause of death ensemble model*" OR "coarsened exact matching" OR reallocat* OR reassign* OR recod* OR "multiple cause*" OR linkage OR "verbal autops*" OR "hospital discharge" OR "discharge record*" OR "discharge data" OR "machine learning" OR "gradient boosting" OR "deep learning" OR "neural network*" OR microsimulat* OR micro-simulation* OR agent-based OR "synthetic population*" OR "global burden of disease" OR GBD OR InterVA OR InSilicoVA OR SmartVA OR "tariff method" OR "bridge coding" OR "comparability ratio*" OR "IRIS software" OR "automated coding" OR "automated classification" OR "small area estimation" OR "correction factor*" OR redistribut* OR reclassif*)` | **Concept B:** Analytical, statistical, and computational methods |
+| **4** | `#1 AND #2 AND #3` | **FINAL COMBINED STRATEGY** |
+
+#### Web Interface Execution String
+
+The following complete syntax was assembled to be copied and pasted directly into the Scopus Advanced Search query box:
+
+\`\`\`text TITLE-ABS-KEY("vital statistics" OR "registration of vital statistics" OR "vital registration" OR "civil registration" OR CRVS OR "population register*" OR "death regist*" OR "death certificat*" OR "death record*" OR "cause of death" OR "causes of death" OR "death cause*" OR "underlying cause*" OR "death rate*" OR "population surveillance" OR "public health surveillance" OR "international classification of disease*" OR ICD-9 OR ICD-10 OR ICD-11 OR "clinical coding" OR "medical coding" OR "health information system*" OR mortality) AND TITLE-ABS-KEY("garbage code*" OR "garbage cause*" OR "garbage categor*" OR "garbage diagnos*" OR "poorly defined cause*" OR "causas mal definidas" OR "codigos basura" OR "codigos lixo" OR "codigos garbage" OR R00-R99 OR ill-defined OR "unknown cause*" OR "unspecified cause*" OR "nonspecific cause*" OR "non-specific cause*" OR "unspecific cause*" OR "undetermined cause*" OR "vague code*" OR "cause of death assignment" OR "underlying cause assignment" OR misclassif* OR miscod\* OR misattribut\* OR miscertif*) AND TITLE-ABS-KEY("statistical model*" OR "statistical data interpretation" OR "Bayes theorem" OR "spatiotemporal analysis" OR "medical record linkage" OR autopsy OR "patient discharge" OR "artificial intelligence" OR "decision tree*" OR "data mining" OR "random forest*" OR "life table*" OR demography OR algorithm* OR "computer simulation" OR "proportional redistribution" OR "proportional distribution" OR "fractional algorithm*" OR "Brass technique" OR "Brass technic" OR "reverse survival" OR "stable population" OR "demographic analys*" OR "probabilistic model*" OR bayesian OR "empirical bayes" OR spatiotemporal OR spatio-temporal OR "spatial regression" OR imput* OR CODEm OR CoDCorrect OR "cause of death ensemble model*" OR "coarsened exact matching" OR reallocat* OR reassign\* OR recod\* OR "multiple cause*" OR linkage OR "verbal autops*" OR "hospital discharge" OR "discharge record*" OR "discharge data" OR "machine learning" OR "gradient boosting" OR "deep learning" OR "neural network*" OR microsimulat\* OR micro-simulation\* OR agent-based OR "synthetic population*" OR "global burden of disease" OR GBD OR InterVA OR InSilicoVA OR SmartVA OR "tariff method" OR "bridge coding" OR "comparability ratio*" OR "IRIS software" OR "automated coding" OR "automated classification" OR "small area estimation" OR "correction factor*" OR redistribut* OR reclassif\*)
+
+### Search Strategy: Web of Science (Core Collection)
+
+**Database:** Web of Science (Clarivate Analytics) **Date of Search:** October 17, 2026 **Limits:** None (No publication date or language restrictions applied). **Note:** The search syntax was adapted for Web of Science using the `TS=` (Topic) field tag, which queries the Title, Abstract, Author Keywords, and Keywords Plus fields. Due to the high complexity and length of the Boolean string, the search is executed directly via the Web of Science Advanced Search interface. Retrieved records are exported in `.ris` format for downstream integration.
+
+| Line | Search Strategy (Web of Science Syntax) | Conceptual Block |
+|:--------------------------:|:---------------------|:---------------------|
+| **1** | `TS=("vital statistics" OR "registration of vital statistics" OR "vital registration" OR "civil registration" OR CRVS OR "population register*" OR "death regist*" OR "death certificat*" OR "death record*" OR "cause of death" OR "causes of death" OR "death cause*" OR "underlying cause*" OR "death rate*" OR "population surveillance" OR "public health surveillance" OR "international classification of disease*" OR ICD-9 OR ICD-10 OR ICD-11 OR "clinical coding" OR "medical coding" OR "health information system*" OR mortality)` | **Population:** Vital statistics and national death registry systems |
+| **2** | `TS=("garbage code*" OR "garbage cause*" OR "garbage categor*" OR "garbage diagnos*" OR "poorly defined cause*" OR "causas mal definidas" OR "codigos basura" OR "codigos lixo" OR "codigos garbage" OR R00-R99 OR ill-defined OR "unknown cause*" OR "unspecified cause*" OR "nonspecific cause*" OR "non-specific cause*" OR "unspecific cause*" OR "undetermined cause*" OR "vague code*" OR "cause of death assignment" OR "underlying cause assignment" OR misclassif* OR miscod* OR misattribut* OR miscertif*)` | **Concept A:** Specific typology of data errors ("Garbage Codes") |
+| **3** | `TS=("statistical model*" OR "statistical data interpretation" OR "Bayes theorem" OR "spatiotemporal analysis" OR "medical record linkage" OR autopsy OR "patient discharge" OR "artificial intelligence" OR "decision tree*" OR "data mining" OR "random forest*" OR "life table*" OR demography OR algorithm* OR "computer simulation" OR "proportional redistribution" OR "proportional distribution" OR "fractional algorithm*" OR "Brass technique" OR "Brass technic" OR "reverse survival" OR "stable population" OR "demographic analys*" OR "probabilistic model*" OR bayesian OR "empirical bayes" OR spatiotemporal OR spatio-temporal OR "spatial regression" OR imput* OR CODEm OR CoDCorrect OR "cause of death ensemble model*" OR "coarsened exact matching" OR reallocat* OR reassign* OR recod* OR "multiple cause*" OR linkage OR "verbal autops*" OR "hospital discharge" OR "discharge record*" OR "discharge data" OR "machine learning" OR "gradient boosting" OR "deep learning" OR "neural network*" OR microsimulat* OR micro-simulation* OR agent-based OR "synthetic population*" OR "global burden of disease" OR GBD OR InterVA OR InSilicoVA OR SmartVA OR "tariff method" OR "bridge coding" OR "comparability ratio*" OR "IRIS software" OR "automated coding" OR "automated classification" OR "small area estimation" OR "correction factor*" OR redistribut* OR reclassif*)` | **Concept B:** Analytical, statistical, and computational methods |
+| **4** | `#1 AND #2 AND #3` | **FINAL COMBINED STRATEGY** |
+
+#### Web Interface Execution String
+
+``` text
+TS=("vital statistics" OR "registration of vital statistics" OR "vital registration" OR "civil registration" OR CRVS OR "population register*" OR "death regist*" OR "death certificat*" OR "death record*" OR "cause of death" OR "causes of death" OR "death cause*" OR "underlying cause*" OR "death rate*" OR "population surveillance" OR "public health surveillance" OR "international classification of disease*" OR ICD-9 OR ICD-10 OR ICD-11 OR "clinical coding" OR "medical coding" OR "health information system*" OR mortality) AND TS=("garbage code*" OR "garbage cause*" OR "garbage categor*" OR "garbage diagnos*" OR "poorly defined cause*" OR "causas mal definidas" OR "codigos basura" OR "codigos lixo" OR "codigos garbage" OR R00-R99 OR ill-defined OR "unknown cause*" OR "unspecified cause*" OR "nonspecific cause*" OR "non-specific cause*" OR "unspecific cause*" OR "undetermined cause*" OR "vague code*" OR "cause of death assignment" OR "underlying cause assignment" OR misclassif* OR miscod* OR misattribut* OR miscertif*) AND TS=("statistical model*" OR "statistical data interpretation" OR "Bayes theorem" OR "spatiotemporal analysis" OR "medical record linkage" OR autopsy OR "patient discharge" OR "artificial intelligence" OR "decision tree*" OR "data mining" OR "random forest*" OR "life table*" OR demography OR algorithm* OR "computer simulation" OR "proportional redistribution" OR "proportional distribution" OR "fractional algorithm*" OR "Brass technique" OR "Brass technic" OR "reverse survival" OR "stable population" OR "demographic analys*" OR "probabilistic model*" OR bayesian OR "empirical bayes" OR spatiotemporal OR spatio-temporal OR "spatial regression" OR imput* OR CODEm OR CoDCorrect OR "cause of death ensemble model*" OR "coarsened exact matching" OR reallocat* OR reassign* OR recod* OR "multiple cause*" OR linkage OR "verbal autops*" OR "hospital discharge" OR "discharge record*" OR "discharge data" OR "machine learning" OR "gradient boosting" OR "deep learning" OR "neural network*" OR microsimulat* OR micro-simulation* OR agent-based OR "synthetic population*" OR "global burden of disease" OR GBD OR InterVA OR InSilicoVA OR SmartVA OR "tariff method" OR "bridge coding" OR "comparability ratio*" OR "IRIS software" OR "automated coding" OR "automated classification" OR "small area estimation" OR "correction factor*" OR redistribut* OR reclassif*)
+```
+
+### Search Strategy: LILACS (Latin American and Caribbean Health Sciences Literature)
+
+**Database:** LILACS (via Virtual Health Library - VHL / BVS) **Date of Search:** October 17, 2026 **Limits:** None (No publication date restrictions applied). **Note:** The search syntax for LILACS required methodological adaptation due to the character limits and Boolean nesting constraints of the VHL (BVS) search interface. The highly complex string used for Scopus and Web of Science was distilled into its core conceptual components. Furthermore, to maximize sensitivity within regional literature, free-text terms were translated into a trilingual format (English, Spanish, and Portuguese) mapping to DeCS (Health Sciences Descriptors) terminology. The search is executed using the `tw:` (text word) field code.
+
+| Line | Search Strategy (LILACS / VHL Syntax) | Conceptual Block |
+|:--------------------------:|:---------------------|:---------------------|
+| **1** | `tw:("vital statistics" OR "estadisticas vitales" OR "estatisticas vitais" OR "cause of death" OR "causas de muerte" OR "causas de morte" OR "death certificate*" OR "certificados de defuncion" OR "declaracao de obito" OR CRVS OR mortality OR mortalidad OR mortalidade)` | **Population:** Mortality registries and vital statistics (Trilingual) |
+| **2** | `tw:("garbage code*" OR "codigos basura" OR "codigos lixo" OR "codigos garbage" OR "ill-defined" OR "mal definidas" OR "mal definidos" OR "R00-R99" OR "unspecified cause*" OR "causas no especificadas" OR "causas nao especificadas")` | **Concept A:** "Garbage Codes" and ill-defined causes (Trilingual) |
+| **3** | `tw:(redistribut* OR redistribucion OR redistribuicao OR reclassif* OR reclasificacion OR reclassificacao OR imput* OR algorithm* OR algoritmo* OR "machine learning" OR "aprendizaje automatico" OR "aprendizado de maquina" OR "artificial intelligence" OR "inteligencia artificial" OR "proportional distribution" OR "distribucion proporcional" OR "multiple cause*" OR "causas multiples" OR "causas multiplas")` | **Concept B:** Analytical and redistribution methods (Trilingual) |
+| **4** | `#1 AND #2 AND #3` | **FINAL COMBINED STRATEGY** |
+
+#### Web Interface Execution String
+
+``` text
+(tw:("vital statistics" OR "estadisticas vitales" OR "estatisticas vitais" OR "cause of death" OR "causas de muerte" OR "causas de morte" OR "death certificate*" OR "certificados de defuncion" OR "declaracao de obito" OR CRVS OR mortality OR mortalidad OR mortalidade)) AND (tw:("garbage code*" OR "codigos basura" OR "codigos lixo" OR "codigos garbage" OR "ill-defined" OR "mal definidas" OR "mal definidos" OR "R00-R99" OR "unspecified cause*" OR "causas no especificadas" OR "causas nao especificadas")) AND (tw:(redistribut* OR redistribucion OR redistribuicao OR reclassif* OR reclasificacion OR reclassificacao OR imput* OR algorithm* OR algoritmo* OR "machine learning" OR "aprendizaje automatico" OR "aprendizado de maquina" OR "artificial intelligence" OR "inteligencia artificial" OR "proportional distribution" OR "distribucion proporcional" OR "multiple cause*" OR "causas multiples" OR "causas multiplas"))
+```
+
+### Search Strategy: SciELO (Scientific Electronic Library Online)
+
+**Database:** SciELO **Date of Search:** October 17, 2026 **Limits:** None (No publication date restrictions applied). **Note:** To effectively capture the substantial volume of methodological literature generated in Latin America, particularly from Brazil regarding "códigos lixo" (garbage codes), the SciELO search strategy was adapted into a targeted, trilingual format (English, Spanish, Portuguese). Due to the Boolean complexity limits of the SciELO search engine, the string was distilled to its core programmatic concepts. The search was executed in the "All indices" default field. Retrieved records are exported in `.ris` format for synthesis.
+
+| Line | Search Strategy (SciELO Syntax) | Conceptual Block |
+|:--------------------------:|:---------------------|:---------------------|
+| **1** | `("vital statistics" OR "estadisticas vitales" OR "estatisticas vitais" OR "cause of death" OR "causas de muerte" OR "causas de morte" OR "mortality" OR "mortalidad" OR "mortalidade" OR "death certificate*" OR "certificados de defuncion" OR "declaracao de obito")` | **Population:** Mortality registries and vital statistics (Trilingual) |
+| **2** | `("garbage code*" OR "codigos basura" OR "codigos lixo" OR "codigos garbage" OR "ill-defined" OR "mal definidas" OR "mal definidos" OR "unspecified cause*" OR "causas no especificadas" OR "causas nao especificadas" OR R00-R99)` | **Concept A:** "Garbage Codes" and ill-defined causes (Trilingual) |
+| **3** | `(redistribut* OR redistribucion OR redistribuicao OR reclassif* OR reclasificacion OR reclassificacao OR imput* OR algorithm* OR algoritmo* OR "machine learning" OR "aprendizaje automatico" OR "aprendizado de maquina" OR "proportional distribution" OR "distribucion proporcional")` | **Concept B:** Analytical and redistribution methods (Trilingual) |
+| **4** | `#1 AND #2 AND #3` | **FINAL COMBINED STRATEGY** |
+
+#### Web Interface Execution String
+
+```text ("vital statistics" OR "estadisticas vitales" OR "estatisticas vitais" OR "cause of death" OR "causas de muerte" OR "causas de morte" OR "mortality" OR "mortalidad" OR "mortalidade" OR "death certificate*" OR "certificados de defuncion" OR "declaracao de obito") AND ("garbage code*" OR "codigos basura" OR "codigos lixo" OR "codigos garbage" OR "ill-defined" OR "mal definidas" OR "mal definidos" OR "unspecified cause*" OR "causas no especificadas" OR "causas nao especificadas" OR R00-R99) AND (redistribut* OR redistribucion OR redistribuicao OR reclassif\* OR reclasificacion OR reclassificacao OR imput\* OR algorithm\* OR algoritmo\* OR "machine learning" OR "aprendizaje automatico" OR "aprendizado de maquina" OR "proportional distribution" OR "distribucion proporcional")
+```
 
 ## Appendix II: PRISMA-S audit and mapping table
 
