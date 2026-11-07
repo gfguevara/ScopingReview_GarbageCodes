@@ -31,7 +31,7 @@ Esta guía proporciona el paso a paso estructurado para clonar el repositorio de
 1. Abre la terminal (o **Git Bash** en Windows).
 2. Clona el repositorio oficial ejecutando:
 ```bash
-git clone [https://github.com/gfguevara/ScopingReview_GarbageCodes.git](https://github.com/gfguevara/ScopingReview_GarbageCodes.git)
+git clone [ScopingReview_GarbageCodes](https://github.com/gfguevara/ScopingReview_GarbageCodes)
 ```
 
 3. Accede al directorio del proyecto:
@@ -89,7 +89,7 @@ git push origin propuesta-protocolo-tuNombre
 
 ## Paso 5: Crear un Pull Request (PR)
 
-1. Ve a la página principal del repositorio en GitHub: [gfguevara/ScopingReview_GarbageCodes](https://github.com/gfguevara/ScopingReview_GarbageCodes).
+1. Ve a la página principal del repositorio en GitHub: [ScopingReview_GarbageCodes](https://github.com/gfguevara/ScopingReview_GarbageCodes)
 2. En la parte superior verás un banner destacado que dice **"Compare & pull request"**. Haz clic en él.
 3. Añade un título descriptivo a tu propuesta y detalla en la descripción los aspectos clave que modificaste o agregaste.
 4. Haz clic en **"Create pull request"**.
@@ -97,4 +97,44 @@ git push origin propuesta-protocolo-tuNombre
 ::: {.callout-tip}
 ## Siguiente paso
 El investigador principal revisará los cambios, realizará comentarios sobre las líneas modificadas e integrará la propuesta a la rama principal ().
+:::
+
+## Opción recomendada: Trabajo desde RStudio usando Ramas y Pull Requests
+
+Para trabajar visualmente desde RStudio **sin sobrescribir la rama principal (`main`)** y permitir que el dueño del proyecto revise los cambios antes de integrarlos, sigue este flujo:
+
+### 1. Configuración inicial (solo la primera vez por propuesta)
+
+1. En la esquina superior derecha de RStudio, busca la pestaña **Git**.
+2. En la parte superior de esa pestaña, haz clic en el botón de **New Branch** (dos rectángulos conectados por una línea).
+3. Escribe un nombre descriptivo para tu rama (ejemplo: `propuesta-seccion-metodos` o `cambios-tuNombre`).
+4. Haz clic en **Create**. RStudio creará la rama y te cambiará automáticamente a ella.
+
+---
+
+### 2. Flujo de trabajo y envío de propuestas
+
+1. **Editar el archivo:**
+   * Abre `Protocolo_ScopingReview_GarbageCodes.Rmd`.
+   * Realiza tus modificaciones y guarda el documento (`Ctrl + S`).
+
+2. **Hacer Commit:**
+   * En la pestaña **Git**, marca la casilla **Staged** al lado de `Protocolo_ScopingReview_GarbageCodes.Rmd`.
+   * Haz clic en **Commit**.
+   * Escribe un mensaje claro detallando tus sugerencias en **Commit message**.
+   * Haz clic en el botón **Commit**.
+
+3. **Hacer Push:**
+   * Haz clic en el botón **Push** (flecha verde hacia arriba). RStudio subirá tu rama con tus cambios a GitHub.
+
+4. **Crear el Pull Request en GitHub:**
+   * Entra al repositorio en GitHub: [ScopingReview_GarbageCodes](https://github.com/gfguevara/ScopingReview_GarbageCodes)
+   * Haz clic en el botón amarillo **Compare & pull request** que aparecerá en la parte superior.
+   * Explica brevemente tus modificaciones y haz clic en **Create pull request**.
+
+---
+
+::: {.callout-note}
+## ¿Qué sucede después?
+El dueño del proyecto recibirá una notificación en GitHub, podrá revisar exactamente qué líneas agregaste o eliminaste, dejar comentarios o sugerir correcciones, y finalmente hacer clic en **Merge pull request** para incorporar tus cambios a la rama principal.
 :::

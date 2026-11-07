@@ -91,6 +91,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#paso-3-editar-el-documento-en-rstudio" id="toc-paso-3-editar-el-documento-en-rstudio" class="nav-link" data-scroll-target="#paso-3-editar-el-documento-en-rstudio"><span class="header-section-number">3</span> Paso 3: Editar el documento en RStudio</a></li>
   <li><a href="#paso-4-guardar-y-subir-los-cambios-a-github" id="toc-paso-4-guardar-y-subir-los-cambios-a-github" class="nav-link" data-scroll-target="#paso-4-guardar-y-subir-los-cambios-a-github"><span class="header-section-number">4</span> Paso 4: Guardar y subir los cambios a GitHub</a></li>
   <li><a href="#paso-5-crear-un-pull-request-pr" id="toc-paso-5-crear-un-pull-request-pr" class="nav-link" data-scroll-target="#paso-5-crear-un-pull-request-pr"><span class="header-section-number">5</span> Paso 5: Crear un Pull Request (PR)</a></li>
+  <li><a href="#opción-recomendada-trabajo-desde-rstudio-usando-ramas-y-pull-requests" id="toc-opción-recomendada-trabajo-desde-rstudio-usando-ramas-y-pull-requests" class="nav-link" data-scroll-target="#opción-recomendada-trabajo-desde-rstudio-usando-ramas-y-pull-requests"><span class="header-section-number">6</span> Opción recomendada: Trabajo desde RStudio usando Ramas y Pull Requests</a></li>
   </ul>
 <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="Guia_Trabajo_Colaborativo.docx"><i class="bi bi-file-word"></i>MS Word</a></li><li><a href="Guia_Trabajo_Colaborativo.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
@@ -149,7 +150,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Abre la terminal (o <strong>Git Bash</strong> en Windows).</li>
 <li>Clona el repositorio oficial ejecutando:</li>
 </ol>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="pp">[</span><span class="ss">https://github.com/gfguevara/ScopingReview_GarbageCodes.git</span><span class="pp">]</span><span class="er">(</span><span class="ex">https://github.com/gfguevara/ScopingReview_GarbageCodes.git</span><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone <span class="pp">[</span><span class="ss">ScopingReview_GarbageCodes</span><span class="pp">]</span><span class="er">(</span><span class="ex">https://github.com/gfguevara/ScopingReview_GarbageCodes</span><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ol start="3" type="1">
 <li>Accede al directorio del proyecto:</li>
 </ol>
@@ -195,7 +196,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="paso-5-crear-un-pull-request-pr" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="paso-5-crear-un-pull-request-pr"><span class="header-section-number">5</span> Paso 5: Crear un Pull Request (PR)</h2>
 <ol type="1">
-<li>Ve a la página principal del repositorio en GitHub: <a href="https://github.com/gfguevara/ScopingReview_GarbageCodes">gfguevara/ScopingReview_GarbageCodes</a>.</li>
+<li>Ve a la página principal del repositorio en GitHub: <a href="https://github.com/gfguevara/ScopingReview_GarbageCodes">ScopingReview_GarbageCodes</a></li>
 <li>En la parte superior verás un banner destacado que dice <strong>“Compare &amp; pull request”</strong>. Haz clic en él.</li>
 <li>Añade un título descriptivo a tu propuesta y detalla en la descripción los aspectos clave que modificaste o agregaste.</li>
 <li>Haz clic en <strong>“Create pull request”</strong>.</li>
@@ -213,6 +214,61 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>El investigador principal revisará los cambios, realizará comentarios sobre las líneas modificadas e integrará la propuesta a la rama principal ().</p>
 </div>
 </div>
+</section>
+<section id="opción-recomendada-trabajo-desde-rstudio-usando-ramas-y-pull-requests" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="opción-recomendada-trabajo-desde-rstudio-usando-ramas-y-pull-requests"><span class="header-section-number">6</span> Opción recomendada: Trabajo desde RStudio usando Ramas y Pull Requests</h2>
+<p>Para trabajar visualmente desde RStudio <strong>sin sobrescribir la rama principal (<code>main</code>)</strong> y permitir que el dueño del proyecto revise los cambios antes de integrarlos, sigue este flujo:</p>
+<section id="configuración-inicial-solo-la-primera-vez-por-propuesta" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="configuración-inicial-solo-la-primera-vez-por-propuesta"><span class="header-section-number">6.1</span> 1. Configuración inicial (solo la primera vez por propuesta)</h3>
+<ol type="1">
+<li>En la esquina superior derecha de RStudio, busca la pestaña <strong>Git</strong>.</li>
+<li>En la parte superior de esa pestaña, haz clic en el botón de <strong>New Branch</strong> (dos rectángulos conectados por una línea).</li>
+<li>Escribe un nombre descriptivo para tu rama (ejemplo: <code>propuesta-seccion-metodos</code> o <code>cambios-tuNombre</code>).</li>
+<li>Haz clic en <strong>Create</strong>. RStudio creará la rama y te cambiará automáticamente a ella.</li>
+</ol>
+<hr>
+</section>
+<section id="flujo-de-trabajo-y-envío-de-propuestas" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="flujo-de-trabajo-y-envío-de-propuestas"><span class="header-section-number">6.2</span> 2. Flujo de trabajo y envío de propuestas</h3>
+<ol type="1">
+<li><strong>Editar el archivo:</strong>
+<ul>
+<li>Abre <code>Protocolo_ScopingReview_GarbageCodes.Rmd</code>.</li>
+<li>Realiza tus modificaciones y guarda el documento (<code>Ctrl + S</code>).</li>
+</ul></li>
+<li><strong>Hacer Commit:</strong>
+<ul>
+<li>En la pestaña <strong>Git</strong>, marca la casilla <strong>Staged</strong> al lado de <code>Protocolo_ScopingReview_GarbageCodes.Rmd</code>.</li>
+<li>Haz clic en <strong>Commit</strong>.</li>
+<li>Escribe un mensaje claro detallando tus sugerencias en <strong>Commit message</strong>.</li>
+<li>Haz clic en el botón <strong>Commit</strong>.</li>
+</ul></li>
+<li><strong>Hacer Push:</strong>
+<ul>
+<li>Haz clic en el botón <strong>Push</strong> (flecha verde hacia arriba). RStudio subirá tu rama con tus cambios a GitHub.</li>
+</ul></li>
+<li><strong>Crear el Pull Request en GitHub:</strong>
+<ul>
+<li>Entra al repositorio en GitHub: <a href="https://github.com/gfguevara/ScopingReview_GarbageCodes">ScopingReview_GarbageCodes</a></li>
+<li>Haz clic en el botón amarillo <strong>Compare &amp; pull request</strong> que aparecerá en la parte superior.</li>
+<li>Explica brevemente tus modificaciones y haz clic en <strong>Create pull request</strong>.</li>
+</ul></li>
+</ol>
+<hr>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>¿Qué sucede después?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>El dueño del proyecto recibirá una notificación en GitHub, podrá revisar exactamente qué líneas agregaste o eliminaste, dejar comentarios o sugerir correcciones, y finalmente hacer clic en <strong>Merge pull request</strong> para incorporar tus cambios a la rama principal.</p>
+</div>
+</div>
+</section>
 </section>
 
 </main>
