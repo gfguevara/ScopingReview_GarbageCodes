@@ -1,0 +1,100 @@
+---
+title: "Guía para Colaboradores: Trabajo en el Protocolo de Revisión de Alcance"
+subtitle: "Flujo de trabajo con Git, RStudio y Quarto para propuestas de modificación"
+author: "Giovanni Francisco Guevara Vásquez"
+date: today
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    toc-location: left
+    number-sections: true
+    theme: cosmo
+    code-copy: true
+    df-print: paged
+  docx:
+    toc: true
+    number-sections: true
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
+---
+
+::: {.callout-note}
+## Objetivo
+Esta guía proporciona el paso a paso estructurado para clonar el repositorio del proyecto [ScopingReview_GarbageCodes](https://github.com/gfguevara/ScopingReview_GarbageCodes), realizar sugerencias de cambio sobre el documento principal ( / ) y enviar las modificaciones mediante un **Pull Request**.
+:::
+
+## Paso 1: Clonar el repositorio localmente
+
+1. Abre la terminal (o **Git Bash** en Windows).
+2. Clona el repositorio oficial ejecutando:
+```bash
+git clone [https://github.com/gfguevara/ScopingReview_GarbageCodes.git](https://github.com/gfguevara/ScopingReview_GarbageCodes.git)
+```
+
+3. Accede al directorio del proyecto:
+
+```Bash
+cd ScopingReview_GarbageCodes
+```
+
+
+## Paso 2: Crear una rama (Branch) para tus cambios
+
+Para mantener organizada la versión principal y evitar conflictos, **no trabajes directamente sobre la rama** `main`.
+
+1. Asegúrate de estar en la rama principal y tener la versión más reciente:
+
+```Bash
+git checkout main
+git pull origin main
+```
+
+2. Crea y cambia a una nueva rama de trabajo (utiliza un nombre descriptivo, como `propuesta-tuNombre`):
+
+```Bash
+git checkout -b propuesta-protocolo-tuNombre
+```
+
+
+## Paso 3: Editar el documento en RStudio
+
+1. Abre el proyecto en RStudio haciendo doble clic sobre el archivo `Protocol.Rproj`.
+2. Abre el archivo principal del protocolo: `Protocolo_ScopingReview_GarbageCodes.Rmd`.
+3. Realiza tus modificaciones, correcciones o adiciones metodológicas.
+4. *(Opcional pero recomendado)* Haz clic en **Render** (o **Knit** / ) para verificar que el documento compile a HTML, Word o PDF sin errores.
+
+## Paso 4: Guardar y subir los cambios a GitHub
+
+1. Revisa los archivos modificados y prepáralos para el commit:
+
+```Bash
+git add Protocolo_ScopingReview_GarbageCodes.Rmd
+```
+
+2. Crea un commit con un mensaje claro sobre las modificaciones realizadas:
+
+```Bash
+git commit -m "Propuesta: revisión de criterios de inclusión y estrategia de búsqueda"
+```
+
+3. Sube la rama con tus cambios al repositorio remoto:
+
+```Bash
+git push origin propuesta-protocolo-tuNombre
+```
+
+
+## Paso 5: Crear un Pull Request (PR)
+
+1. Ve a la página principal del repositorio en GitHub: [gfguevara/ScopingReview_GarbageCodes](https://github.com/gfguevara/ScopingReview_GarbageCodes).
+2. En la parte superior verás un banner destacado que dice **"Compare & pull request"**. Haz clic en él.
+3. Añade un título descriptivo a tu propuesta y detalla en la descripción los aspectos clave que modificaste o agregaste.
+4. Haz clic en **"Create pull request"**.
+
+::: {.callout-tip}
+## Siguiente paso
+El investigador principal revisará los cambios, realizará comentarios sobre las líneas modificadas e integrará la propuesta a la rama principal ().
+:::
