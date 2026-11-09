@@ -1,0 +1,103 @@
+# authors.yml
+author:
+  - name: "Giovanni F. Guevara"
+    orcid: "0000-0001-8931-8207"  
+    email: "giovannifrancisco.guevaravasquez@phd.unipd.it"
+    corresponding: true
+    affiliations:
+      - ref: unipd
+      - ref: ujmd
+    roles:
+      - "Conceptualization"
+      - "Methodology"
+      - "Software"
+      - "Investigation"
+      - "Data curation"
+      - "Formal analysis"
+      - "Writing – original draft"
+      - "Project administration"
+      - "Resources"
+
+  - name: "David A. Tejada"
+    orcid: "0000-0003-2502-1433"
+    affiliations:
+      - ref: ins
+   
+    roles:
+      - "Investigation"
+      - "Methodology"
+      - "Validation"
+      - "Writing – review & editing"
+
+  - name: "Hazel C. García"
+    orcid:
+    affiliations:
+      - ref: ins
+    roles:
+      - "Investigation"
+      - "Data curation"
+      - "Writing – review & editing"
+
+  - name: "Cesar M. Gavidia"
+    orcid:
+    affiliations:
+      - ref: ins
+    roles:
+      - "Investigation"
+      - "Validation"
+      - "Visualization"
+      - "Writing – review & editing"
+
+  - name: "Mirna E. Meléndez"
+    orcid:
+    affiliations:
+      - ref: ins
+    roles:
+      - "Conceptualization"
+      - "Methodology"
+      - "Writing – review & editing"
+
+  - name: "Kevin A. Siliézar"
+    orcid:
+    affiliations:
+      - ref: ujmd
+    roles:
+      - "Investigation"
+      - "Writing – review & editing"
+
+  - name: "Alejandra E. Rivas"
+    orcid:
+    affiliations:
+      - ref: ujmd
+    roles:
+      - "Investigation"
+      - "Writing – review & editing"
+
+  - name: "Pablo A. Salazar"
+    orcid: "0000-0002-8265-5603"
+    affiliations:
+      - ref: ujmd
+    roles:
+      - "Supervision"
+      - "Project administration"
+      - "Resources"
+      - "Writing – review & editing"
+      
+affiliations:
+  - id: unipd
+    number: 1
+    name: "PhD Program in Translational Specialistic Medicine 'G.B. Morgagni', Department of Cardiac, Thoracic, Vascular Sciences and Public Health, University of Padua"
+    city: "Padua"
+    country: "Italy"
+
+  - id: ujmd
+    number: 2
+    name: "Faculty of Health Sciences / Research Institute, Universidad Dr. José Matías Delgado"
+    city: "Antiguo Cuscatlán"
+    country: "El Salvador"
+    
+  - id: ins
+    number: 3
+    name: "National Institute of Health of El Salvador (INS)"
+    city: "San Salvador"
+    country: "El Salvador"

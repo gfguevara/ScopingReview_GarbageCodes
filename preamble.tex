@@ -1,0 +1,16 @@
+% Tablas en vertical, ajustadas al ancho del texto
+\usepackage{etoolbox}
+\usepackage{fvextra}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.2}
+\setlength{\emergencystretch}{3em}
+\AtBeginEnvironment{longtable}{\footnotesize}
+% Bloques de codigo con salto de linea
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,breaksymbolleft={},commandchars=\\\{\},fontsize=\footnotesize}
+\RecustomVerbatimEnvironment{verbatim}{Verbatim}{breaklines,breaksymbolleft={},fontsize=\footnotesize}
+% Sin marco sombreado
+\renewenvironment{Shaded}{\par\medskip}{\par\medskip}
+% Encabezados de nivel 4 como bloque
+\usepackage{titlesec}
+\titleformat{\paragraph}[block]{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{}
+\titlespacing*{\paragraph}{0pt}{1.5ex plus .2ex}{0.8ex}

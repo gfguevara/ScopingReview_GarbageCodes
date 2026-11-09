@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en-US" xml:lang="en-US">
 
 <head>
 
@@ -9,10 +9,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Guevara-Vásquez, Giovanni1, Salazar-Colocho, Pablo2, Siliezar-Portillo, Kevin2, Rivas-Portillo, Alejandra2, Tejada-Peña, David3, García-Sanchez, Hazel3, Gavidia-Leiva, César3, Melendez-Gálvez, Mirna3" />
+<meta name="author" content="Giovanni F. Guevara-Vásquez1,2,*" />
+<meta name="author" content="David Tejada-Peña3" />
+<meta name="author" content="Hazel García-Sánchez3" />
+<meta name="author" content="César Gavidia-Leiva3" />
+<meta name="author" content="Mirna Meléndez-Gálvez3" />
+<meta name="author" content="Kevin Siliézar-Madrid2" />
+<meta name="author" content="Alejandra Rivas-Portillo2" />
+<meta name="author" content="Pablo Salazar-Colocho2" />
 
+<meta name="date" content="2026-11-08" />
 
-<title>Methodologies for the correction of “Garbage Codes” in mortality records and their applicability in microsimulation models: Protocol for a scoping review</title>
+<title>Methodologies for the correction of “Garbage Codes” in mortality records and their applicability in microsimulation models</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -1546,6 +1554,7 @@ margin-left: 2em;
 }
 </style>
 
+<style type="text/css">table { width: 100%; table-layout: fixed; font-size: 0.85em; }th, td { vertical-align: top; padding: 4px 6px; overflow-wrap: anywhere; }td code, pre, pre code { white-space: pre-wrap; overflow-wrap: anywhere; }</style>
 
 
 
@@ -1644,57 +1653,88 @@ display: none;
 
 <h1 class="title toc-ignore">Methodologies for the correction of
 “Garbage Codes” in mortality records and their applicability in
-microsimulation models: Protocol for a scoping review</h1>
-<h4 class="author">Guevara-Vásquez, Giovanni<sup>1</sup>,
-Salazar-Colocho, Pablo<sup>2</sup>, Siliezar-Portillo,
-Kevin<sup>2</sup>, Rivas-Portillo, Alejandra<sup>2</sup>, Tejada-Peña,
-David<sup>3</sup>, García-Sanchez, Hazel<sup>3</sup>, Gavidia-Leiva,
-César<sup>3</sup>, Melendez-Gálvez, Mirna<sup>3</sup></h4>
+microsimulation models</h1>
+<h3 class="subtitle">JBI Evidence Synthesis Scoping Review Protocol</h3>
+<h4 class="author">Giovanni F. Guevara-Vásquez<sup>1,2,*</sup></h4>
+<h4 class="author">David Tejada-Peña<sup>3</sup></h4>
+<h4 class="author">Hazel García-Sánchez<sup>3</sup></h4>
+<h4 class="author">César Gavidia-Leiva<sup>3</sup></h4>
+<h4 class="author">Mirna Meléndez-Gálvez<sup>3</sup></h4>
+<h4 class="author">Kevin Siliézar-Madrid<sup>2</sup></h4>
+<h4 class="author">Alejandra Rivas-Portillo<sup>2</sup></h4>
+<h4 class="author">Pablo Salazar-Colocho<sup>2</sup></h4>
+<h4 class="date">2026-11-08</h4>
 
 </div>
 
 
-<p><sup>1</sup>G.B. Morgagni PhD program in Translational Medicine,
-University of Padua, Padua, Italy;</p>
-<p><sup>2</sup>Department of Public Health, School of Medicine, Faculty
-of Health Sciences, Dr. José Matías Delgado University, Antiguo
-Cuscatlán, El Salvador;</p>
-<p><sup>3</sup>National Health Institute, El Salvador. El Salvador.</p>
+<p><sup>1</sup> PhD Program in Translational Specialistic Medicine ‘G.B.
+Morgagni’, Department of Cardiac, Thoracic, Vascular Sciences and Public
+Health, University of Padua, Padua, Italy.<br />
+<sup>2</sup> Faculty of Health Sciences / Research Institute,
+Universidad Dr. José Matías Delgado, Antiguo Cuscatlán, El
+Salvador.<br />
+<sup>3</sup> National Institute of Health of El Salvador (INS), San
+Salvador, El Salvador.<br />
+<sup>*</sup> Corresponding author: Giovanni F. Guevara-Vásquez
+(giovannifrancisco.guevaravasquez@phd.unipd.it).</p>
 <p><strong>Abstract</strong></p>
-<p><strong>Objective:</strong> To systematically map and synthesize the
-scientific evidence on the quantitative methodologies used for the
-identification, cleaning and redistribution of “garbage codes” in
-population-based mortality registries in low- and middle-income
-countries (LMICs), evaluating their technical applicability for the
-parameterization of microsimulation models in health.</p>
-<p><strong>Inclusion criteria:</strong> This review will consider
-studies utilizing population-based mortality records or vital statistics
-from low- and middle-income countries (Population). Eligible literature
-must describe or apply traditional statistical methods, multiple
-imputation, Bayesian models, record linkage, or machine learning
-algorithms to correct ill-defined causes of death and “garbage codes”
-(Concept). The context includes health information systems characterized
-by scarce or heterogeneous data, specifically where the feasibility of
-disaggregating results to the individual level to parameterize
-stochastic microsimulation models is analyzed (Context).</p>
+<p><strong>Objective:</strong> To map and synthesize the evidence on
+quantitative methodologies used to identify, clean, and redistribute
+“garbage codes” in population-based mortality records, evaluate their
+feasibility for parameterizing individual-level microsimulation models
+in health, and establish a conceptual framework to guide future public
+health mathematical modeling.</p>
+<p><strong>Introduction:</strong> Garbage codes are International
+Classification of Diseases (ICD) codes representing ambiguous,
+non-specific, or biologically implausible underlying causes of death.
+Most correction methods operate on aggregated data and assume that
+misclassified deaths are randomly distributed across demographic strata,
+whereas stochastic microsimulation and agent-based models require highly
+disaggregated baseline mortality risks. How macro-level redistribution
+assumptions transfer to individual-level simulation environments has not
+been systematically mapped.</p>
+<p><strong>Inclusion criteria:</strong> <em>Population:</em> studies
+using population-based mortality data (vital statistics or civil
+registration and vital statistics systems), without age or sex
+restrictions; hospital-based and clinical registries are excluded.
+<em>Concept:</em> studies describing, evaluating, or implementing
+quantitative methods (proportional redistribution and other demographic
+techniques, multiple imputation, spatial or Bayesian modeling, record
+linkage, or machine learning) to identify, reclassify, or redistribute
+garbage codes or ill-defined causes of death; purely descriptive quality
+assessments, corrections limited to under-registration, and
+patient-level prediction models are excluded. <em>Context:</em> any
+mortality reporting setting, in high-income and low- and middle-income
+countries, addressing individual-level disaggregation or microsimulation
+parameterization, or detailing the assumptions and algorithms needed to
+calibrate individual-level models; methods that preclude
+individual-level disaggregation are excluded. Peer-reviewed articles,
+methodological chapters, and institutional grey literature published in
+English, Spanish, or Portuguese are eligible.</p>
 <p><strong>Methods:</strong> This scoping review will follow the JBI
-methodology and the PRISMA Extension for Scoping Reviews (PRISMA-ScR).
-Comprehensive searches will be performed across PubMed, Scopus, Web of
-Science, LILACS, and SciELO, supplemented by grey literature from the
-WHO, PAHO, and IHME. To ensure reproducibility, the workflow will be
-executed within the R statistical environment. We will utilize
-litsearchr for search syntax optimization, synthesisr for deduplication,
-and revtools for blinded screening supported by latent Dirichlet
-allocation topic clustering. Discrepancies will be resolved by
-discussion or a third reviewer. Following paired data extraction,
-findings will be synthesized narratively and visualized using ggplot2
-matrix heatmaps and igraph flow networks.</p>
-<p><strong>Keywords:</strong> health information systems; causes of
-death; vital statistics; data quality; machine learning algorithms;
-proportional redistribution; computer simulation.</p>
+methodology and the PRISMA Extension for Scoping Reviews (PRISMA-ScR);
+the protocol was registered a priori on the Open Science Framework.
+PubMed/MEDLINE, Scopus, Web of Science, LILACS, and SciELO will be
+searched, together with grey literature (WHO, PAHO, IHME, the Ministry
+of Health of El Salvador, and specialized grey literature databases) and
+reference lists. The workflow will run in R (litsearchr, synthesisr,
+revtools), using latent Dirichlet allocation topic modeling only as a
+decision-support tool. Two reviewers will independently screen records
+and chart data across six dimensions (study metadata, health system
+context, mortality database characteristics, garbage code typology,
+correction methodology, and microsimulation applicability), resolving
+discrepancies by consensus or a third reviewer. No critical appraisal
+will be conducted. Results will be summarized with frequencies, a
+thematic narrative synthesis, evidence tables, heatmaps of methods by
+ICD chapter, and flow networks linking vital statistics to
+microsimulation parameterization.</p>
+<p><strong>Keywords:</strong> garbage codes; health information systems;
+causes of death; vital statistics; data quality; machine learning
+algorithms; proportional redistribution; computer simulation.</p>
 <hr />
-<div id="introduction" class="section level1">
-<h1>INTRODUCTION</h1>
+<div id="introduction" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> INTRODUCTION</h1>
 <p>Civil registration and vital statistics systems serve as the
 cornerstone of demographic and medium- to long-term health
 intelligence<span class="citation"><sup><a href="#ref-setel2007">1</a>,<a href="#ref-abouzahr2015">2</a></sup></span>, underpinning policy
@@ -1727,7 +1767,7 @@ etiologies<span class="citation"><sup><a href="#ref-franca2014">23</a>–<a href
 of advanced computational techniques, including clinical data linkage
 algorithms<span class="citation"><sup><a href="#ref-bierrenbach2019">26</a></sup></span> and coarsened exact
 matching (CEM, a method that groups continuous variables into discrete
-strata to pare mortality records precisely without parametric
+strata to pair mortality records precisely without parametric
 assumptions)<span class="citation"><sup><a href="#ref-stevens2010">27</a>,<a href="#ref-fihel2021">28</a></sup></span>.</p>
 <p>Recent innovations also include subnational regression models<span class="citation"><sup><a href="#ref-giraldo2017">29</a>–<a href="#ref-grigoriev2024">31</a></sup></span>, four-step probabilistic
 algorithms<span class="citation"><sup><a href="#ref-scohy2025">32</a></sup></span>, the application of
@@ -1741,12 +1781,7 @@ hierarchical clinical interactions<span class="citation"><sup><a href="#ref-zime
 <p>Before applying these algorithms, baseline data quality is now
 objectively assessed using standardized metrics like the Vital
 Statistics Performance Index<span class="citation"><sup><a href="#ref-mikkelsen2015">8</a>,<a href="#ref-phillips2014">39</a></sup></span> and automated diagnostic
-tools like ANACONDA<span class="citation"><sup><a href="#ref-iburg2020">10</a>,<a href="#ref-mikkelsen2020">40</a></sup></span>. However, despite this
-methodological proliferation, current literature exhibits a critical
-translational gap<span class="citation"><sup><a href="#ref-devleesschauwer2022">41</a></sup></span>. Specifically, there
-is a lack of evidence evaluating how macro-level redistribution
-assumptions can be rigorously transferred to individual-level simulation
-environments<span class="citation"><sup><a href="#ref-ng2020">42</a>,<a href="#ref-chrysanthopoulou2021">43</a></sup></span>.</p>
+tools like ANACONDA<span class="citation"><sup><a href="#ref-iburg2020">10</a>,<a href="#ref-mikkelsen2020">40</a></sup></span>.</p>
 <p>Despite the proliferation of macro-level redistribution frameworks,
 current literature exhibits a critical translational gap<span class="citation"><sup><a href="#ref-scohy2025">32</a>,<a href="#ref-devleesschauwer2022">41</a></sup></span>. Aggregated
 population-level corrections assume that misclassified or ill-defined
@@ -1754,17 +1789,18 @@ causes of death are randomly distributed across demographic strata<span class="c
 microsimulations and agent-based models require highly disaggregated
 baseline mortality risks, as structural diagnostic errors
 disproportionately mask true epidemiological burdens in vulnerable
-populations and settings with high social deprivation<span class="citation"><sup><a href="#ref-costa2020">44</a>–<a href="#ref-malta2023">46</a></sup></span>. Translating uncorrected
+populations and settings with high social deprivation<span class="citation"><sup><a href="#ref-costa2020">42</a>–<a href="#ref-malta2023">44</a></sup></span>. Translating uncorrected
 macro-level proportions directly into individual-level simulation
 environments risks compounding classification errors and propagating
-systematic bias into microdata risk matrices<span class="citation"><sup><a href="#ref-ng2020">42</a>,<a href="#ref-chrysanthopoulou2021">43</a></sup></span>. Therefore, this
+systematic bias into microdata risk matrices<span class="citation"><sup><a href="#ref-ng2020">45</a>,<a href="#ref-chrysanthopoulou2021">46</a></sup></span>. Therefore, this
 scoping review aims to map the state of the art, evaluate the technical
 feasibility of adapting macro-level correction algorithms for
 individual-level microsimulation parameterization, and establish a
 conceptual framework to guide future public health mathematical
 modeling.</p>
-<div id="research-questions" class="section level2">
-<h2>Research questions</h2>
+<div id="research-questions" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Research
+questions</h2>
 <ol style="list-style-type: decimal">
 <li>What analytical methodologies (statistical, probabilistic,
 deterministic, linkage-based or machine learning) have been described in
@@ -1784,10 +1820,11 @@ algorithms from the population (macro) level to the individual level
 </ol>
 </div>
 </div>
-<div id="eligibility-criteria" class="section level1">
-<h1>ELIGIBILITY CRITERIA</h1>
-<div id="population" class="section level2">
-<h2>Population</h2>
+<div id="eligibility-criteria" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> ELIGIBILITY
+CRITERIA</h1>
+<div id="population" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Population</h2>
 <p>This component defines eligible data records, populations, and
 geographic or demographic coverages.</p>
 <ul>
@@ -1811,8 +1848,8 @@ or epidemiological vital statistics systems.</li>
 </ul></li>
 </ul>
 </div>
-<div id="concept" class="section level2">
-<h2>Concept</h2>
+<div id="concept" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Concept</h2>
 <p>This component delineates the core methodologies, algorithms, and
 analytical tools evaluated in this review.</p>
 <ul>
@@ -1862,13 +1899,13 @@ of death (“garbage codes”) in demographic datasets.</li>
 </ul></li>
 </ul>
 </div>
-<div id="context" class="section level2">
-<h2>Context</h2>
+<div id="context" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Context</h2>
 <p>To ensure a comprehensive mapping of the state of the art without
-geographic selection bias, this review adopts a <strong>global context
-without economic restrictions</strong>, encompassing mortality reporting
-systems across both High-Income Countries (HICs) and Low- and
-Middle-Income Countries (LMICs).</p>
+geographic selection bias, this review adopts a global context without
+economic restrictions, encompassing mortality reporting systems across
+both High-Income Countries (HICs) and Low- and Middle-Income Countries
+(LMICs).</p>
 <p>The operational boundaries for this component are structured as
 follows:</p>
 <ul>
@@ -1900,27 +1937,34 @@ parameterization.</li>
 </ul></li>
 </ul>
 </div>
-<div id="sources-of-evidence" class="section level2">
-<h2>Sources of evidence</h2>
+<div id="sources-of-evidence" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Sources of
+evidence</h2>
 <ul>
 <li><strong>Publication types:</strong> Peer-reviewed original research
 articles published in indexed journals, methodological book chapters,
 and authoritative institutional gray literature (e.g., technical reports
 from the WHO, PAHO, or IHME).</li>
-<li><strong>Timeframe:</strong> Material published from 1996 onwards,
-capturing the global introduction and widespread adoption of the Tenth
-Revision of the International Classification of Diseases (ICD-10), which
-consolidated the term “garbage codes.”</li>
+<li><strong>Timeframe:</strong> Literature will be included without
+temporal restrictions to encompass foundational and contemporary studies
+on mortality data quality, tracing the classification, redistribution,
+and correction of ‘garbage codes’ across disease revisions, including
+the Tenth Revision of the International Classification of Diseases
+(ICD-10).</li>
 <li><strong>Languages:</strong> Studies published in English, Spanish,
-and Portuguese, reflecting the substantial volume of methodological
-literature generated in Latin America (particularly Brazil).</li>
+and Portuguese will be included. This selection reflects the linguistic
+fluency of the research team and encompasses the substantial body of
+methodological literature on garbage code redistribution produced
+globally in English, as well as regionally across Latin America
+(particularly extensive research from Brazil and Spanish-speaking
+countries).</li>
 </ul>
 </div>
 </div>
-<div id="methods" class="section level1">
-<h1>METHODS</h1>
-<div id="search-strategy" class="section level2">
-<h2>Search strategy</h2>
+<div id="methods" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> METHODS</h1>
+<div id="search-strategy" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Search strategy</h2>
 <p>The search strategy will be designed to capture the entire historical
 continuum of the scientific literature concerning mortality data
 correction. By encompassing the complete available timeframe, the search
@@ -1967,35 +2011,38 @@ to guarantee complete auditability and reproducibility.</li>
 </ol></li>
 </ul>
 </div>
-<div id="data-management-and-search-automation" class="section level2">
-<h2>Data management and search automation</h2>
+<div id="data-management-and-search-automation" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Data management and
+search automation</h2>
 <p>To ensure the methodological reproducibility and transparency
-required by the PRISMA-ScR guidelines, this scoping review protocol was
-registered a priori on the Open Science Framework (OSF) [osf.io/374tm].
-The information retrieval process will be systematized within the R
-statistical environment (v4.5 or higher). Specifically, the
-<code>litsearchr</code> package will be employed for the algorithmic
-optimization of Boolean syntax via term co-occurrence networks, while
-indexed databases will be interrogated programmatically through
-Application APIs using rentrez and rscopus. Data consolidation and
-duplicate removal will be managed via synthesisr using fuzzy
-string-matching models, supplemented by manual verification of
-borderline cases. Title and abstract screening will be conducted via
-revtools, supported by Latent Dirichlet Allocation (LDA) topic modeling
-strictly as a computational decision-support tool to reduce reviewer
-fatigue. To eliminate any risk of algorithmic bias, two reviewers will
-independently make every inclusion decision, resolving discrepancies
-through consensus or third-party arbitration.</p>
+required by the PRISMA-ScR guidelines<span class="citation"><sup><a href="#ref-tricco2018">47</a></sup></span>, this scoping review protocol
+was registered a priori on the Open Science Framework (OSF) <a href="https://osf.io/374tm">osf.io/374tm</a>. The information retrieval
+process will be systematized within the R statistical environment (v4.5
+or higher). Specifically, the <code>litsearchr</code> package<span class="citation"><sup><a href="#ref-grames2019">48</a></sup></span> will
+be employed for the algorithmic optimization of Boolean syntax via term
+co-occurrence networks, while indexed databases will be interrogated
+programmatically through Application APIs using rentrez<span class="citation"><sup><a href="#ref-winter2017">49</a></sup></span> and
+rscopus<span class="citation"><sup><a href="#ref-muschelli2025">50</a></sup></span>. Data consolidation and
+duplicate removal will be managed via synthesisr<span class="citation"><sup><a href="#ref-westgate2024">51</a></sup></span>
+using fuzzy string-matching models, supplemented by manual verification
+of borderline cases. Title and abstract screening will be conducted via
+revtools<span class="citation"><sup><a href="#ref-westgate2019">52</a></sup></span>, supported by Latent
+Dirichlet Allocation (LDA)<span class="citation"><sup><a href="#ref-blei2003">53</a></sup></span> topic modeling strictly as a
+computational decision-support tool to reduce reviewer fatigue. To
+eliminate any risk of algorithmic bias, two reviewers will independently
+make every inclusion decision, resolving discrepancies through consensus
+or third-party arbitration.</p>
 <p>The final literature search will be re-run immediately prior to
 submission. Any methodological deviations from this registered protocol
 will be fully documented and reported in the final publication.</p>
 </div>
-<div id="data-extraction-and-charting" class="section level2">
-<h2>Data extraction and charting</h2>
+<div id="data-extraction-and-charting" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Data extraction and
+charting</h2>
 <p>To ensure integrity, traceability, and reproducibility, we will
-conduct data extraction programmatically within the R statistical
-environment (v4.5 or higher). This automated approach mitigates the
-transcription errors inherent in manual processes and ensures a
+conduct data extraction<span class="citation"><sup><a href="#ref-pollock2023">54</a></sup></span> programmatically within the
+R statistical environment (v4.5 or higher)<span class="citation"><sup><a href="#ref-r2026">55</a></sup></span>. This automated approach mitigates
+the transcription errors inherent in manual processes and ensures a
 standardized workflow. We have designed an electronic data charting form
 to capture information across six dimensions:</p>
 <ul>
@@ -2020,10 +2067,10 @@ clinical nature of the missing data at different life stages<span class="citatio
 <li><p><strong>Correction methodologies:</strong> The type of
 redistribution model used, the algorithmic and software ecosystems
 utilized, and the specific performance metrics reported to demonstrate
-data quality improvement<span class="citation"><sup><a href="#ref-ng2020">42</a></sup></span>.</p></li>
+data quality improvement<span class="citation"><sup><a href="#ref-ng2020">45</a></sup></span>.</p></li>
 <li><p><strong>Microsimulation applicability:</strong> The explicit
 capacity of the methodology to generate highly disaggregated microdata
-and handle parameter uncertainty for stochastic predictive modeling<span class="citation"><sup><a href="#ref-chrysanthopoulou2021">43</a></sup></span>.</p></li>
+and handle parameter uncertainty for stochastic predictive modeling<span class="citation"><sup><a href="#ref-chrysanthopoulou2021">46</a></sup></span>.</p></li>
 </ul>
 <p>This form will be piloted with a random sample of three included
 studies to refine consistency and ensure variable granularity. Two
@@ -2033,16 +2080,17 @@ into a relational structure (e.g., tibble or data.frame) to facilitate
 transparent downstream analysis. The full extraction schema (exported as
 JSON/CSV) and corresponding R scripts will be made available via the
 Open Science Framework (OSF) upon study completion. In accordance with
-Joanna Briggs Institute (JBI) methodology for scoping reviews, a formal
-critical appraisal of included sources of evidence will not be
+Joanna Briggs Institute (JBI) methodology for scoping reviews<span class="citation"><sup><a href="#ref-peters2020">56</a></sup></span>, a
+formal critical appraisal of included sources of evidence will not be
 conducted, as the objective of this review is to map and synthesize the
 breadth of existing quantitative methodologies rather than to evaluate
 the internal validity of individual studies. For a detailed breakdown of
 the variables and the classification framework utilized, refer to the
 Data Charting Instrument (Appendix IV).</p>
 </div>
-<div id="data-analysis-synthesis-and-presentation" class="section level2">
-<h2>Data analysis, synthesis, and presentation</h2>
+<div id="data-analysis-synthesis-and-presentation" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Data analysis,
+synthesis, and presentation</h2>
 <p>This scoping review adheres to the Joanna Briggs Institute
 methodology. We will conduct all data processing and visualization
 programmatically within the R statistical environment.</p>
@@ -2059,23 +2107,23 @@ the extracted data with an explanatory narrative structured around three
 core analytical axes:</p>
 <ul>
 <li><p><strong>Status and burden of “garbage codes” across social
-deprivation strata”:</strong> Critically describing the prevalence and
+deprivation strata:</strong> Critically describing the prevalence and
 typology of ill-defined mortality causes in data-scarce settings,
 specifically analyzing how uncorrected garbage codes disproportionately
 mask the true mortality burden in populations with higher social
-deprivation<span class="citation"><sup><a href="#ref-malta2023">46</a></sup></span>, and evaluating the risks of
+deprivation<span class="citation"><sup><a href="#ref-malta2023">44</a></sup></span>, and evaluating the risks of
 inappropriate centralization when applying macro-level regression
-algorithms to localized municipal datasets.<span class="citation"><sup><a href="#ref-liu2022">47</a></sup></span>.</p></li>
+algorithms to localized municipal datasets.<span class="citation"><sup><a href="#ref-liu2022">57</a></sup></span>.</p></li>
 <li><p><strong>Methodological Diversity and Assumptions:</strong>
 Evaluating the mathematical complexity, infrastructure requirements, and
 parameter uncertainty handling across algorithmic families.</p></li>
-<li><p><strong>Transferability to microsimulation</strong> <strong>and
-disease burden modeling:</strong> Appraising whether identified
-redistribution algorithms can be rigorously integrated into agent-based
-platforms to preserve microdata validity and baseline risk calibration.
-Drawing upon methodological precedents from prior comparative risk
-assessments in Latin America—such as the 2020 baseline burden
-estimations of sugar-sweetened beverages in El Salvador<span class="citation"><sup><a href="#ref-rodriguezcairoli2023">48</a></sup></span>—the synthesis will
+<li><p><strong>Transferability to microsimulation and disease burden
+modeling:</strong> Appraising whether identified redistribution
+algorithms can be rigorously integrated into agent-based platforms to
+preserve microdata validity and baseline risk calibration. Drawing upon
+methodological precedents from prior comparative risk assessments in
+Latin America—such as the 2020 baseline burden estimations of
+sugar-sweetened beverages in El Salvador<span class="citation"><sup><a href="#ref-rodriguezcairoli2023">58</a></sup></span>—the synthesis will
 critically evaluate how uncorrected vital statistics distort baseline
 mortality risks for non-communicable diseases (e.g., type 2 diabetes and
 ischemic heart disease) across socioeconomically deprived
@@ -2083,7 +2131,7 @@ subgroups.</p></li>
 </ul></li>
 <li><p><strong>Mapping and visualization:</strong> To visualize the
 structure and knowledge gaps of the field, we will generate advanced
-graphics using ggplot2<span class="citation"><sup><a href="#ref-wickham2016">49</a></sup></span> and igraph<span class="citation"><sup><a href="#ref-csardi2006">50</a></sup></span>.
+graphics using ggplot2<span class="citation"><sup><a href="#ref-wickham2016">59</a></sup></span> and igraph<span class="citation"><sup><a href="#ref-csardi2006">60</a></sup></span>.
 This will include structured evidence tables cross-referencing
 correction methods with their input data requirements, two-dimensional
 heatmaps mapping analytical methods against specific ICD Chapters, and
@@ -2093,8 +2141,8 @@ parameterization.</p></li>
 </ul>
 </div>
 </div>
-<div id="ethical-approval" class="section level1">
-<h1>Ethical approval</h1>
+<div id="ethical-approval" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Ethical approval</h1>
 <p>As this scoping review relies exclusively on publicly available
 published scientific literature, official institutional technical
 reports, and aggregated population-based secondary data (Civil
@@ -2102,79 +2150,90 @@ Registration and Vital Statistics systems), formal ethical approval by
 an Institutional Review Board (IRB) or ethics committee was not
 required.</p>
 </div>
-<div id="declaration-of-generative-ai-and-ai-assisted-technologies-in-the-writing-process" class="section level1">
-<h1>Declaration of generative AI and AI-assisted technologies in the
-writing process</h1>
-<p>During the preparation of this protocol, the authors used Gemini
-Notebook to assist in scanning source PDF documents for the data
-extraction matrix—followed by 100% human verification of all data
-points—and for language polishing and proofreading. All evidence
-selection, critical appraisal, methodological synthesis, and conceptual
-drafting were performed independently by the authors, who assume full
-responsibility for the integrity and accuracy of the final content.</p>
+<div id="declaration-of-generative-ai-and-ai-assisted-technologies-in-the-writing-process" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Declaration of
+generative AI and AI-assisted technologies in the writing process</h1>
+<p>During the preparation of this protocol, the authors used generative
+AI tools as follows. After conducting a rapid review of the literature,
+the authors used Gemini Notebook (Google) to build a data extraction
+matrix from the preliminary source documents and to synthesize the
+current evidence that informed the Introduction. The authors then
+paraphrased this material in English and used the same tool to improve
+the clarity and style of the text. Claude (Anthropic) was used to
+identify inconsistencies across the protocol sections, appendices, and
+reference list, to draft the structured abstract from the final protocol
+text, and to assist with the R Markdown code used to produce the
+document (structure, table formatting, and rendering). All AI-generated
+content was reviewed against the source documents and edited by the
+authors, who made all decisions regarding the study design, eligibility
+criteria, search strategy, and methodology, and who take full
+responsibility for the accuracy and integrity of the final content. No
+AI tool is listed as an author..</p>
 </div>
-<div id="availability-of-data-and-materials" class="section level1">
-<h1>Availability of data and materials</h1>
+<div id="availability-of-data-and-materials" class="section level1" number="6">
+<h1><span class="header-section-number">6</span> Availability of data
+and materials</h1>
 <p>All datasets generated or analyzed during this study are included in
 this published protocol and its supplementary information files. The
 complete R scripts, customized search syntaxes, and electronic data
 charting instruments are publicly accessible via the Open Science
-Framework (OSF) repository [osf.io/374tm]. Any additional customized
+Framework (OSF) repository <a href="https://osf.io/374tm">osf.io/374tm</a>. Any additional customized
 scripts, codebooks, or intermediate extraction matrices are available
-from the corresponding author upon reasonable request.s of Interest.</p>
+from the corresponding author upon reasonable request.</p>
+</div>
+<div id="competing-interests" class="section level1" number="7">
+<h1><span class="header-section-number">7</span> Competing
+interests</h1>
 <p>The authors declare that they have no competing interests. This
 scoping review was conducted solely for academic, educational, and
 methodological research purposes, with no commercial, financial,
 corporate, or industrial support that could be construed as a potential
 conflict of interest.</p>
 </div>
-<div id="funding" class="section level1">
-<h1>Funding</h1>
+<div id="funding" class="section level1" number="8">
+<h1><span class="header-section-number">8</span> Funding</h1>
 <p>This research received no specific grant from any funding agency in
 the public, commercial, or not-for-profit sectors. The study was
 conducted entirely through the academic time, institutional affiliation
 resources, and professional dedication of the authors.</p>
 </div>
-<div id="authors-contributions" class="section level1">
-<h1>Authors’ contributions</h1>
+<div id="authors-contributions" class="section level1" number="9">
+<h1><span class="header-section-number">9</span> Authors’
+contributions</h1>
 <ul>
-<li><p><strong>Giovanni Guevara-Vásquez</strong>: Conceptualization,
-Methodology, Software, Validation, Formal analysis, Investigation,
-Writing – Original Draft, Visualization, Project
-administration.</p></li>
-<li><p><strong>Pablo Salazar-Colocho</strong>: Conceptualization,
-Methodology, Writing – Review &amp; Editing.</p></li>
-<li><p><strong>David Tejada-Peña</strong>: Investigation, Resources,
-Data curation, Writing – Review &amp; Editing.</p></li>
-<li><p><strong>Hazel García-Sanchez</strong>: Investigation, Resources,
-Data curation, Writing – Review &amp; Editing.</p></li>
-<li><p><strong>César Gavidia-Leiva</strong>: Investigation, Resources,
-Data curation, Writing – Review &amp; Editing.</p></li>
-<li><p><strong>Mirna Melendez-Gálvez</strong>: Investigation, Resources,
-Data curation, Writing – Review &amp; Editing.</p></li>
-<li><p><strong>Kevin Siliezar-Madrid</strong>: Methodology (Information
-Retrieval), Investigation, Data Curation (Search execution in R),
-Writing – Review &amp; Editing.</p></li>
-<li><p><strong>Alejandra Rivas-Portillo</strong>: Methodology,
-Investigation (Dual independent screening and selection), Data Curation,
-Writing – Review &amp; Editing.</p></li>
+<li><strong>Giovanni F. Guevara-Vásquez:</strong> Conceptualization,
+Methodology, Software, Investigation, Data curation, Formal analysis,
+Writing – original draft, Project administration, Resources.</li>
+<li><strong>David Tejada-Peña:</strong> Investigation, Methodology,
+Validation, Writing – review &amp; editing.</li>
+<li><strong>Hazel García-Sánchez:</strong> Investigation, Data curation,
+Writing – review &amp; editing.</li>
+<li><strong>César Gavidia-Leiva:</strong> Investigation, Validation,
+Visualization, Writing – review &amp; editing.</li>
+<li><strong>Mirna Meléndez-Gálvez:</strong> Conceptualization,
+Methodology, Writing – review &amp; editing.</li>
+<li><strong>Kevin Siliézar-Madrid:</strong> Investigation, Writing –
+review &amp; editing.</li>
+<li><strong>Alejandra Rivas-Portillo:</strong> Investigation, Writing –
+review &amp; editing.</li>
+<li><strong>Pablo Salazar-Colocho:</strong> Supervision, Project
+administration, Resources, Writing – review &amp; editing.</li>
 </ul>
 <hr />
 </div>
-<div id="references" class="section level1">
-<h1>References</h1>
+<div id="references" class="section level1 unnumbered">
+<h1 class="unnumbered">References</h1>
 <div id="refs" class="references csl-bib-body">
 <div id="ref-setel2007" class="csl-entry">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline"><span class="nocase">Setel P, Macfarlane S,
-Szreter S, Mikkelsen L, Jha P, Stout S, et al.</span> A scandal of
-invisibility: Making everyone count by counting everyone. Lancet.
-2007;370:1569–77. doi:<a href="https://doi.org/10.1016/S0140-6736(07)61307-5">10.1016/S0140-6736(07)61307-5</a></div>
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Setel PW, Macfarlane SB, Szreter S, Mikkelsen
+L, Jha P, Stout S, et al. A scandal of invisibility: Making everyone
+count by counting everyone. Lancet. 2007;370:1569–77. doi:<a href="https://doi.org/10.1016/S0140-6736(07)61307-5">10.1016/S0140-6736(07)61307-5</a></div>
 </div>
 <div id="ref-abouzahr2015" class="csl-entry">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline"><span class="nocase">AbouZahr C, Savigny D de,
-Mikkelsen L, Setel P, Lozano R, Nichols E, et al.</span> Civil
-registration and vital statistics: Progress in the data revolution for
-counting and accountability. Lancet. 2015;386:1373–85. doi:<a href="https://doi.org/10.1016/S0140-6736(15)60173-8">10.1016/S0140-6736(15)60173-8</a></div>
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">AbouZahr C, Savigny D de, Mikkelsen L, Setel
+PW, Lozano R, Nichols E, et al. Civil registration and vital statistics:
+Progress in the data revolution for counting and accountability. Lancet.
+2015;386:1373–85. doi:<a href="https://doi.org/10.1016/S0140-6736(15)60173-8">10.1016/S0140-6736(15)60173-8</a></div>
 </div>
 <div id="ref-mathers2005" class="csl-entry">
 <div class="csl-left-margin">3. </div><div class="csl-right-inline">Mathers CD, Fat DM, Inoue M, Rao C, Lopez AD.
@@ -2183,10 +2242,10 @@ status of cause of death data. Bulletin of the World Health
 Organization. 2005;83:171–7. doi:<a href="https://doi.org/10.1590/S0042-96862005000300009">10.1590/S0042-96862005000300009</a></div>
 </div>
 <div id="ref-phillips2015" class="csl-entry">
-<div class="csl-left-margin">4. </div><div class="csl-right-inline"><span class="nocase">Phillips DE, AbouZahr C,
-Lopez AD, Mikkelsen L, Savigny D de, Lozano R, et al.</span> Are well
-functioning civil registration and vital statistics systems associated
-with better health outcomes? The Lancet. 2015;386(10001):1386–94. doi:<a href="https://doi.org/10.1016/S0140-6736(15)60170-2">10.1016/S0140-6736(15)60170-2</a></div>
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Phillips DE, AbouZahr C, Lopez AD, Mikkelsen L,
+Savigny D de, Lozano R, et al. Are well functioning civil registration
+and vital statistics systems associated with better health outcomes? The
+Lancet. 2015;386(10001):1386–94. doi:<a href="https://doi.org/10.1016/S0140-6736(15)60170-2">10.1016/S0140-6736(15)60170-2</a></div>
 </div>
 <div id="ref-foreman2018" class="csl-entry">
 <div class="csl-left-margin">5. </div><div class="csl-right-inline">Foreman KJ, Marquez N, Dolgert A, Fukutaki K,
@@ -2204,19 +2263,21 @@ systematic analysis for the global burden of disease study 2016. The
 Lancet. 2017;390(10100):1151–210. doi:<a href="https://doi.org/10.1016/S0140-6736(17)32152-9">10.1016/S0140-6736(17)32152-9</a></div>
 </div>
 <div id="ref-hart2020" class="csl-entry">
-<div class="csl-left-margin">7. </div><div class="csl-right-inline"><span class="nocase">Hart J et al.</span>
-Improving medical certification of cause of death: Effective strategies
-and approaches based on experiences from the data for health initiative.
-BMC Public Health. 2020;20(1):1083. doi:<a href="https://doi.org/10.1186/s12889-020-09122-4">10.1186/s12889-020-09122-4</a></div>
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">Hart
+JD, Sorchik R, Bo KS, Chowdhury HR, Gamage S, Joshi R, et al. Improving
+medical certification of cause of death: Effective strategies and
+approaches based on experiences from the data for health initiative. BMC
+Public Health. 2020;20(1):1083. doi:<a href="https://doi.org/10.1186/s12889-020-09122-4">10.1186/s12889-020-09122-4</a></div>
 </div>
 <div id="ref-mikkelsen2015" class="csl-entry">
-<div class="csl-left-margin">8. </div><div class="csl-right-inline"><span class="nocase">Mikkelsen L, Phillips D,
-AbouZahr C, Setel P, Savigny D de, Lozano R, et al.</span> A global
-assessment of civil registration and vital statistics systems:
-Monitoring data quality and progress. Lancet. 2015;386:1395–406. doi:<a href="https://doi.org/10.1016/S0140-6736(15)60171-4">10.1016/S0140-6736(15)60171-4</a></div>
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">Mikkelsen L, Phillips DE, AbouZahr C, Setel PW,
+Savigny D de, Lozano R, et al. A global assessment of civil registration
+and vital statistics systems: Monitoring data quality and progress.
+Lancet. 2015;386:1395–406. doi:<a href="https://doi.org/10.1016/S0140-6736(15)60171-4">10.1016/S0140-6736(15)60171-4</a></div>
 </div>
 <div id="ref-miki2018" class="csl-entry">
-<div class="csl-left-margin">9. </div><div class="csl-right-inline"><span class="nocase">Miki J et al.</span>
+<div class="csl-left-margin">9. </div><div class="csl-right-inline">Miki
+J, Vargas R, Sanabria C, Sarmiento C, Rampatige R, Hart JD, et al.
 Saving lives through certifying deaths: Assessing the impact of two
 interventions to improve cause of death data in peru. BMC Public Health.
 2018;18(1):1329. doi:<a href="https://doi.org/10.1186/s12889-018-6240-3">10.1186/s12889-018-6240-3</a></div>
@@ -2228,11 +2289,10 @@ different levels of socio-economic development. PLoS ONE.
 2020;15(8):e0237539. doi:<a href="https://doi.org/10.1371/journal.pone.0237539">10.1371/journal.pone.0237539</a></div>
 </div>
 <div id="ref-johnson2021" class="csl-entry">
-<div class="csl-left-margin">11. </div><div class="csl-right-inline"><span class="nocase">Johnson S, Cunningham M,
-Dippenaar IN, Sharara F, Wool EE, Agesa KM, et al.</span> Public health
-utility of cause of death data: Applying empirical algorithms to improve
-data quality. BMC Medical Informatics and Decision Making.
-2021;21(1):175. doi:<a href="https://doi.org/10.1186/s12911-021-01501-1">10.1186/s12911-021-01501-1</a></div>
+<div class="csl-left-margin">11. </div><div class="csl-right-inline">Johnson SC, Cunningham M, Dippenaar IN, Sharara
+F, Wool EE, Agesa KM, et al. Public health utility of cause of death
+data: Applying empirical algorithms to improve data quality. BMC Medical
+Informatics and Decision Making. 2021;21(1):175. doi:<a href="https://doi.org/10.1186/s12911-021-01501-1">10.1186/s12911-021-01501-1</a></div>
 </div>
 <div id="ref-murray1996" class="csl-entry">
 <div class="csl-left-margin">12. </div><div class="csl-right-inline">Murray C, Lopez A. The global burden of
@@ -2241,10 +2301,10 @@ diseases, injuries and risk factors in 1990 and projected to 2020.
 Boston: Harvard School of Public Health; 1996.</div>
 </div>
 <div id="ref-naghavi2020" class="csl-entry">
-<div class="csl-left-margin">13. </div><div class="csl-right-inline"><span class="nocase">Naghavi M, Richards N,
-Chowdhury H, et al.</span> Improving the quality of cause of death data
-for public health policy: Are all <span>“garbage”</span> codes equally
-problematic? BMC Med. 2020;18(1):55. doi:<a href="https://doi.org/10.1186/s12916-020-01509-w">10.1186/s12916-020-01509-w</a></div>
+<div class="csl-left-margin">13. </div><div class="csl-right-inline">Naghavi M, Richards N, Chowdhury H, Mikkelsen
+L, Rampatige R, Riley I, et al. Improving the quality of cause of death
+data for public health policy: Are all <span>“garbage”</span> codes
+equally problematic? BMC Med. 2020;18(1):55. doi:<a href="https://doi.org/10.1186/s12916-020-01509-w">10.1186/s12916-020-01509-w</a></div>
 </div>
 <div id="ref-who2022" class="csl-entry">
 <div class="csl-left-margin">14. </div><div class="csl-right-inline">World Health Organization. International
@@ -2287,9 +2347,10 @@ statistics in the u.s. And mexico. Diabetes Care. 2008;31(3):451–8.
 doi:<a href="https://doi.org/10.2337/dc07-1725">10.2337/dc07-1725</a></div>
 </div>
 <div id="ref-naghavi2010" class="csl-entry">
-<div class="csl-left-margin">21. </div><div class="csl-right-inline"><span class="nocase">Naghavi M, Makela S,
-Foreman K, et al.</span> Algorithms for enhancing public health utility
-of national causes-of-death data. Popul Health Metr. 2010;8(1):9. doi:<a href="https://doi.org/10.1186/1478-7954-8-9">10.1186/1478-7954-8-9</a></div>
+<div class="csl-left-margin">21. </div><div class="csl-right-inline">Naghavi M, Makela S, Foreman K, O’Brien J,
+Pourmalek F, Lozano R, et al. Algorithms for enhancing public health
+utility of national causes-of-death data. Popul Health Metr.
+2010;8(1):9. doi:<a href="https://doi.org/10.1186/1478-7954-8-9">10.1186/1478-7954-8-9</a></div>
 </div>
 <div id="ref-gbd2017" class="csl-entry">
 <div class="csl-left-margin">22. </div><div class="csl-right-inline">GBD
@@ -2299,10 +2360,11 @@ territories, 1980–2017: A systematic analysis for the global burden of
 disease study 2017. The Lancet. 2018;392(10159):1736–88. doi:<a href="https://doi.org/10.1016/S0140-6736(18)32203-7">10.1016/S0140-6736(18)32203-7</a></div>
 </div>
 <div id="ref-franca2014" class="csl-entry">
-<div class="csl-left-margin">23. </div><div class="csl-right-inline"><span class="nocase">França E et al.</span>
-Ill-defined causes of death in brazil: A redistribution method based on
-the investigation of such causes. Rev Sa<span class="nocase">ú</span>de
-P<span class="nocase">ú</span>blica. 2014;48(4):671–81. doi:<a href="https://doi.org/10.1590/S0034-8910.2014048005121">10.1590/S0034-8910.2014048005121</a></div>
+<div class="csl-left-margin">23. </div><div class="csl-right-inline">França E, Ishitani LH, Teixeira RA, Abreu D de
+LR, Corrêa PRL, Marinho F, et al. Ill-defined causes of death in brazil:
+A redistribution method based on the investigation of such causes. Rev
+Sa<span class="nocase">ú</span>de P<span class="nocase">ú</span>blica.
+2014;48(4):671–81. doi:<a href="https://doi.org/10.1590/S0034-8910.2014048005121">10.1590/S0034-8910.2014048005121</a></div>
 </div>
 <div id="ref-franca2019a" class="csl-entry">
 <div class="csl-left-margin">24. </div><div class="csl-right-inline">França EB, Ishitani LH, Teixeira RA, Cunha CC
@@ -2317,8 +2379,8 @@ cause-of-death in health statistics. Revista Brasileira de
 Epidemiologia. 2019;22:e190001. doi:<a href="https://doi.org/10.1590/1980-549720190001.supl.3">10.1590/1980-549720190001.supl.3</a></div>
 </div>
 <div id="ref-bierrenbach2019" class="csl-entry">
-<div class="csl-left-margin">26. </div><div class="csl-right-inline"><span class="nocase">Bierrenbach A et
-al.</span> Redistribution of heart failure deaths using two methods:
+<div class="csl-left-margin">26. </div><div class="csl-right-inline">Bierrenbach AL, Alencar AT, Santos MB, Franca
+E, Marinho F. Redistribution of heart failure deaths using two methods:
 Linkage of hospital records with death certificates. Rev Bras Epidemiol.
 2019;22(Suppl 3):e190006. doi:<a href="https://doi.org/10.1590/1980-549720190006.supl.3">10.1590/1980-549720190006.supl.3</a></div>
 </div>
@@ -2339,9 +2401,9 @@ an<span>á</span>lisis de la mortalidad en colombia 2000-2012. Revista de
 Salud P<span class="nocase">ú</span>blica. 2017;19(2):166–73. doi:<a href="https://doi.org/10.15446/rsap.v19n2.65825">10.15446/rsap.v19n2.65825</a></div>
 </div>
 <div id="ref-masquelier2019" class="csl-entry">
-<div class="csl-left-margin">30. </div><div class="csl-right-inline"><span class="nocase">Masquelier B et al.</span>
-Analysis of death registers in antananarivo, madagascar. BMC. 2019.
-doi:<a href="https://doi.org/10.2471/BLT.18.223842">10.2471/BLT.18.223842</a></div>
+<div class="csl-left-margin">30. </div><div class="csl-right-inline">Masquelier B, Reniers G, Pison G, Duth’e G,
+Lardoux S. Analysis of death registers in antananarivo, madagascar.
+Bulletin of the World Health Organization. 2019. doi:<a href="https://doi.org/10.2471/BLT.18.223842">10.2471/BLT.18.223842</a></div>
 </div>
 <div id="ref-grigoriev2024" class="csl-entry">
 <div class="csl-left-margin">31. </div><div class="csl-right-inline">Grigoriev P, Bonnet F, Perdrix E. Method for
@@ -2355,10 +2417,11 @@ national mortality database. Archives of Public Health. 2025 Jul
 11;83(1):185. doi:<a href="https://doi.org/10.1186/s13690-025-01652-x">10.1186/s13690-025-01652-x</a></div>
 </div>
 <div id="ref-kyu2021" class="csl-entry">
-<div class="csl-left-margin">33. </div><div class="csl-right-inline"><span class="nocase">Kyu HH et al.</span>
-Estimating the burden of HIV/AIDS-related mortality: HIV/AIDS-related
-garbage code redistribution packages. Journal of the International AIDS
-Society. 2021. doi:<a href="https://doi.org/10.1002/jia2.25791">10.1002/jia2.25791</a></div>
+<div class="csl-left-margin">33. </div><div class="csl-right-inline">Kyu
+HH, Jahagirdar D, Cunningham M, Walters M, Brewer E, Novotney A, et al.
+Accounting for misclassified and unknown cause of death data in vital
+registration systems for estimating trends in HIV mortality. Journal of
+the International AIDS Society. 2021. doi:<a href="https://doi.org/10.1002/jia2.25791">10.1002/jia2.25791</a></div>
 </div>
 <div id="ref-zhang2025" class="csl-entry">
 <div class="csl-left-margin">34. </div><div class="csl-right-inline">Zhang X, Yang W, Wang J, Ai L, Chen M, Wang C,
@@ -2407,78 +2470,135 @@ Redistribution of ill-defined deaths: A methodological conundrum. In:
 European journal of public health. Oxford University Press; 2022. p.
 ckac129–618. doi:<a href="https://doi.org/10.1093/eurpub/ckac129.618">10.1093/eurpub/ckac129.618</a></div>
 </div>
-<div id="ref-ng2020" class="csl-entry">
-<div class="csl-left-margin">42. </div><div class="csl-right-inline">Ng
-TC, Lo WC, Ku CC, Lu TH, Lin HH. Improving the use of mortality data in
-public health: A comparison of garbage code redistribution models.
-American Journal of Public Health. 2020;110(2):222–9. doi:<a href="https://doi.org/10.2105/AJPH.2019.305432">10.2105/AJPH.2019.305432</a></div>
-</div>
-<div id="ref-chrysanthopoulou2021" class="csl-entry">
-<div class="csl-left-margin">43. </div><div class="csl-right-inline">Chrysanthopoulou SA, Rutter CM, Gatsonis CA.
-Bayesian versus empirical calibration of microsimulation models: A
-comparative analysis. Medical Decision Making. 2021 Aug;41(6):714–26.
-doi:<a href="https://doi.org/10.1177/0272989X211009161">10.1177/0272989X211009161</a></div>
-</div>
 <div id="ref-costa2020" class="csl-entry">
-<div class="csl-left-margin">44. </div><div class="csl-right-inline">Costa LFL, Montenegro M de MS, Rabello Neto D
+<div class="csl-left-margin">42. </div><div class="csl-right-inline">Costa LFL, Montenegro M de MS, Rabello Neto D
 de L, Oliveira ATR de, Trindade JE de O, Adair T, et al. Estimating
 completeness of national and subnational death reporting in brazil:
 Application of record linkage methods. Population Health Metrics.
-2020;18(1):22. doi:<a href="https://doi.org/10.1186/s12963-020-00229-a">10.1186/s12963-020-00229-a</a></div>
+2020;18(1):22. doi:<a href="https://doi.org/10.1186/s12963-020-00223-2">10.1186/s12963-020-00223-2</a></div>
 </div>
 <div id="ref-franca2020" class="csl-entry">
-<div class="csl-left-margin">45. </div><div class="csl-right-inline">França E, Ishitani LH, Teixeira R, Duncan BB,
+<div class="csl-left-margin">43. </div><div class="csl-right-inline">França E, Ishitani LH, Teixeira R, Duncan BB,
 Marinho F, Naghavi M. Changes in the quality of cause-of-death
 statistics in brazil: Garbage codes among registered deaths in
 1996–2016. Population Health Metrics. 2020;18(1):20. doi:<a href="https://doi.org/10.1186/s12963-020-00221-4">10.1186/s12963-020-00221-4</a></div>
 </div>
 <div id="ref-malta2023" class="csl-entry">
-<div class="csl-left-margin">46. </div><div class="csl-right-inline">Malta DC, Teixeira RA, Cardoso LS de M, Souza
+<div class="csl-left-margin">44. </div><div class="csl-right-inline">Malta DC, Teixeira RA, Cardoso LS de M, Souza
 JB de, Bernal RTI, Pinheiro PC, et al. Premature mortality due to
 noncommunicable diseases in brazilian capitals: Redistribution of
 garbage causes and evolution by social deprivation strata. Revista
 Brasileira de Epidemiologia. 2023;26:e230002.supl.1. doi:<a href="https://doi.org/10.1590/1980-549720230002.supl.1">10.1590/1980-549720230002.supl.1</a></div>
 </div>
+<div id="ref-ng2020" class="csl-entry">
+<div class="csl-left-margin">45. </div><div class="csl-right-inline">Ng
+TC, Lo WC, Ku CC, Lu TH, Lin HH. Improving the use of mortality data in
+public health: A comparison of garbage code redistribution models.
+American Journal of Public Health. 2020;110(2):222–9. doi:<a href="https://doi.org/10.2105/AJPH.2019.305432">10.2105/AJPH.2019.305432</a></div>
+</div>
+<div id="ref-chrysanthopoulou2021" class="csl-entry">
+<div class="csl-left-margin">46. </div><div class="csl-right-inline">Chrysanthopoulou SA, Rutter CM, Gatsonis CA.
+Bayesian versus empirical calibration of microsimulation models: A
+comparative analysis. Medical Decision Making. 2021 Aug;41(6):714–26.
+doi:<a href="https://doi.org/10.1177/0272989X211009161">10.1177/0272989X211009161</a></div>
+</div>
+<div id="ref-tricco2018" class="csl-entry">
+<div class="csl-left-margin">47. </div><div class="csl-right-inline">Tricco AC, Lillie E, Zarin W, O’Brien KK,
+Colquhoun H, Levac D, et al. PRISMA extension for scoping reviews
+(PRISMA-ScR): Checklist and explanation. Annals of Internal Medicine.
+2018;169(7):467–73. doi:<a href="https://doi.org/10.7326/M18-0850">10.7326/M18-0850</a></div>
+</div>
+<div id="ref-grames2019" class="csl-entry">
+<div class="csl-left-margin">48. </div><div class="csl-right-inline">Grames EM, Stillman AN, Tingley MW, Elphick CS.
+An automated approach to identifying search terms for systematic reviews
+using keyword co-occurrence networks. Methods in Ecology and Evolution.
+2019;10(10):1645–54. doi:<a href="https://doi.org/10.1111/2041-210X.13268">10.1111/2041-210X.13268</a></div>
+</div>
+<div id="ref-winter2017" class="csl-entry">
+<div class="csl-left-margin">49. </div><div class="csl-right-inline">Winter DJ. Rentrez: An r package for the
+<span>NCBI</span> <span>EUtils</span> <span>API</span>. The R Journal.
+2017;9(2):520–6. doi:<a href="https://doi.org/10.32614/RJ-2017-058">10.32614/RJ-2017-058</a></div>
+</div>
+<div id="ref-muschelli2025" class="csl-entry">
+<div class="csl-left-margin">50. </div><div class="csl-right-inline">Muschelli J. Rscopus: Scopus database ’API’
+interface [Internet]. 2025. Available from: <a href="https://CRAN.R-project.org/package=rscopus">https://CRAN.R-project.org/package=rscopus</a></div>
+</div>
+<div id="ref-westgate2024" class="csl-entry">
+<div class="csl-left-margin">51. </div><div class="csl-right-inline">Westgate MJ, Grames EM. Synthesisr: Import,
+assemble, and deduplicate bibliographic datasets [Internet]. 2024.
+Available from: <a href="https://CRAN.R-project.org/package=synthesisr">https://CRAN.R-project.org/package=synthesisr</a></div>
+</div>
+<div id="ref-westgate2019" class="csl-entry">
+<div class="csl-left-margin">52. </div><div class="csl-right-inline">Westgate MJ. Revtools: An r package to support
+article screening for evidence synthesis. Research Synthesis Methods.
+2019;10(4):606–14. doi:<a href="https://doi.org/10.1002/jrsm.1374">10.1002/jrsm.1374</a></div>
+</div>
+<div id="ref-blei2003" class="csl-entry">
+<div class="csl-left-margin">53. </div><div class="csl-right-inline">Blei DM, Ng AY, Jordan MI. Latent
+<span>Dirichlet</span> allocation. Journal of Machine Learning Research
+[Internet]. 2003;3:993–1022. Available from: <a href="https://www.jmlr.org/papers/v3/blei03a.html">https://www.jmlr.org/papers/v3/blei03a.html</a></div>
+</div>
+<div id="ref-pollock2023" class="csl-entry">
+<div class="csl-left-margin">54. </div><div class="csl-right-inline">Pollock D, Peters MDJ, Khalil H, McInerney P,
+Alexander L, Tricco AC, et al. Recommendations for the extraction,
+analysis, and presentation of results in scoping reviews. JBI Evidence
+Synthesis. 2023;21(3):520–32. doi:<a href="https://doi.org/10.11124/JBIES-22-00123">10.11124/JBIES-22-00123</a></div>
+</div>
+<div id="ref-r2026" class="csl-entry">
+<div class="csl-left-margin">55. </div><div class="csl-right-inline">R
+Core Team. R: A language and environment for statistical computing
+[Internet]. Vienna, Austria: R Foundation for Statistical Computing;
+2026. Available from: <a href="https://www.R-project.org/">https://www.R-project.org/</a></div>
+</div>
+<div id="ref-peters2020" class="csl-entry">
+<div class="csl-left-margin">56. </div><div class="csl-right-inline">Peters MDJ, Godfrey CM, McInerney P, Munn Z,
+Tricco AC, Khalil H. Chapter 11: Scoping reviews. In, editorsAromataris
+E, Munn Z. JBI manual for evidence synthesis [Internet]. Adelaide: JBI;
+2020. Available from: <a href="https://synthesismanual.jbi.global">https://synthesismanual.jbi.global</a>
+doi:<a href="https://doi.org/10.46658/JBIMES-20-12">10.46658/JBIMES-20-12</a></div>
+</div>
 <div id="ref-liu2022" class="csl-entry">
-<div class="csl-left-margin">47. </div><div class="csl-right-inline">Liu
+<div class="csl-left-margin">57. </div><div class="csl-right-inline">Liu
 L, Wang X, Wang C, Ma X, Meng X, Ning B, et al. A study on garbage code
 redistribution methods in small area: Redistributing heart failure in
 two chinese cities by two approaches. Research Square (Preprint). 2022.
 doi:<a href="https://doi.org/10.21203/rs.3.rs-1242825/v1">10.21203/rs.3.rs-1242825/v1</a></div>
 </div>
 <div id="ref-rodriguezcairoli2023" class="csl-entry">
-<div class="csl-left-margin">48. </div><div class="csl-right-inline">Rodríguez Cairoli F, Guevara Vásquez G, Bardach
+<div class="csl-left-margin">58. </div><div class="csl-right-inline">Rodríguez Cairoli F, Guevara Vásquez G, Bardach
 A, Espinola N, Perelli L, Balan D, et al. Carga de enfermedad y
 económica atribuible al consumo de bebidas azucaradas en el salvador.
 Revista Panamericana de Salud Pública. 2023;47:e80. doi:<a href="https://doi.org/10.26633/RPSP.2023.80">10.26633/RPSP.2023.80</a></div>
 </div>
 <div id="ref-wickham2016" class="csl-entry">
-<div class="csl-left-margin">49. </div><div class="csl-right-inline">Wickham H. ggplot2: Elegant graphics for data
+<div class="csl-left-margin">59. </div><div class="csl-right-inline">Wickham H. ggplot2: Elegant graphics for data
 analysis. New York: Springer-Verlag; 2016. doi:<a href="https://doi.org/10.1007/978-3-319-24277-4">10.1007/978-3-319-24277-4</a></div>
 </div>
 <div id="ref-csardi2006" class="csl-entry">
-<div class="csl-left-margin">50. </div><div class="csl-right-inline">Csardi G, Nepusz T. The igraph software package
+<div class="csl-left-margin">60. </div><div class="csl-right-inline">Csardi G, Nepusz T. The igraph software package
 for complex network research. InterJournal, Complex Systems.
 2006;1695:1–9.</div>
 </div>
 </div>
+<div style="page-break-after: always;"></div>
 <hr />
 </div>
-<div id="appendices" class="section level1">
-<h1>Appendices</h1>
-<div id="appendix-i-search-strategy-pubmed-medline" class="section level3">
-<h3>Appendix I: Search Strategy (PubMed / MEDLINE)</h3>
+<div id="appendices" class="section level1 unnumbered">
+<h1 class="unnumbered">Appendices</h1>
+<div id="appendix-i-search-strategy-pubmed-medline" class="section level2 unnumbered">
+<h2 class="unnumbered">Appendix I: Search Strategy (PubMed /
+MEDLINE)</h2>
 <p><strong>Database:</strong> PubMed (via NCBI API) <strong>Date of
-Search:</strong> October 17, 2026 <strong>Limits:</strong> None (No
+Search:</strong> November 14, 2026 <strong>Limits:</strong> None (No
 temporal or language restrictions applied). <strong>Note:</strong> The
 syntax was optimized using the <code>litsearchr</code> package to
 assemble free-text terms, combined manually with National Library of
 Medicine controlled vocabulary (<code>[Mesh]</code>).</p>
 <table>
 <colgroup>
-<col width="38%" />
-<col width="30%" />
-<col width="30%" />
+<col width="20%" />
+<col width="56%" />
+<col width="23%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2535,8 +2655,9 @@ statistical, computational, and redistribution frameworks</td>
 </tr>
 </tbody>
 </table>
-<div id="programmatic-search-execution-r-environment" class="section level4">
-<h4>Programmatic Search Execution (R Environment)</h4>
+<div id="programmatic-search-execution-r-environment" class="section level3 unnumbered">
+<h3 class="unnumbered">Programmatic Search Execution (R
+Environment)</h3>
 <p>In adherence to PRISMA-S guidelines for computational
 reproducibility, the final search query will be executed
 programmatically via the NCBI API using the <code>rentrez</code>
@@ -2553,11 +2674,10 @@ query_pubmed &lt;- paste0(
   &#39;(&quot;proportional redistribution&quot; OR &quot;proportional distribution&quot; OR &quot;fractional algorithm*&quot; OR &quot;Brass technique&quot; OR &quot;Brass technic&quot; OR &quot;reverse survival&quot; OR &quot;stable population&quot; OR &quot;demographic analys*&quot; OR &quot;life table*&quot; OR &quot;statistical model*&quot; OR &quot;probabilistic model*&quot; OR bayesian OR &quot;empirical bayes&quot; OR spatiotemporal OR spatio-temporal OR &quot;spatial regression&quot; OR imput* OR CODEm OR CoDCorrect OR &quot;cause of death ensemble model*&quot; OR &quot;coarsened exact matching&quot; OR reallocat* OR reassign* OR recod* OR algorithm* OR &quot;multiple cause*&quot; OR linkage OR &quot;verbal autops*&quot; OR &quot;hospital discharge&quot; OR &quot;discharge record*&quot; OR &quot;discharge data&quot; OR &quot;artificial intelligence&quot; OR &quot;machine learning&quot; OR &quot;decision tree*&quot; OR &quot;data mining&quot; OR &quot;random forest*&quot; OR &quot;gradient boosting&quot; OR &quot;deep learning&quot; OR &quot;neural network*&quot; OR microsimulat* OR micro-simulation* OR agent-based OR &quot;synthetic population*&quot; OR &quot;global burden of disease&quot; OR GBD OR InterVA OR InSilicoVA OR SmartVA OR &quot;tariff method&quot; OR &quot;bridge coding&quot; OR &quot;comparability ratio*&quot; OR &quot;IRIS software&quot; OR &quot;automated coding&quot; OR &quot;automated classification&quot; OR &quot;small area estimation&quot; OR &quot;correction factor*&quot; OR redistribut* OR reclassif*)[tiab])&#39;
 )</code></pre>
 </div>
-</div>
-<div id="search-strategy-scopus-elsevier" class="section level3">
-<h3>Search Strategy: Scopus (Elsevier)</h3>
+<div id="search-strategy-scopus-elsevier" class="section level3 unnumbered">
+<h3 class="unnumbered">Search Strategy: Scopus (Elsevier)</h3>
 <p><strong>Database:</strong> Scopus <strong>Date of Search:</strong>
-October 17, 2026 <strong>Limits:</strong> None (No publication date or
+November 14, 2026 <strong>Limits:</strong> None (No publication date or
 language restrictions applied). <strong>Note:</strong> The search syntax
 was adapted for Scopus using the <code>TITLE-ABS-KEY</code> field code
 to simultaneously search across titles, abstracts, and keywords. Due to
@@ -2568,9 +2688,9 @@ format for programmatic deduplication via the <code>synthesisr</code>
 package in R.</p>
 <table>
 <colgroup>
-<col width="38%" />
-<col width="30%" />
-<col width="30%" />
+<col width="20%" />
+<col width="56%" />
+<col width="23%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2605,54 +2725,18 @@ and computational methods</td>
 </tr>
 </tbody>
 </table>
-<div id="web-interface-execution-string" class="section level4">
-<h4>Web Interface Execution String</h4>
+<div id="web-interface-execution-string" class="section level4 unnumbered">
+<h4 class="unnumbered">Web Interface Execution String</h4>
 <p>The following complete syntax was assembled to be copied and pasted
 directly into the Scopus Advanced Search query box:</p>
-<p>```text TITLE-ABS-KEY(“vital statistics” OR “registration of vital
-statistics” OR “vital registration” OR “civil registration” OR CRVS OR
-“population register<em>” OR ”death regist</em>” OR “death
-certificat<em>” OR ”death record</em>” OR “cause of death” OR “causes of
-death” OR “death cause<em>” OR ”underlying cause</em>” OR “death
-rate<em>” OR ”population surveillance” OR ”public health surveillance”
-OR ”international classification of disease</em>” OR ICD-9 OR ICD-10 OR
-ICD-11 OR “clinical coding” OR “medical coding” OR “health information
-system<em>” OR mortality) AND TITLE-ABS-KEY(”garbage code</em>” OR
-“garbage cause<em>” OR ”garbage categor</em>” OR “garbage diagnos<em>”
-OR ”poorly defined cause</em>” OR “causas mal definidas” OR “codigos
-basura” OR “codigos lixo” OR “codigos garbage” OR R00-R99 OR ill-defined
-OR “unknown cause<em>” OR ”unspecified cause</em>” OR “nonspecific
-cause<em>” OR ”non-specific cause</em>” OR “unspecific cause<em>” OR
-”undetermined cause</em>” OR “vague code<em>” OR ”cause of death
-assignment” OR ”underlying cause assignment” OR misclassif</em> OR
-miscod* OR misattribut* OR miscertif<em>) AND TITLE-ABS-KEY(”statistical
-model</em>” OR “statistical data interpretation” OR “Bayes theorem” OR
-“spatiotemporal analysis” OR “medical record linkage” OR autopsy OR
-“patient discharge” OR “artificial intelligence” OR “decision tree<em>”
-OR ”data mining” OR ”random forest</em>” OR “life table<em>” OR
-demography OR algorithm</em> OR”computer simulation” OR “proportional
-redistribution” OR “proportional distribution” OR “fractional
-algorithm<em>” OR ”Brass technique” OR ”Brass technic” OR ”reverse
-survival” OR ”stable population” OR ”demographic analys</em>” OR
-“probabilistic model<em>” OR bayesian OR ”empirical bayes” OR
-spatiotemporal OR spatio-temporal OR ”spatial regression” OR imput</em>
-OR CODEm OR CoDCorrect OR”cause of death ensemble model<em>” OR
-“coarsened exact matching” OR reallocat</em> OR reassign* OR recod* OR
-“multiple cause<em>” OR linkage OR ”verbal autops</em>” OR “hospital
-discharge” OR “discharge record<em>” OR ”discharge data” OR ”machine
-learning” OR ”gradient boosting” OR ”deep learning” OR ”neural
-network</em>” OR microsimulat* OR micro-simulation* OR agent-based OR
-“synthetic population<em>” OR ”global burden of disease” OR GBD OR
-InterVA OR InSilicoVA OR SmartVA OR ”tariff method” OR ”bridge coding”
-OR ”comparability ratio</em>” OR “IRIS software” OR “automated coding”
-OR “automated classification” OR “small area estimation” OR “correction
-factor<em>” OR redistribut</em> OR reclassif*)</p>
+<pre class="text"><code>TITLE-ABS-KEY(&quot;vital statistics&quot; OR &quot;registration of vital statistics&quot; OR &quot;vital registration&quot; OR &quot;civil registration&quot; OR CRVS OR &quot;population register*&quot; OR &quot;death regist*&quot; OR &quot;death certificat*&quot; OR &quot;death record*&quot; OR &quot;cause of death&quot; OR &quot;causes of death&quot; OR &quot;death cause*&quot; OR &quot;underlying cause*&quot; OR &quot;death rate*&quot; OR &quot;population surveillance&quot; OR &quot;public health surveillance&quot; OR &quot;international classification of disease*&quot; OR ICD-9 OR ICD-10 OR ICD-11 OR &quot;clinical coding&quot; OR &quot;medical coding&quot; OR &quot;health information system*&quot; OR mortality) AND TITLE-ABS-KEY(&quot;garbage code*&quot; OR &quot;garbage cause*&quot; OR &quot;garbage categor*&quot; OR &quot;garbage diagnos*&quot; OR &quot;poorly defined cause*&quot; OR &quot;causas mal definidas&quot; OR &quot;codigos basura&quot; OR &quot;codigos lixo&quot; OR &quot;codigos garbage&quot; OR R00-R99 OR ill-defined OR &quot;unknown cause*&quot; OR &quot;unspecified cause*&quot; OR &quot;nonspecific cause*&quot; OR &quot;non-specific cause*&quot; OR &quot;unspecific cause*&quot; OR &quot;undetermined cause*&quot; OR &quot;vague code*&quot; OR &quot;cause of death assignment&quot; OR &quot;underlying cause assignment&quot; OR misclassif* OR miscod* OR misattribut* OR miscertif*) AND TITLE-ABS-KEY(&quot;statistical model*&quot; OR &quot;statistical data interpretation&quot; OR &quot;Bayes theorem&quot; OR &quot;spatiotemporal analysis&quot; OR &quot;medical record linkage&quot; OR autopsy OR &quot;patient discharge&quot; OR &quot;artificial intelligence&quot; OR &quot;decision tree*&quot; OR &quot;data mining&quot; OR &quot;random forest*&quot; OR &quot;life table*&quot; OR demography OR algorithm* OR &quot;computer simulation&quot; OR &quot;proportional redistribution&quot; OR &quot;proportional distribution&quot; OR &quot;fractional algorithm*&quot; OR &quot;Brass technique&quot; OR &quot;Brass technic&quot; OR &quot;reverse survival&quot; OR &quot;stable population&quot; OR &quot;demographic analys*&quot; OR &quot;probabilistic model*&quot; OR bayesian OR &quot;empirical bayes&quot; OR spatiotemporal OR spatio-temporal OR &quot;spatial regression&quot; OR imput* OR CODEm OR CoDCorrect OR &quot;cause of death ensemble model*&quot; OR &quot;coarsened exact matching&quot; OR reallocat* OR reassign* OR recod* OR &quot;multiple cause*&quot; OR linkage OR &quot;verbal autops*&quot; OR &quot;hospital discharge&quot; OR &quot;discharge record*&quot; OR &quot;discharge data&quot; OR &quot;machine learning&quot; OR &quot;gradient boosting&quot; OR &quot;deep learning&quot; OR &quot;neural network*&quot; OR microsimulat* OR micro-simulation* OR agent-based OR &quot;synthetic population*&quot; OR &quot;global burden of disease&quot; OR GBD OR InterVA OR InSilicoVA OR SmartVA OR &quot;tariff method&quot; OR &quot;bridge coding&quot; OR &quot;comparability ratio*&quot; OR &quot;IRIS software&quot; OR &quot;automated coding&quot; OR &quot;automated classification&quot; OR &quot;small area estimation&quot; OR &quot;correction factor*&quot; OR redistribut* OR reclassif*)</code></pre>
 </div>
 </div>
-<div id="search-strategy-web-of-science-core-collection" class="section level3">
-<h3>Search Strategy: Web of Science (Core Collection)</h3>
+<div id="search-strategy-web-of-science-core-collection" class="section level3 unnumbered">
+<h3 class="unnumbered">Search Strategy: Web of Science (Core
+Collection)</h3>
 <p><strong>Database:</strong> Web of Science (Clarivate Analytics)
-<strong>Date of Search:</strong> October 17, 2026
+<strong>Date of Search:</strong> November 14, 2026
 <strong>Limits:</strong> None (No publication date or language
 restrictions applied). <strong>Note:</strong> The search syntax was
 adapted for Web of Science using the <code>TS=</code> (Topic) field tag,
@@ -2663,9 +2747,9 @@ interface. Retrieved records are exported in <code>.ris</code> format
 for downstream integration.</p>
 <table>
 <colgroup>
-<col width="38%" />
-<col width="30%" />
-<col width="30%" />
+<col width="20%" />
+<col width="56%" />
+<col width="23%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2700,16 +2784,16 @@ and computational methods</td>
 </tr>
 </tbody>
 </table>
-<div id="web-interface-execution-string-1" class="section level4">
-<h4>Web Interface Execution String</h4>
+<div id="web-interface-execution-string-1" class="section level4 unnumbered">
+<h4 class="unnumbered">Web Interface Execution String</h4>
 <pre class="text"><code>TS=(&quot;vital statistics&quot; OR &quot;registration of vital statistics&quot; OR &quot;vital registration&quot; OR &quot;civil registration&quot; OR CRVS OR &quot;population register*&quot; OR &quot;death regist*&quot; OR &quot;death certificat*&quot; OR &quot;death record*&quot; OR &quot;cause of death&quot; OR &quot;causes of death&quot; OR &quot;death cause*&quot; OR &quot;underlying cause*&quot; OR &quot;death rate*&quot; OR &quot;population surveillance&quot; OR &quot;public health surveillance&quot; OR &quot;international classification of disease*&quot; OR ICD-9 OR ICD-10 OR ICD-11 OR &quot;clinical coding&quot; OR &quot;medical coding&quot; OR &quot;health information system*&quot; OR mortality) AND TS=(&quot;garbage code*&quot; OR &quot;garbage cause*&quot; OR &quot;garbage categor*&quot; OR &quot;garbage diagnos*&quot; OR &quot;poorly defined cause*&quot; OR &quot;causas mal definidas&quot; OR &quot;codigos basura&quot; OR &quot;codigos lixo&quot; OR &quot;codigos garbage&quot; OR R00-R99 OR ill-defined OR &quot;unknown cause*&quot; OR &quot;unspecified cause*&quot; OR &quot;nonspecific cause*&quot; OR &quot;non-specific cause*&quot; OR &quot;unspecific cause*&quot; OR &quot;undetermined cause*&quot; OR &quot;vague code*&quot; OR &quot;cause of death assignment&quot; OR &quot;underlying cause assignment&quot; OR misclassif* OR miscod* OR misattribut* OR miscertif*) AND TS=(&quot;statistical model*&quot; OR &quot;statistical data interpretation&quot; OR &quot;Bayes theorem&quot; OR &quot;spatiotemporal analysis&quot; OR &quot;medical record linkage&quot; OR autopsy OR &quot;patient discharge&quot; OR &quot;artificial intelligence&quot; OR &quot;decision tree*&quot; OR &quot;data mining&quot; OR &quot;random forest*&quot; OR &quot;life table*&quot; OR demography OR algorithm* OR &quot;computer simulation&quot; OR &quot;proportional redistribution&quot; OR &quot;proportional distribution&quot; OR &quot;fractional algorithm*&quot; OR &quot;Brass technique&quot; OR &quot;Brass technic&quot; OR &quot;reverse survival&quot; OR &quot;stable population&quot; OR &quot;demographic analys*&quot; OR &quot;probabilistic model*&quot; OR bayesian OR &quot;empirical bayes&quot; OR spatiotemporal OR spatio-temporal OR &quot;spatial regression&quot; OR imput* OR CODEm OR CoDCorrect OR &quot;cause of death ensemble model*&quot; OR &quot;coarsened exact matching&quot; OR reallocat* OR reassign* OR recod* OR &quot;multiple cause*&quot; OR linkage OR &quot;verbal autops*&quot; OR &quot;hospital discharge&quot; OR &quot;discharge record*&quot; OR &quot;discharge data&quot; OR &quot;machine learning&quot; OR &quot;gradient boosting&quot; OR &quot;deep learning&quot; OR &quot;neural network*&quot; OR microsimulat* OR micro-simulation* OR agent-based OR &quot;synthetic population*&quot; OR &quot;global burden of disease&quot; OR GBD OR InterVA OR InSilicoVA OR SmartVA OR &quot;tariff method&quot; OR &quot;bridge coding&quot; OR &quot;comparability ratio*&quot; OR &quot;IRIS software&quot; OR &quot;automated coding&quot; OR &quot;automated classification&quot; OR &quot;small area estimation&quot; OR &quot;correction factor*&quot; OR redistribut* OR reclassif*)</code></pre>
 </div>
 </div>
-<div id="search-strategy-lilacs-latin-american-and-caribbean-health-sciences-literature" class="section level3">
-<h3>Search Strategy: LILACS (Latin American and Caribbean Health
-Sciences Literature)</h3>
+<div id="search-strategy-lilacs-latin-american-and-caribbean-health-sciences-literature" class="section level3 unnumbered">
+<h3 class="unnumbered">Search Strategy: LILACS (Latin American and
+Caribbean Health Sciences Literature)</h3>
 <p><strong>Database:</strong> LILACS (via Virtual Health Library - VHL /
-BVS) <strong>Date of Search:</strong> October 17, 2026
+BVS) <strong>Date of Search:</strong> November 14, 2026
 <strong>Limits:</strong> None (No publication date restrictions
 applied). <strong>Note:</strong> The search syntax for LILACS required
 methodological adaptation due to the character limits and Boolean
@@ -2722,9 +2806,9 @@ Sciences Descriptors) terminology. The search is executed using the
 <code>tw:</code> (text word) field code.</p>
 <table>
 <colgroup>
-<col width="38%" />
-<col width="30%" />
-<col width="30%" />
+<col width="20%" />
+<col width="56%" />
+<col width="23%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2759,15 +2843,16 @@ redistribution methods (Trilingual)</td>
 </tr>
 </tbody>
 </table>
-<div id="web-interface-execution-string-2" class="section level4">
-<h4>Web Interface Execution String</h4>
+<div id="web-interface-execution-string-2" class="section level4 unnumbered">
+<h4 class="unnumbered">Web Interface Execution String</h4>
 <pre class="text"><code>(tw:(&quot;vital statistics&quot; OR &quot;estadisticas vitales&quot; OR &quot;estatisticas vitais&quot; OR &quot;cause of death&quot; OR &quot;causas de muerte&quot; OR &quot;causas de morte&quot; OR &quot;death certificate*&quot; OR &quot;certificados de defuncion&quot; OR &quot;declaracao de obito&quot; OR CRVS OR mortality OR mortalidad OR mortalidade)) AND (tw:(&quot;garbage code*&quot; OR &quot;codigos basura&quot; OR &quot;codigos lixo&quot; OR &quot;codigos garbage&quot; OR &quot;ill-defined&quot; OR &quot;mal definidas&quot; OR &quot;mal definidos&quot; OR &quot;R00-R99&quot; OR &quot;unspecified cause*&quot; OR &quot;causas no especificadas&quot; OR &quot;causas nao especificadas&quot;)) AND (tw:(redistribut* OR redistribucion OR redistribuicao OR reclassif* OR reclasificacion OR reclassificacao OR imput* OR algorithm* OR algoritmo* OR &quot;machine learning&quot; OR &quot;aprendizaje automatico&quot; OR &quot;aprendizado de maquina&quot; OR &quot;artificial intelligence&quot; OR &quot;inteligencia artificial&quot; OR &quot;proportional distribution&quot; OR &quot;distribucion proporcional&quot; OR &quot;multiple cause*&quot; OR &quot;causas multiples&quot; OR &quot;causas multiplas&quot;))</code></pre>
 </div>
 </div>
-<div id="search-strategy-scielo-scientific-electronic-library-online" class="section level3">
-<h3>Search Strategy: SciELO (Scientific Electronic Library Online)</h3>
+<div id="search-strategy-scielo-scientific-electronic-library-online" class="section level3 unnumbered">
+<h3 class="unnumbered">Search Strategy: SciELO (Scientific Electronic
+Library Online)</h3>
 <p><strong>Database:</strong> SciELO <strong>Date of Search:</strong>
-October 17, 2026 <strong>Limits:</strong> None (No publication date
+November 14, 2026 <strong>Limits:</strong> None (No publication date
 restrictions applied). <strong>Note:</strong> To effectively capture the
 substantial volume of methodological literature generated in Latin
 America, particularly from Brazil regarding “códigos lixo” (garbage
@@ -2779,9 +2864,9 @@ indices” default field. Retrieved records are exported in
 <code>.ris</code> format for synthesis.</p>
 <table>
 <colgroup>
-<col width="38%" />
-<col width="30%" />
-<col width="30%" />
+<col width="20%" />
+<col width="56%" />
+<col width="23%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2816,24 +2901,16 @@ redistribution methods (Trilingual)</td>
 </tr>
 </tbody>
 </table>
-<div id="web-interface-execution-string-3" class="section level4">
-<h4>Web Interface Execution String</h4>
-<p>```text (“vital statistics” OR “estadisticas vitales” OR
-“estatisticas vitais” OR “cause of death” OR “causas de muerte” OR
-“causas de morte” OR “mortality” OR “mortalidad” OR “mortalidade” OR
-“death certificate<em>” OR ”certificados de defuncion” OR ”declaracao de
-obito”) AND (”garbage code</em>” OR “codigos basura” OR “codigos lixo”
-OR “codigos garbage” OR “ill-defined” OR “mal definidas” OR “mal
-definidos” OR “unspecified cause<em>” OR ”causas no especificadas” OR
-”causas nao especificadas” OR R00-R99) AND (redistribut</em> OR
-redistribucion OR redistribuicao OR reclassif* OR reclasificacion OR
-reclassificacao OR imput* OR algorithm* OR algoritmo* OR”machine
-learning” OR “aprendizaje automatico” OR “aprendizado de maquina” OR
-“proportional distribution” OR “distribucion proporcional”)</p>
+<div id="web-interface-execution-string-3" class="section level4 unnumbered">
+<h4 class="unnumbered">Web Interface Execution String</h4>
+<pre class="text"><code>(&quot;vital statistics&quot; OR &quot;estadisticas vitales&quot; OR &quot;estatisticas vitais&quot; OR &quot;cause of death&quot; OR &quot;causas de muerte&quot; OR &quot;causas de morte&quot; OR &quot;mortality&quot; OR &quot;mortalidad&quot; OR &quot;mortalidade&quot; OR &quot;death certificate*&quot; OR &quot;certificados de defuncion&quot; OR &quot;declaracao de obito&quot;) AND (&quot;garbage code*&quot; OR &quot;codigos basura&quot; OR &quot;codigos lixo&quot; OR &quot;codigos garbage&quot; OR &quot;ill-defined&quot; OR &quot;mal definidas&quot; OR &quot;mal definidos&quot; OR &quot;unspecified cause*&quot; OR &quot;causas no especificadas&quot; OR &quot;causas nao especificadas&quot; OR R00-R99) AND (redistribut* OR redistribucion OR redistribuicao OR reclassif* OR reclasificacion OR reclassificacao OR imput* OR algorithm* OR algoritmo* OR &quot;machine learning&quot; OR &quot;aprendizaje automatico&quot; OR &quot;aprendizado de maquina&quot; OR &quot;proportional distribution&quot; OR &quot;distribucion proporcional&quot;)</code></pre>
+<div style="page-break-after: always;"></div>
 </div>
 </div>
-<div id="appendix-ii-prisma-s-audit-and-mapping-table" class="section level2">
-<h2>Appendix II: PRISMA-S audit and mapping table</h2>
+</div>
+<div id="appendix-ii-prisma-s-audit-and-mapping-table" class="section level2 unnumbered">
+<h2 class="unnumbered">Appendix II: PRISMA-S audit and mapping
+table</h2>
 <p>The following table details the adherence to the 16 items of the
 PRISMA-S guideline for the scoping review protocol entitled
 <em>“Methodologies for the correction of Garbage codes in mortality
@@ -2842,10 +2919,10 @@ ensuring complete search auditability, transparency, and computational
 reproducibility.</p>
 <table>
 <colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col width="20%" />
+<col width="23%" />
+<col width="35%" />
+<col width="20%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -2908,7 +2985,7 @@ Portuguese).</td>
 <td align="left">Indicate the exact date when searches were executed or
 scheduled for each source.</td>
 <td align="left">Primary literature search scheduled <em>a priori</em>
-for <strong>October 2026</strong>, with a final verification re-run
+for <strong>November 2026</strong>, with a final verification re-run
 prior to synthesis.</td>
 <td align="left">Section 3.1 &amp; Section 6.1</td>
 </tr>
@@ -2953,7 +3030,7 @@ networks in R.</td>
 <td align="left"><strong>11. Total records identified</strong></td>
 <td align="left">Report the total number of records identified from each
 database and grey literature source.</td>
-<td align="left"><em>Pending empirical execution (October 2026)</em>.
+<td align="left"><em>Pending empirical execution (November 2026)</em>.
 Will be formally documented in the final PRISMA-ScR flow diagram.</td>
 <td align="left">Flow Diagram / Results</td>
 </tr>
@@ -3006,17 +3083,19 @@ repository.</td>
 </tr>
 </tbody>
 </table>
+<div style="page-break-after: always;"></div>
 </div>
-<div id="appendix-iii-preferred-reporting-items-for-systematic-reviews-and-meta-analyses-extension-for-scoping-reviews-prisma-scr-checklist" class="section level2">
-<h2>Appendix III: Preferred Reporting Items for Systematic Reviews and
-Meta-Analyses Extension for Scoping Reviews (PRISMA-ScR) Checklist</h2>
+<div id="appendix-iii-preferred-reporting-items-for-systematic-reviews-and-meta-analyses-extension-for-scoping-reviews-prisma-scr-checklist" class="section level2 unnumbered">
+<h2 class="unnumbered">Appendix III: Preferred Reporting Items for
+Systematic Reviews and Meta-Analyses Extension for Scoping Reviews
+(PRISMA-ScR) Checklist</h2>
 <table>
 <colgroup>
+<col width="17%" />
+<col width="17%" />
 <col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
+<col width="17%" />
+<col width="26%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3100,7 +3179,7 @@ Population, Concept, and Context (PCC) framework.</td>
 registered and supply registration info.</td>
 <td align="left">Section 3.2 &amp; OSF Link</td>
 <td align="left">Registered <em>a priori</em> on the Open Science
-Framework (OSF ID: <code>10.17605/OSF.IO/ZP9AQ</code>).</td>
+Framework (OSF ID: <a href="https://osf.io/374tm">osf.io/374tm</a>).</td>
 </tr>
 <tr class="even">
 <td align="left">Eligibility criteria</td>
@@ -3155,7 +3234,7 @@ relational data extraction schema in R.</td>
 <td align="left">List and define all variables for which data were
 sought.</td>
 <td align="left">Section 3.3 &amp; Appendix II</td>
-<td align="left">Defines 20 variables across metadata, health context,
+<td align="left">Defines 22 variables across metadata, health context,
 registry quality, garbage code typology, methods, and
 TRL/microsimulation applicability.</td>
 </tr>
@@ -3193,7 +3272,7 @@ diagrams.</td>
 eligibility, and included.</td>
 <td align="left"><em>Pending Execution</em></td>
 <td align="left">To be reported in the PRISMA-ScR Flow Diagram upon
-study completion (September 2026).</td>
+study completion (November 2026).</td>
 </tr>
 <tr class="even">
 <td align="left">Characteristics of sources</td>
@@ -3277,15 +3356,16 @@ commercial or external grants.</td>
 </tr>
 </tbody>
 </table>
+<div style="page-break-after: always;"></div>
 </div>
-<div id="appendix-iv-data-extraction-instrument" class="section level2">
-<h2>Appendix IV: Data extraction instrument</h2>
-<table>
+<div id="appendix-iv-data-extraction-instrument" class="section level2 unnumbered">
+<h2 class="unnumbered">Appendix IV: Data extraction instrument</h2>
+<table style="width:100%;">
 <colgroup>
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
-<col width="25%" />
+<col width="22%" />
+<col width="22%" />
+<col width="33%" />
+<col width="22%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -3325,7 +3405,7 @@ Context</strong></td>
 <td align="left"></td>
 <td align="left">Economic Classification</td>
 <td align="left">World Bank income level</td>
-<td align="left">Dropdown (Low, Lower-Middle, Upper-Middle)</td>
+<td align="left">Dropdown (Low, Lower-Middle, Upper-Middle, High)</td>
 </tr>
 <tr class="even">
 <td align="left"></td>
@@ -3437,12 +3517,6 @@ transferability</td>
 </tr>
 </tbody>
 </table>
-</div>
-<div id="section" class="section level2">
-<h2></h2>
-</div>
-<div id="section-1" class="section level2">
-<h2></h2>
 </div>
 </div>
 

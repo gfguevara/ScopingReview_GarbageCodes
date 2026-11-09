@@ -1,28 +1,41 @@
 ---
-title: 'Methodologies for the correction of "Garbage Codes" in mortality records and their applicability in microsimulation models: Protocol for a scoping review'
-author: "Guevara-Vásquez, Giovanni^1^, Salazar-Colocho, Pablo^2^, Siliezar-Portillo, Kevin^2^, Rivas-Portillo, Alejandra^2^, Tejada-Peña, David^3^, García-Sanchez, Hazel^3^, Gavidia-Leiva, César^3^, Melendez-Gálvez, Mirna^3^"
+title: 'Methodologies for the correction of "Garbage Codes" in mortality records and their applicability in microsimulation models'
+subtitle: "JBI Evidence Synthesis Scoping Review Protocol"
+date: "`r Sys.Date()`"
+lang: en-US
+keywords: ["Health information systems", "Causes of death", "Vital statistics", "Data quality", "Machine learning algorithms", "Proportional redistribution", "Computer simulation"]
+bibliography: referencias.bib
+csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/nlm-citation-sequence-superscript.csl"
+link-citations: true
+geometry: "margin=1in"
+colorlinks: true
 output:
-  word_document:
-    reference_docx: template.docx
+  html_document:
     toc: false
     number_sections: true
+    df_print: paged
+    css: styles.css
+    pandoc_args: ["--metadata-file=authors.yml", "--lua-filter=authors.lua"]
   pdf_document:
     latex_engine: xelatex
     toc: false
     number_sections: true
-  html_document:
+    keep_tex: true
+    includes:
+      in_header: preamble.tex
+    pandoc_args: ["--metadata-file=authors.yml", "--lua-filter=authors.lua"]
+  word_document:
+    reference_docx: template.docx
     toc: false
-    df_print: paged
-bibliography: referencias.bib
-csl: "https://raw.githubusercontent.com/citation-style-language/styles/master/nlm-citation-sequence-superscript.csl"
-link-citations: true
+    number_sections: true
+    pandoc_args: ["--metadata-file=authors.yml", "--lua-filter=authors.lua"]
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   echo = FALSE,          # Oculta el código de R en el documento final
   warning = FALSE,       # Oculta las advertencias de R (ej. versiones de paquetes)
-  message = FALSE,       # Oculta los mensajes (ej. al cargar librerías como tidyverse o igraph)
+  message = FALSE,       # Oculta los mensajes
   fig.width = 8,         # Ancho predeterminado para los gráficos (en pulgadas)
   fig.height = 6,        # Alto predeterminado para los gráficos
   fig.align = "center",  # Centra los gráficos automáticamente en la página
@@ -30,21 +43,17 @@ knitr::opts_chunk$set(
 )
 ```
 
-^1^G.B. Morgagni PhD program in Translational Medicine, University of Padua, Padua, Italy;
-
-^2^Department of Public Health, School of Medicine, Faculty of Health Sciences, Dr. José Matías Delgado University, Antiguo Cuscatlán, El Salvador;
-
-^3^National Health Institute, El Salvador. El Salvador.
-
 **Abstract**
 
-**Objective:** To systematically map and synthesize the scientific evidence on the quantitative methodologies used for the identification, cleaning and redistribution of "garbage codes" in population-based mortality registries in low- and middle-income countries (LMICs), evaluating their technical applicability for the parameterization of microsimulation models in health.
+**Objective:** To map and synthesize the evidence on quantitative methodologies used to identify, clean, and redistribute "garbage codes" in population-based mortality records, evaluate their feasibility for parameterizing individual-level microsimulation models in health, and establish a conceptual framework to guide future public health mathematical modeling.
 
-**Inclusion criteria:** This review will consider studies utilizing population-based mortality records or vital statistics from low- and middle-income countries (Population). Eligible literature must describe or apply traditional statistical methods, multiple imputation, Bayesian models, record linkage, or machine learning algorithms to correct ill-defined causes of death and "garbage codes" (Concept). The context includes health information systems characterized by scarce or heterogeneous data, specifically where the feasibility of disaggregating results to the individual level to parameterize stochastic microsimulation models is analyzed (Context).
+**Introduction:** Garbage codes are International Classification of Diseases (ICD) codes representing ambiguous, non-specific, or biologically implausible underlying causes of death. Most correction methods operate on aggregated data and assume that misclassified deaths are randomly distributed across demographic strata, whereas stochastic microsimulation and agent-based models require highly disaggregated baseline mortality risks. How macro-level redistribution assumptions transfer to individual-level simulation environments has not been systematically mapped.
 
-**Methods:** This scoping review will follow the JBI methodology and the PRISMA Extension for Scoping Reviews (PRISMA-ScR). Comprehensive searches will be performed across PubMed, Scopus, Web of Science, LILACS, and SciELO, supplemented by grey literature from the WHO, PAHO, and IHME. To ensure reproducibility, the workflow will be executed within the R statistical environment. We will utilize litsearchr for search syntax optimization, synthesisr for deduplication, and revtools for blinded screening supported by latent Dirichlet allocation topic clustering. Discrepancies will be resolved by discussion or a third reviewer. Following paired data extraction, findings will be synthesized narratively and visualized using ggplot2 matrix heatmaps and igraph flow networks.
+**Inclusion criteria:** *Population:* studies using population-based mortality data (vital statistics or civil registration and vital statistics systems), without age or sex restrictions; hospital-based and clinical registries are excluded. *Concept:* studies describing, evaluating, or implementing quantitative methods (proportional redistribution and other demographic techniques, multiple imputation, spatial or Bayesian modeling, record linkage, or machine learning) to identify, reclassify, or redistribute garbage codes or ill-defined causes of death; purely descriptive quality assessments, corrections limited to under-registration, and patient-level prediction models are excluded. *Context:* any mortality reporting setting, in high-income and low- and middle-income countries, addressing individual-level disaggregation or microsimulation parameterization, or detailing the assumptions and algorithms needed to calibrate individual-level models; methods that preclude individual-level disaggregation are excluded. Peer-reviewed articles, methodological chapters, and institutional grey literature published in English, Spanish, or Portuguese are eligible.
 
-**Keywords:** health information systems; causes of death; vital statistics; data quality; machine learning algorithms; proportional redistribution; computer simulation.
+**Methods:** This scoping review will follow the JBI methodology and the PRISMA Extension for Scoping Reviews (PRISMA-ScR); the protocol was registered a priori on the Open Science Framework. PubMed/MEDLINE, Scopus, Web of Science, LILACS, and SciELO will be searched, together with grey literature (WHO, PAHO, IHME, the Ministry of Health of El Salvador, and specialized grey literature databases) and reference lists. The workflow will run in R (litsearchr, synthesisr, revtools), using latent Dirichlet allocation topic modeling only as a decision-support tool. Two reviewers will independently screen records and chart data across six dimensions (study metadata, health system context, mortality database characteristics, garbage code typology, correction methodology, and microsimulation applicability), resolving discrepancies by consensus or a third reviewer. No critical appraisal will be conducted. Results will be summarized with frequencies, a thematic narrative synthesis, evidence tables, heatmaps of methods by ICD chapter, and flow networks linking vital statistics to microsimulation parameterization.
+
+**Keywords:** garbage codes; health information systems; causes of death; vital statistics; data quality; machine learning algorithms; proportional redistribution; computer simulation.
 
 ------------------------------------------------------------------------
 
@@ -52,11 +61,11 @@ knitr::opts_chunk$set(
 
 Civil registration and vital statistics systems serve as the cornerstone of demographic and medium- to long-term health intelligence [@setel2007; @abouzahr2015], underpinning policy planning, health technology assessment [@mathers2005; @phillips2015; @foreman2018], and the quantification of the true impact of health crises [@gbd2016; @hart2020]. However, despite decades of global advocacy, data quality progress remains sluggish [@setel2007; @abouzahr2015; @mikkelsen2015], and the analytical utility of these databases is frequently undermined by persistent medical certification errors [@miki2018; @hart2020; @iburg2020; @johnson2021]. The primary challenge is the assignment of deaths to "garbage codes" (GCs), defined as International Classification of Diseases codes that represent ambiguous, non-specific, or biologically implausible underlying causes of death [@murray1996; @naghavi2020; @who2022]. Because raw mortality data frequently lack diagnostic precision, the application of indirect statistical correction remains a crucial public health priority [@ahern2011], particularly given the escalating burden of non-communicable diseases [@salerno2025] and cancers in data-scarce regions [@bigoni2021; @cunha2022]. Furthermore, because clinical interventions and medical training alone cannot fully eliminate these diagnostic errors at the source [@miki2018; @hart2020], robust post-hoc redistribution methods are indispensable [@foreman2016; @naghavi2020].
 
-To mitigate these systematic biases, a diverse array of correction methodologies has evolved over the past two decades [@murray2008; @naghavi2010; @foreman2016; @gbd2016; @gbd2017]. Modern redistribution strategies are typically classified into four distinct mathematical approaches: multiple cause analysis, negative correlation, impairment reallocation, and proportional redistribution [@johnson2021]. Beyond these foundational methods, researchers have increasingly utilized individual-level multiple cause of death data to capture hidden etiologies [@franca2014; @franca2019a; @franca2019b]. This led to the development of advanced computational techniques, including clinical data linkage algorithms [@bierrenbach2019] and coarsened exact matching (CEM, a method that groups continuous variables into discrete strata to pare mortality records precisely without parametric assumptions) [@stevens2010; @fihel2021].
+To mitigate these systematic biases, a diverse array of correction methodologies has evolved over the past two decades [@murray2008; @naghavi2010; @foreman2016; @gbd2016; @gbd2017]. Modern redistribution strategies are typically classified into four distinct mathematical approaches: multiple cause analysis, negative correlation, impairment reallocation, and proportional redistribution [@johnson2021]. Beyond these foundational methods, researchers have increasingly utilized individual-level multiple cause of death data to capture hidden etiologies [@franca2014; @franca2019a; @franca2019b]. This led to the development of advanced computational techniques, including clinical data linkage algorithms [@bierrenbach2019] and coarsened exact matching (CEM, a method that groups continuous variables into discrete strata to pair mortality records precisely without parametric assumptions) [@stevens2010; @fihel2021].
 
 Recent innovations also include subnational regression models [@giraldo2017; @masquelier2019; @grigoriev2024], four-step probabilistic algorithms [@scohy2025], the application of pathophysiological redistribution packages [@kyu2021], and the integration of international rules with exact matching [@zhang2025]. Moreover, spatial and machine learning approaches have emerged to address complex data patterns: spatial scan statistics and Local Moran's I autocorrelation adjust for spurious geographical clusters [@teixeira2020; @dearaujo2026], while random forest algorithms and decision trees map spatial inconsistencies and hierarchical clinical interactions [@zimeomorais2023; @desouza2025].
 
-Before applying these algorithms, baseline data quality is now objectively assessed using standardized metrics like the Vital Statistics Performance Index [@phillips2014; @mikkelsen2015] and automated diagnostic tools like ANACONDA [@mikkelsen2020; @iburg2020]. However, despite this methodological proliferation, current literature exhibits a critical translational gap [@devleesschauwer2022]. Specifically, there is a lack of evidence evaluating how macro-level redistribution assumptions can be rigorously transferred to individual-level simulation environments [@ng2020; @chrysanthopoulou2021].
+Before applying these algorithms, baseline data quality is now objectively assessed using standardized metrics like the Vital Statistics Performance Index [@phillips2014; @mikkelsen2015] and automated diagnostic tools like ANACONDA [@mikkelsen2020; @iburg2020].
 
 Despite the proliferation of macro-level redistribution frameworks, current literature exhibits a critical translational gap [@devleesschauwer2022; @scohy2025]. Aggregated population-level corrections assume that misclassified or ill-defined causes of death are randomly distributed across demographic strata [@johnson2021; @grigoriev2024]. However, stochastic microsimulations and agent-based models require highly disaggregated baseline mortality risks, as structural diagnostic errors disproportionately mask true epidemiological burdens in vulnerable populations and settings with high social deprivation [@costa2020; @franca2020; @malta2023]. Translating uncorrected macro-level proportions directly into individual-level simulation environments risks compounding classification errors and propagating systematic bias into microdata risk matrices [@ng2020; @chrysanthopoulou2021]. Therefore, this scoping review aims to map the state of the art, evaluate the technical feasibility of adapting macro-level correction algorithms for individual-level microsimulation parameterization, and establish a conceptual framework to guide future public health mathematical modeling.
 
@@ -97,7 +106,7 @@ This component delineates the core methodologies, algorithms, and analytical too
 
 ## Context
 
-To ensure a comprehensive mapping of the state of the art without geographic selection bias, this review adopts a **global context without economic restrictions**, encompassing mortality reporting systems across both High-Income Countries (HICs) and Low- and Middle-Income Countries (LMICs).
+To ensure a comprehensive mapping of the state of the art without geographic selection bias, this review adopts a global context without economic restrictions, encompassing mortality reporting systems across both High-Income Countries (HICs) and Low- and Middle-Income Countries (LMICs).
 
 The operational boundaries for this component are structured as follows:
 
@@ -111,8 +120,8 @@ The operational boundaries for this component are structured as follows:
 ## Sources of evidence
 
 - **Publication types:** Peer-reviewed original research articles published in indexed journals, methodological book chapters, and authoritative institutional gray literature (e.g., technical reports from the WHO, PAHO, or IHME).
-- **Timeframe:** Material published from 1996 onwards, capturing the global introduction and widespread adoption of the Tenth Revision of the International Classification of Diseases (ICD-10), which consolidated the term "garbage codes."
-- **Languages:** Studies published in English, Spanish, and Portuguese, reflecting the substantial volume of methodological literature generated in Latin America (particularly Brazil).
+- **Timeframe:** Literature will be included without temporal restrictions to encompass foundational and contemporary studies on mortality data quality, tracing the classification, redistribution, and correction of 'garbage codes' across disease revisions, including the Tenth Revision of the International Classification of Diseases (ICD-10).
+- **Languages:** Studies published in English, Spanish, and Portuguese will be included. This selection reflects the linguistic fluency of the research team and encompasses the substantial body of methodological literature on garbage code redistribution produced globally in English, as well as regionally across Latin America (particularly extensive research from Brazil and Spanish-speaking countries).
 
 # METHODS
 
@@ -131,13 +140,13 @@ The search strategy will be designed to capture the entire historical continuum 
 
 ## Data management and search automation
 
-To ensure the methodological reproducibility and transparency required by the PRISMA-ScR guidelines, this scoping review protocol was registered a priori on the Open Science Framework (OSF) [osf.io/374tm]. The information retrieval process will be systematized within the R statistical environment (v4.5 or higher). Specifically, the `litsearchr` package will be employed for the algorithmic optimization of Boolean syntax via term co-occurrence networks, while indexed databases will be interrogated programmatically through Application APIs using rentrez and rscopus. Data consolidation and duplicate removal will be managed via synthesisr using fuzzy string-matching models, supplemented by manual verification of borderline cases. Title and abstract screening will be conducted via revtools, supported by Latent Dirichlet Allocation (LDA) topic modeling strictly as a computational decision-support tool to reduce reviewer fatigue. To eliminate any risk of algorithmic bias, two reviewers will independently make every inclusion decision, resolving discrepancies through consensus or third-party arbitration.
+To ensure the methodological reproducibility and transparency required by the PRISMA-ScR guidelines [@tricco2018], this scoping review protocol was registered a priori on the Open Science Framework (OSF) [osf.io/374tm](https://osf.io/374tm). The information retrieval process will be systematized within the R statistical environment (v4.5 or higher). Specifically, the `litsearchr` package [@grames2019] will be employed for the algorithmic optimization of Boolean syntax via term co-occurrence networks, while indexed databases will be interrogated programmatically through Application APIs using rentrez [@winter2017] and rscopus [@muschelli2025]. Data consolidation and duplicate removal will be managed via synthesisr[@westgate2024] using fuzzy string-matching models, supplemented by manual verification of borderline cases. Title and abstract screening will be conducted via revtools [@westgate2019], supported by Latent Dirichlet Allocation (LDA) [@blei2003] topic modeling strictly as a computational decision-support tool to reduce reviewer fatigue. To eliminate any risk of algorithmic bias, two reviewers will independently make every inclusion decision, resolving discrepancies through consensus or third-party arbitration.
 
 The final literature search will be re-run immediately prior to submission. Any methodological deviations from this registered protocol will be fully documented and reported in the final publication.
 
 ## Data extraction and charting
 
-To ensure integrity, traceability, and reproducibility, we will conduct data extraction programmatically within the R statistical environment (v4.5 or higher). This automated approach mitigates the transcription errors inherent in manual processes and ensures a standardized workflow. We have designed an electronic data charting form to capture information across six dimensions:
+To ensure integrity, traceability, and reproducibility, we will conduct data extraction [@pollock2023] programmatically within the R statistical environment (v4.5 or higher) [@r2026]. This automated approach mitigates the transcription errors inherent in manual processes and ensures a standardized workflow. We have designed an electronic data charting form to capture information across six dimensions:
 
 - **Study metadata:** Author, year of publication, country, and study design.
 
@@ -151,7 +160,7 @@ To ensure integrity, traceability, and reproducibility, we will conduct data ext
 
 - **Microsimulation applicability:** The explicit capacity of the methodology to generate highly disaggregated microdata and handle parameter uncertainty for stochastic predictive modeling [@chrysanthopoulou2021].
 
-This form will be piloted with a random sample of three included studies to refine consistency and ensure variable granularity. Two reviewers will perform the extraction independently, resolving discrepancies through consensus. The resulting data will be consolidated into a relational structure (e.g., tibble or data.frame) to facilitate transparent downstream analysis. The full extraction schema (exported as JSON/CSV) and corresponding R scripts will be made available via the Open Science Framework (OSF) upon study completion. In accordance with Joanna Briggs Institute (JBI) methodology for scoping reviews, a formal critical appraisal of included sources of evidence will not be conducted, as the objective of this review is to map and synthesize the breadth of existing quantitative methodologies rather than to evaluate the internal validity of individual studies. For a detailed breakdown of the variables and the classification framework utilized, refer to the Data Charting Instrument (Appendix IV).
+This form will be piloted with a random sample of three included studies to refine consistency and ensure variable granularity. Two reviewers will perform the extraction independently, resolving discrepancies through consensus. The resulting data will be consolidated into a relational structure (e.g., tibble or data.frame) to facilitate transparent downstream analysis. The full extraction schema (exported as JSON/CSV) and corresponding R scripts will be made available via the Open Science Framework (OSF) upon study completion. In accordance with Joanna Briggs Institute (JBI) methodology for scoping reviews [@peters2020], a formal critical appraisal of included sources of evidence will not be conducted, as the objective of this review is to map and synthesize the breadth of existing quantitative methodologies rather than to evaluate the internal validity of individual studies. For a detailed breakdown of the variables and the classification framework utilized, refer to the Data Charting Instrument (Appendix IV).
 
 ## Data analysis, synthesis, and presentation
 
@@ -161,11 +170,11 @@ This scoping review adheres to the Joanna Briggs Institute methodology. We will 
 
 - **Thematic narrative synthesis:** We will accompany the extracted data with an explanatory narrative structured around three core analytical axes:
 
-  - **Status and burden of "garbage codes" across social deprivation strata":** Critically describing the prevalence and typology of ill-defined mortality causes in data-scarce settings, specifically analyzing how uncorrected garbage codes disproportionately mask the true mortality burden in populations with higher social deprivation[@malta2023], and evaluating the risks of inappropriate centralization when applying macro-level regression algorithms to localized municipal datasets.[@liu2022].
+  - **Status and burden of "garbage codes" across social deprivation strata:** Critically describing the prevalence and typology of ill-defined mortality causes in data-scarce settings, specifically analyzing how uncorrected garbage codes disproportionately mask the true mortality burden in populations with higher social deprivation [@malta2023], and evaluating the risks of inappropriate centralization when applying macro-level regression algorithms to localized municipal datasets.[@liu2022].
 
   - **Methodological Diversity and Assumptions:** Evaluating the mathematical complexity, infrastructure requirements, and parameter uncertainty handling across algorithmic families.
 
-  - **Transferability to microsimulation** **and disease burden modeling:** Appraising whether identified redistribution algorithms can be rigorously integrated into agent-based platforms to preserve microdata validity and baseline risk calibration. Drawing upon methodological precedents from prior comparative risk assessments in Latin America—such as the 2020 baseline burden estimations of sugar-sweetened beverages in El Salvador [@rodriguezcairoli2023]—the synthesis will critically evaluate how uncorrected vital statistics distort baseline mortality risks for non-communicable diseases (e.g., type 2 diabetes and ischemic heart disease) across socioeconomically deprived subgroups.
+  - **Transferability to microsimulation and disease burden modeling:** Appraising whether identified redistribution algorithms can be rigorously integrated into agent-based platforms to preserve microdata validity and baseline risk calibration. Drawing upon methodological precedents from prior comparative risk assessments in Latin America—such as the 2020 baseline burden estimations of sugar-sweetened beverages in El Salvador [@rodriguezcairoli2023]—the synthesis will critically evaluate how uncorrected vital statistics distort baseline mortality risks for non-communicable diseases (e.g., type 2 diabetes and ischemic heart disease) across socioeconomically deprived subgroups.
 
 - **Mapping and visualization:** To visualize the structure and knowledge gaps of the field, we will generate advanced graphics using ggplot2 [@wickham2016] and igraph [@csardi2006]. This will include structured evidence tables cross-referencing correction methods with their input data requirements, two-dimensional heatmaps mapping analytical methods against specific ICD Chapters, and flow network diagrams illustrating the technical pathway required to connect traditional vital statistics with microsimulation parameterization.
 
@@ -175,11 +184,13 @@ As this scoping review relies exclusively on publicly available published scient
 
 # Declaration of generative AI and AI-assisted technologies in the writing process
 
-During the preparation of this protocol, the authors used Gemini Notebook to assist in scanning source PDF documents for the data extraction matrix—followed by 100% human verification of all data points—and for language polishing and proofreading. All evidence selection, critical appraisal, methodological synthesis, and conceptual drafting were performed independently by the authors, who assume full responsibility for the integrity and accuracy of the final content.
+During the preparation of this protocol, the authors used generative AI tools as follows. After conducting a rapid review of the literature, the authors used Gemini Notebook (Google) to build a data extraction matrix from the preliminary source documents and to synthesize the current evidence that informed the Introduction. The authors then paraphrased this material in English and used the same tool to improve the clarity and style of the text. Claude (Anthropic) was used to identify inconsistencies across the protocol sections, appendices, and reference list, to draft the structured abstract from the final protocol text, and to assist with the R Markdown code used to produce the document (structure, table formatting, and rendering). All AI-generated content was reviewed against the source documents and edited by the authors, who made all decisions regarding the study design, eligibility criteria, search strategy, and methodology, and who take full responsibility for the accuracy and integrity of the final content. No AI tool is listed as an author..
 
 # Availability of data and materials
 
-All datasets generated or analyzed during this study are included in this published protocol and its supplementary information files. The complete R scripts, customized search syntaxes, and electronic data charting instruments are publicly accessible via the Open Science Framework (OSF) repository [osf.io/374tm]. Any additional customized scripts, codebooks, or intermediate extraction matrices are available from the corresponding author upon reasonable request.s of Interest.
+All datasets generated or analyzed during this study are included in this published protocol and its supplementary information files. The complete R scripts, customized search syntaxes, and electronic data charting instruments are publicly accessible via the Open Science Framework (OSF) repository [osf.io/374tm](https://osf.io/374tm). Any additional customized scripts, codebooks, or intermediate extraction matrices are available from the corresponding author upon reasonable request.
+
+# Competing interests
 
 The authors declare that they have no competing interests. This scoping review was conducted solely for academic, educational, and methodological research purposes, with no commercial, financial, corporate, or industrial support that could be construed as a potential conflict of interest.
 
@@ -189,39 +200,41 @@ This research received no specific grant from any funding agency in the public, 
 
 # Authors' contributions
 
-- **Giovanni Guevara-Vásquez**: Conceptualization, Methodology, Software, Validation, Formal analysis, Investigation, Writing – Original Draft, Visualization, Project administration.
+```{r credit-authors, echo=FALSE, results='asis'}
+authors_file <- "authors.yml"
 
-- **Pablo Salazar-Colocho**: Conceptualization, Methodology, Writing – Review & Editing.
-
-- **David Tejada-Peña**: Investigation, Resources, Data curation, Writing – Review & Editing.
-
-- **Hazel García-Sanchez**: Investigation, Resources, Data curation, Writing – Review & Editing.
-
-- **César Gavidia-Leiva**: Investigation, Resources, Data curation, Writing – Review & Editing.
-
-- **Mirna Melendez-Gálvez**: Investigation, Resources, Data curation, Writing – Review & Editing.
-
-- **Kevin Siliezar-Madrid**: Methodology (Information Retrieval), Investigation, Data Curation (Search execution in R), Writing – Review & Editing.
-
-- **Alejandra Rivas-Portillo**: Methodology, Investigation (Dual independent screening and selection), Data Curation, Writing – Review & Editing.
+if (file.exists(authors_file)) {
+  meta <- yaml::read_yaml(authors_file)
+  for (auth in meta$author) {
+    if (!is.null(auth$roles)) {
+      roles_str <- paste(unlist(auth$roles), collapse = ", ")
+      cat(sprintf("* **%s:** %s.\n", auth$name, roles_str))
+    }
+  }
+} else {
+  warning("authors.yml not found: the Authors' contributions list was not generated.")
+}
+```
 
 ------------------------------------------------------------------------
 
-# References
+# References {.unnumbered}
 
 ::: {#refs}
 :::
 
+\newpage
+
 ------------------------------------------------------------------------
 
-# Appendices
+# Appendices {.unnumbered}
 
-### Appendix I: Search Strategy (PubMed / MEDLINE)
+## Appendix I: Search Strategy (PubMed / MEDLINE) {.unnumbered}
 
-**Database:** PubMed (via NCBI API) **Date of Search:** October 17, 2026 **Limits:** None (No temporal or language restrictions applied). **Note:** The syntax was optimized using the `litsearchr` package to assemble free-text terms, combined manually with National Library of Medicine controlled vocabulary (`[Mesh]`).
+**Database:** PubMed (via NCBI API) **Date of Search:** November 14, 2026 **Limits:** None (No temporal or language restrictions applied). **Note:** The syntax was optimized using the `litsearchr` package to assemble free-text terms, combined manually with National Library of Medicine controlled vocabulary (`[Mesh]`).
 
 | Line | Search Strategy (PubMed Syntax) | Conceptual Block |
-|:--------------------------:|:---------------------|:---------------------|
+|:--:|:---|:---|
 | **1** | `Vital Statistics[Mesh] OR Death Certificates[Mesh] OR Cause of Death[Mesh] OR Mortality[Mesh]` | **Population (MeSH):** Core mortality registry indexing |
 | **2** | `("vital statistics" OR "registration of vital statistics" OR "vital registration" OR "civil registration" OR CRVS OR "population register*" OR "death regist*" OR "death certificat*" OR "death record*" OR "cause of death" OR "causes of death" OR "death cause*" OR "underlying cause*" OR "death rate*" OR "population surveillance" OR "public health surveillance" OR "international classification of disease*" OR ICD-9 OR ICD-10 OR ICD-11 OR "clinical coding" OR "medical coding" OR "health information system*" OR mortality)[tiab]` | **Population (Text Words):** Vital statistics and national death registry systems |
 | **3** | `#1 OR #2` | **Result:** Core Mortality Data |
@@ -231,7 +244,7 @@ This research received no specific grant from any funding agency in the public, 
 | **7** | `#5 OR #6` | **Result:** Methodological Ecosystem |
 | **8** | `#3 AND #4 AND #7` | **FINAL COMBINED STRATEGY** |
 
-#### Programmatic Search Execution (R Environment)
+### Programmatic Search Execution (R Environment) {.unnumbered}
 
 In adherence to PRISMA-S guidelines for computational reproducibility, the final search query will be executed programmatically via the NCBI API using the `rentrez` package. The exact search string assembled for the programmatic query is documented below:
 
@@ -248,100 +261,107 @@ query_pubmed <- paste0(
 )
 ```
 
-### Search Strategy: Scopus (Elsevier)
+### Search Strategy: Scopus (Elsevier) {.unnumbered}
 
-**Database:** Scopus **Date of Search:** October 17, 2026 **Limits:** None (No publication date or language restrictions applied). **Note:** The search syntax was adapted for Scopus using the `TITLE-ABS-KEY` field code to simultaneously search across titles, abstracts, and keywords. Due to strict API character and boolean operator constraints for highly complex queries, this search is executed directly via the Scopus Advanced Search web interface. The retrieved records are exported in `.ris` format for programmatic deduplication via the `synthesisr` package in R.
+**Database:** Scopus **Date of Search:** November 14, 2026 **Limits:** None (No publication date or language restrictions applied). **Note:** The search syntax was adapted for Scopus using the `TITLE-ABS-KEY` field code to simultaneously search across titles, abstracts, and keywords. Due to strict API character and boolean operator constraints for highly complex queries, this search is executed directly via the Scopus Advanced Search web interface. The retrieved records are exported in `.ris` format for programmatic deduplication via the `synthesisr` package in R.
 
 | Line | Search Strategy (Scopus Syntax) | Conceptual Block |
-|:--------------------------:|:---------------------|:---------------------|
+|:--:|:---|:---|
 | **1** | `TITLE-ABS-KEY("vital statistics" OR "registration of vital statistics" OR "vital registration" OR "civil registration" OR CRVS OR "population register*" OR "death regist*" OR "death certificat*" OR "death record*" OR "cause of death" OR "causes of death" OR "death cause*" OR "underlying cause*" OR "death rate*" OR "population surveillance" OR "public health surveillance" OR "international classification of disease*" OR ICD-9 OR ICD-10 OR ICD-11 OR "clinical coding" OR "medical coding" OR "health information system*" OR mortality)` | **Population:** Vital statistics and national death registry systems |
 | **2** | `TITLE-ABS-KEY("garbage code*" OR "garbage cause*" OR "garbage categor*" OR "garbage diagnos*" OR "poorly defined cause*" OR "causas mal definidas" OR "codigos basura" OR "codigos lixo" OR "codigos garbage" OR R00-R99 OR ill-defined OR "unknown cause*" OR "unspecified cause*" OR "nonspecific cause*" OR "non-specific cause*" OR "unspecific cause*" OR "undetermined cause*" OR "vague code*" OR "cause of death assignment" OR "underlying cause assignment" OR misclassif* OR miscod* OR misattribut* OR miscertif*)` | **Concept A:** Specific typology of data errors ("Garbage Codes") |
 | **3** | `TITLE-ABS-KEY("statistical model*" OR "statistical data interpretation" OR "Bayes theorem" OR "spatiotemporal analysis" OR "medical record linkage" OR autopsy OR "patient discharge" OR "artificial intelligence" OR "decision tree*" OR "data mining" OR "random forest*" OR "life table*" OR demography OR algorithm* OR "computer simulation" OR "proportional redistribution" OR "proportional distribution" OR "fractional algorithm*" OR "Brass technique" OR "Brass technic" OR "reverse survival" OR "stable population" OR "demographic analys*" OR "probabilistic model*" OR bayesian OR "empirical bayes" OR spatiotemporal OR spatio-temporal OR "spatial regression" OR imput* OR CODEm OR CoDCorrect OR "cause of death ensemble model*" OR "coarsened exact matching" OR reallocat* OR reassign* OR recod* OR "multiple cause*" OR linkage OR "verbal autops*" OR "hospital discharge" OR "discharge record*" OR "discharge data" OR "machine learning" OR "gradient boosting" OR "deep learning" OR "neural network*" OR microsimulat* OR micro-simulation* OR agent-based OR "synthetic population*" OR "global burden of disease" OR GBD OR InterVA OR InSilicoVA OR SmartVA OR "tariff method" OR "bridge coding" OR "comparability ratio*" OR "IRIS software" OR "automated coding" OR "automated classification" OR "small area estimation" OR "correction factor*" OR redistribut* OR reclassif*)` | **Concept B:** Analytical, statistical, and computational methods |
 | **4** | `#1 AND #2 AND #3` | **FINAL COMBINED STRATEGY** |
 
-#### Web Interface Execution String
+#### Web Interface Execution String {.unnumbered}
 
 The following complete syntax was assembled to be copied and pasted directly into the Scopus Advanced Search query box:
 
-\`\`\`text TITLE-ABS-KEY("vital statistics" OR "registration of vital statistics" OR "vital registration" OR "civil registration" OR CRVS OR "population register*" OR "death regist*" OR "death certificat*" OR "death record*" OR "cause of death" OR "causes of death" OR "death cause*" OR "underlying cause*" OR "death rate*" OR "population surveillance" OR "public health surveillance" OR "international classification of disease*" OR ICD-9 OR ICD-10 OR ICD-11 OR "clinical coding" OR "medical coding" OR "health information system*" OR mortality) AND TITLE-ABS-KEY("garbage code*" OR "garbage cause*" OR "garbage categor*" OR "garbage diagnos*" OR "poorly defined cause*" OR "causas mal definidas" OR "codigos basura" OR "codigos lixo" OR "codigos garbage" OR R00-R99 OR ill-defined OR "unknown cause*" OR "unspecified cause*" OR "nonspecific cause*" OR "non-specific cause*" OR "unspecific cause*" OR "undetermined cause*" OR "vague code*" OR "cause of death assignment" OR "underlying cause assignment" OR misclassif* OR miscod\* OR misattribut\* OR miscertif*) AND TITLE-ABS-KEY("statistical model*" OR "statistical data interpretation" OR "Bayes theorem" OR "spatiotemporal analysis" OR "medical record linkage" OR autopsy OR "patient discharge" OR "artificial intelligence" OR "decision tree*" OR "data mining" OR "random forest*" OR "life table*" OR demography OR algorithm* OR "computer simulation" OR "proportional redistribution" OR "proportional distribution" OR "fractional algorithm*" OR "Brass technique" OR "Brass technic" OR "reverse survival" OR "stable population" OR "demographic analys*" OR "probabilistic model*" OR bayesian OR "empirical bayes" OR spatiotemporal OR spatio-temporal OR "spatial regression" OR imput* OR CODEm OR CoDCorrect OR "cause of death ensemble model*" OR "coarsened exact matching" OR reallocat* OR reassign\* OR recod\* OR "multiple cause*" OR linkage OR "verbal autops*" OR "hospital discharge" OR "discharge record*" OR "discharge data" OR "machine learning" OR "gradient boosting" OR "deep learning" OR "neural network*" OR microsimulat\* OR micro-simulation\* OR agent-based OR "synthetic population*" OR "global burden of disease" OR GBD OR InterVA OR InSilicoVA OR SmartVA OR "tariff method" OR "bridge coding" OR "comparability ratio*" OR "IRIS software" OR "automated coding" OR "automated classification" OR "small area estimation" OR "correction factor*" OR redistribut* OR reclassif\*)
+``` text
+TITLE-ABS-KEY("vital statistics" OR "registration of vital statistics" OR "vital registration" OR "civil registration" OR CRVS OR "population register*" OR "death regist*" OR "death certificat*" OR "death record*" OR "cause of death" OR "causes of death" OR "death cause*" OR "underlying cause*" OR "death rate*" OR "population surveillance" OR "public health surveillance" OR "international classification of disease*" OR ICD-9 OR ICD-10 OR ICD-11 OR "clinical coding" OR "medical coding" OR "health information system*" OR mortality) AND TITLE-ABS-KEY("garbage code*" OR "garbage cause*" OR "garbage categor*" OR "garbage diagnos*" OR "poorly defined cause*" OR "causas mal definidas" OR "codigos basura" OR "codigos lixo" OR "codigos garbage" OR R00-R99 OR ill-defined OR "unknown cause*" OR "unspecified cause*" OR "nonspecific cause*" OR "non-specific cause*" OR "unspecific cause*" OR "undetermined cause*" OR "vague code*" OR "cause of death assignment" OR "underlying cause assignment" OR misclassif* OR miscod* OR misattribut* OR miscertif*) AND TITLE-ABS-KEY("statistical model*" OR "statistical data interpretation" OR "Bayes theorem" OR "spatiotemporal analysis" OR "medical record linkage" OR autopsy OR "patient discharge" OR "artificial intelligence" OR "decision tree*" OR "data mining" OR "random forest*" OR "life table*" OR demography OR algorithm* OR "computer simulation" OR "proportional redistribution" OR "proportional distribution" OR "fractional algorithm*" OR "Brass technique" OR "Brass technic" OR "reverse survival" OR "stable population" OR "demographic analys*" OR "probabilistic model*" OR bayesian OR "empirical bayes" OR spatiotemporal OR spatio-temporal OR "spatial regression" OR imput* OR CODEm OR CoDCorrect OR "cause of death ensemble model*" OR "coarsened exact matching" OR reallocat* OR reassign* OR recod* OR "multiple cause*" OR linkage OR "verbal autops*" OR "hospital discharge" OR "discharge record*" OR "discharge data" OR "machine learning" OR "gradient boosting" OR "deep learning" OR "neural network*" OR microsimulat* OR micro-simulation* OR agent-based OR "synthetic population*" OR "global burden of disease" OR GBD OR InterVA OR InSilicoVA OR SmartVA OR "tariff method" OR "bridge coding" OR "comparability ratio*" OR "IRIS software" OR "automated coding" OR "automated classification" OR "small area estimation" OR "correction factor*" OR redistribut* OR reclassif*)
+```
 
-### Search Strategy: Web of Science (Core Collection)
+### Search Strategy: Web of Science (Core Collection) {.unnumbered}
 
-**Database:** Web of Science (Clarivate Analytics) **Date of Search:** October 17, 2026 **Limits:** None (No publication date or language restrictions applied). **Note:** The search syntax was adapted for Web of Science using the `TS=` (Topic) field tag, which queries the Title, Abstract, Author Keywords, and Keywords Plus fields. Due to the high complexity and length of the Boolean string, the search is executed directly via the Web of Science Advanced Search interface. Retrieved records are exported in `.ris` format for downstream integration.
+**Database:** Web of Science (Clarivate Analytics) **Date of Search:** November 14, 2026 **Limits:** None (No publication date or language restrictions applied). **Note:** The search syntax was adapted for Web of Science using the `TS=` (Topic) field tag, which queries the Title, Abstract, Author Keywords, and Keywords Plus fields. Due to the high complexity and length of the Boolean string, the search is executed directly via the Web of Science Advanced Search interface. Retrieved records are exported in `.ris` format for downstream integration.
 
 | Line | Search Strategy (Web of Science Syntax) | Conceptual Block |
-|:--------------------------:|:---------------------|:---------------------|
+|:--:|:---|:---|
 | **1** | `TS=("vital statistics" OR "registration of vital statistics" OR "vital registration" OR "civil registration" OR CRVS OR "population register*" OR "death regist*" OR "death certificat*" OR "death record*" OR "cause of death" OR "causes of death" OR "death cause*" OR "underlying cause*" OR "death rate*" OR "population surveillance" OR "public health surveillance" OR "international classification of disease*" OR ICD-9 OR ICD-10 OR ICD-11 OR "clinical coding" OR "medical coding" OR "health information system*" OR mortality)` | **Population:** Vital statistics and national death registry systems |
 | **2** | `TS=("garbage code*" OR "garbage cause*" OR "garbage categor*" OR "garbage diagnos*" OR "poorly defined cause*" OR "causas mal definidas" OR "codigos basura" OR "codigos lixo" OR "codigos garbage" OR R00-R99 OR ill-defined OR "unknown cause*" OR "unspecified cause*" OR "nonspecific cause*" OR "non-specific cause*" OR "unspecific cause*" OR "undetermined cause*" OR "vague code*" OR "cause of death assignment" OR "underlying cause assignment" OR misclassif* OR miscod* OR misattribut* OR miscertif*)` | **Concept A:** Specific typology of data errors ("Garbage Codes") |
 | **3** | `TS=("statistical model*" OR "statistical data interpretation" OR "Bayes theorem" OR "spatiotemporal analysis" OR "medical record linkage" OR autopsy OR "patient discharge" OR "artificial intelligence" OR "decision tree*" OR "data mining" OR "random forest*" OR "life table*" OR demography OR algorithm* OR "computer simulation" OR "proportional redistribution" OR "proportional distribution" OR "fractional algorithm*" OR "Brass technique" OR "Brass technic" OR "reverse survival" OR "stable population" OR "demographic analys*" OR "probabilistic model*" OR bayesian OR "empirical bayes" OR spatiotemporal OR spatio-temporal OR "spatial regression" OR imput* OR CODEm OR CoDCorrect OR "cause of death ensemble model*" OR "coarsened exact matching" OR reallocat* OR reassign* OR recod* OR "multiple cause*" OR linkage OR "verbal autops*" OR "hospital discharge" OR "discharge record*" OR "discharge data" OR "machine learning" OR "gradient boosting" OR "deep learning" OR "neural network*" OR microsimulat* OR micro-simulation* OR agent-based OR "synthetic population*" OR "global burden of disease" OR GBD OR InterVA OR InSilicoVA OR SmartVA OR "tariff method" OR "bridge coding" OR "comparability ratio*" OR "IRIS software" OR "automated coding" OR "automated classification" OR "small area estimation" OR "correction factor*" OR redistribut* OR reclassif*)` | **Concept B:** Analytical, statistical, and computational methods |
 | **4** | `#1 AND #2 AND #3` | **FINAL COMBINED STRATEGY** |
 
-#### Web Interface Execution String
+#### Web Interface Execution String {.unnumbered}
 
 ``` text
 TS=("vital statistics" OR "registration of vital statistics" OR "vital registration" OR "civil registration" OR CRVS OR "population register*" OR "death regist*" OR "death certificat*" OR "death record*" OR "cause of death" OR "causes of death" OR "death cause*" OR "underlying cause*" OR "death rate*" OR "population surveillance" OR "public health surveillance" OR "international classification of disease*" OR ICD-9 OR ICD-10 OR ICD-11 OR "clinical coding" OR "medical coding" OR "health information system*" OR mortality) AND TS=("garbage code*" OR "garbage cause*" OR "garbage categor*" OR "garbage diagnos*" OR "poorly defined cause*" OR "causas mal definidas" OR "codigos basura" OR "codigos lixo" OR "codigos garbage" OR R00-R99 OR ill-defined OR "unknown cause*" OR "unspecified cause*" OR "nonspecific cause*" OR "non-specific cause*" OR "unspecific cause*" OR "undetermined cause*" OR "vague code*" OR "cause of death assignment" OR "underlying cause assignment" OR misclassif* OR miscod* OR misattribut* OR miscertif*) AND TS=("statistical model*" OR "statistical data interpretation" OR "Bayes theorem" OR "spatiotemporal analysis" OR "medical record linkage" OR autopsy OR "patient discharge" OR "artificial intelligence" OR "decision tree*" OR "data mining" OR "random forest*" OR "life table*" OR demography OR algorithm* OR "computer simulation" OR "proportional redistribution" OR "proportional distribution" OR "fractional algorithm*" OR "Brass technique" OR "Brass technic" OR "reverse survival" OR "stable population" OR "demographic analys*" OR "probabilistic model*" OR bayesian OR "empirical bayes" OR spatiotemporal OR spatio-temporal OR "spatial regression" OR imput* OR CODEm OR CoDCorrect OR "cause of death ensemble model*" OR "coarsened exact matching" OR reallocat* OR reassign* OR recod* OR "multiple cause*" OR linkage OR "verbal autops*" OR "hospital discharge" OR "discharge record*" OR "discharge data" OR "machine learning" OR "gradient boosting" OR "deep learning" OR "neural network*" OR microsimulat* OR micro-simulation* OR agent-based OR "synthetic population*" OR "global burden of disease" OR GBD OR InterVA OR InSilicoVA OR SmartVA OR "tariff method" OR "bridge coding" OR "comparability ratio*" OR "IRIS software" OR "automated coding" OR "automated classification" OR "small area estimation" OR "correction factor*" OR redistribut* OR reclassif*)
 ```
 
-### Search Strategy: LILACS (Latin American and Caribbean Health Sciences Literature)
+### Search Strategy: LILACS (Latin American and Caribbean Health Sciences Literature) {.unnumbered}
 
-**Database:** LILACS (via Virtual Health Library - VHL / BVS) **Date of Search:** October 17, 2026 **Limits:** None (No publication date restrictions applied). **Note:** The search syntax for LILACS required methodological adaptation due to the character limits and Boolean nesting constraints of the VHL (BVS) search interface. The highly complex string used for Scopus and Web of Science was distilled into its core conceptual components. Furthermore, to maximize sensitivity within regional literature, free-text terms were translated into a trilingual format (English, Spanish, and Portuguese) mapping to DeCS (Health Sciences Descriptors) terminology. The search is executed using the `tw:` (text word) field code.
+**Database:** LILACS (via Virtual Health Library - VHL / BVS) **Date of Search:** November 14, 2026 **Limits:** None (No publication date restrictions applied). **Note:** The search syntax for LILACS required methodological adaptation due to the character limits and Boolean nesting constraints of the VHL (BVS) search interface. The highly complex string used for Scopus and Web of Science was distilled into its core conceptual components. Furthermore, to maximize sensitivity within regional literature, free-text terms were translated into a trilingual format (English, Spanish, and Portuguese) mapping to DeCS (Health Sciences Descriptors) terminology. The search is executed using the `tw:` (text word) field code.
 
 | Line | Search Strategy (LILACS / VHL Syntax) | Conceptual Block |
-|:--------------------------:|:---------------------|:---------------------|
+|:--:|:---|:---|
 | **1** | `tw:("vital statistics" OR "estadisticas vitales" OR "estatisticas vitais" OR "cause of death" OR "causas de muerte" OR "causas de morte" OR "death certificate*" OR "certificados de defuncion" OR "declaracao de obito" OR CRVS OR mortality OR mortalidad OR mortalidade)` | **Population:** Mortality registries and vital statistics (Trilingual) |
 | **2** | `tw:("garbage code*" OR "codigos basura" OR "codigos lixo" OR "codigos garbage" OR "ill-defined" OR "mal definidas" OR "mal definidos" OR "R00-R99" OR "unspecified cause*" OR "causas no especificadas" OR "causas nao especificadas")` | **Concept A:** "Garbage Codes" and ill-defined causes (Trilingual) |
 | **3** | `tw:(redistribut* OR redistribucion OR redistribuicao OR reclassif* OR reclasificacion OR reclassificacao OR imput* OR algorithm* OR algoritmo* OR "machine learning" OR "aprendizaje automatico" OR "aprendizado de maquina" OR "artificial intelligence" OR "inteligencia artificial" OR "proportional distribution" OR "distribucion proporcional" OR "multiple cause*" OR "causas multiples" OR "causas multiplas")` | **Concept B:** Analytical and redistribution methods (Trilingual) |
 | **4** | `#1 AND #2 AND #3` | **FINAL COMBINED STRATEGY** |
 
-#### Web Interface Execution String
+#### Web Interface Execution String {.unnumbered}
 
 ``` text
 (tw:("vital statistics" OR "estadisticas vitales" OR "estatisticas vitais" OR "cause of death" OR "causas de muerte" OR "causas de morte" OR "death certificate*" OR "certificados de defuncion" OR "declaracao de obito" OR CRVS OR mortality OR mortalidad OR mortalidade)) AND (tw:("garbage code*" OR "codigos basura" OR "codigos lixo" OR "codigos garbage" OR "ill-defined" OR "mal definidas" OR "mal definidos" OR "R00-R99" OR "unspecified cause*" OR "causas no especificadas" OR "causas nao especificadas")) AND (tw:(redistribut* OR redistribucion OR redistribuicao OR reclassif* OR reclasificacion OR reclassificacao OR imput* OR algorithm* OR algoritmo* OR "machine learning" OR "aprendizaje automatico" OR "aprendizado de maquina" OR "artificial intelligence" OR "inteligencia artificial" OR "proportional distribution" OR "distribucion proporcional" OR "multiple cause*" OR "causas multiples" OR "causas multiplas"))
 ```
 
-### Search Strategy: SciELO (Scientific Electronic Library Online)
+### Search Strategy: SciELO (Scientific Electronic Library Online) {.unnumbered}
 
-**Database:** SciELO **Date of Search:** October 17, 2026 **Limits:** None (No publication date restrictions applied). **Note:** To effectively capture the substantial volume of methodological literature generated in Latin America, particularly from Brazil regarding "códigos lixo" (garbage codes), the SciELO search strategy was adapted into a targeted, trilingual format (English, Spanish, Portuguese). Due to the Boolean complexity limits of the SciELO search engine, the string was distilled to its core programmatic concepts. The search was executed in the "All indices" default field. Retrieved records are exported in `.ris` format for synthesis.
+**Database:** SciELO **Date of Search:** November 14, 2026 **Limits:** None (No publication date restrictions applied). **Note:** To effectively capture the substantial volume of methodological literature generated in Latin America, particularly from Brazil regarding "códigos lixo" (garbage codes), the SciELO search strategy was adapted into a targeted, trilingual format (English, Spanish, Portuguese). Due to the Boolean complexity limits of the SciELO search engine, the string was distilled to its core programmatic concepts. The search was executed in the "All indices" default field. Retrieved records are exported in `.ris` format for synthesis.
 
 | Line | Search Strategy (SciELO Syntax) | Conceptual Block |
-|:--------------------------:|:---------------------|:---------------------|
+|:--:|:---|:---|
 | **1** | `("vital statistics" OR "estadisticas vitales" OR "estatisticas vitais" OR "cause of death" OR "causas de muerte" OR "causas de morte" OR "mortality" OR "mortalidad" OR "mortalidade" OR "death certificate*" OR "certificados de defuncion" OR "declaracao de obito")` | **Population:** Mortality registries and vital statistics (Trilingual) |
 | **2** | `("garbage code*" OR "codigos basura" OR "codigos lixo" OR "codigos garbage" OR "ill-defined" OR "mal definidas" OR "mal definidos" OR "unspecified cause*" OR "causas no especificadas" OR "causas nao especificadas" OR R00-R99)` | **Concept A:** "Garbage Codes" and ill-defined causes (Trilingual) |
 | **3** | `(redistribut* OR redistribucion OR redistribuicao OR reclassif* OR reclasificacion OR reclassificacao OR imput* OR algorithm* OR algoritmo* OR "machine learning" OR "aprendizaje automatico" OR "aprendizado de maquina" OR "proportional distribution" OR "distribucion proporcional")` | **Concept B:** Analytical and redistribution methods (Trilingual) |
 | **4** | `#1 AND #2 AND #3` | **FINAL COMBINED STRATEGY** |
 
-#### Web Interface Execution String
+#### Web Interface Execution String {.unnumbered}
 
-```text ("vital statistics" OR "estadisticas vitales" OR "estatisticas vitais" OR "cause of death" OR "causas de muerte" OR "causas de morte" OR "mortality" OR "mortalidad" OR "mortalidade" OR "death certificate*" OR "certificados de defuncion" OR "declaracao de obito") AND ("garbage code*" OR "codigos basura" OR "codigos lixo" OR "codigos garbage" OR "ill-defined" OR "mal definidas" OR "mal definidos" OR "unspecified cause*" OR "causas no especificadas" OR "causas nao especificadas" OR R00-R99) AND (redistribut* OR redistribucion OR redistribuicao OR reclassif\* OR reclasificacion OR reclassificacao OR imput\* OR algorithm\* OR algoritmo\* OR "machine learning" OR "aprendizaje automatico" OR "aprendizado de maquina" OR "proportional distribution" OR "distribucion proporcional")
+``` text
+("vital statistics" OR "estadisticas vitales" OR "estatisticas vitais" OR "cause of death" OR "causas de muerte" OR "causas de morte" OR "mortality" OR "mortalidad" OR "mortalidade" OR "death certificate*" OR "certificados de defuncion" OR "declaracao de obito") AND ("garbage code*" OR "codigos basura" OR "codigos lixo" OR "codigos garbage" OR "ill-defined" OR "mal definidas" OR "mal definidos" OR "unspecified cause*" OR "causas no especificadas" OR "causas nao especificadas" OR R00-R99) AND (redistribut* OR redistribucion OR redistribuicao OR reclassif* OR reclasificacion OR reclassificacao OR imput* OR algorithm* OR algoritmo* OR "machine learning" OR "aprendizaje automatico" OR "aprendizado de maquina" OR "proportional distribution" OR "distribucion proporcional")
 ```
 
-## Appendix II: PRISMA-S audit and mapping table
+\newpage
+
+## Appendix II: PRISMA-S audit and mapping table {.unnumbered}
 
 The following table details the adherence to the 16 items of the PRISMA-S guideline for the scoping review protocol entitled *"Methodologies for the correction of Garbage codes in mortality records and their applicability in microsimulation models"*, ensuring complete search auditability, transparency, and computational reproducibility.
 
 | PRISMA-S Item | Reporting Requirement | Specific Implementation in Protocol & R Pipeline | Location / Status |
-|:-----------------|:-----------------|:-----------------|:-----------------|
+|:---|:---|:---|:---|
 | **1. Information sources** | Describe all information sources consulted (databases, registries, websites, grey literature). | Indexed databases: PubMed/MEDLINE, Scopus, Web of Science, LILACS, and SciELO. Institutional grey literature: WHO, PAHO, IHME, and MINSAL. Specialized grey repositories: CADTH GreyMatters, BASE, and OpenGrey. | Section 3.1 & Section 3.2 |
 | **2. Electronic search strategy** | Present the full electronic search strategy for at least one major database, including syntax and operators. | Complete search query designed for MEDLINE (via Ovid) structured under the Population, Concept, and Context (PCC) framework. | Section 6.1 (Appendix I) |
 | **3. Database platforms and vendors** | Specify the database platforms or interface vendors used for each search. | Programmatic querying via Application APIs and specialized R libraries (`rentrez` for PubMed, `rscopus` for Scopus) and Ovid interface for MEDLINE. | Section 3.2 |
 | **4. Translation of search strategy** | Describe how the search strategy was adapted for different thesauri and syntaxes. | Adaptation of MeSH descriptors and free-text terms optimized via term co-occurrence networks using the `litsearchr` package in R. | Section 3.2 |
 | **5. Limits and restrictions** | Specify any search-level restrictions applied (dates, languages, document types). | No temporal or publication date restrictions were applied. No initial language restrictions (English, Spanish, Portuguese). | Section 2.4 & Section 6.1 |
-| **6. Search dates** | Indicate the exact date when searches were executed or scheduled for each source. | Primary literature search scheduled *a priori* for **October 2026**, with a final verification re-run prior to synthesis. | Section 3.1 & Section 6.1 |
+| **6. Search dates** | Indicate the exact date when searches were executed or scheduled for each source. | Primary literature search scheduled *a priori* for **November 2026**, with a final verification re-run prior to synthesis. | Section 3.1 & Section 6.1 |
 | **7. Contacting authors** | Indicate if study authors, experts, or key researchers were contacted to identify unpublished studies. | Planned consultations with vital statistics epidemiologists, public health officials, and key regional collaborators in Latin America. | Section 3.1 |
 | **8. Registration** | Cite the *a priori* protocol registration and registry platform used. | Registered *a priori* on the **Open Science Framework (OSF)**. | Introduction & Section 3.3 |
 | **9. Supplementary searches (Citation searching)** | Describe supplementary search methods (backward and forward citation tracking). | Manual backward citation tracking (*backwards citation searching*) on all studies selected for full-text extraction. | Section 3.1 |
 | **10. Peer review of search strategy** | Indicate if the search strategy was peer-reviewed by an expert (e.g., librarian or PRESS). | Search strategy developed in collaboration with a medical librarian and algorithmically optimized via term co-occurrence networks in R. | Section 3.1 & Section 3.2 |
-| **11. Total records identified** | Report the total number of records identified from each database and grey literature source. | *Pending empirical execution (October 2026)*. Will be formally documented in the final PRISMA-ScR flow diagram. | Flow Diagram / Results |
+| **11. Total records identified** | Report the total number of records identified from each database and grey literature source. | *Pending empirical execution (November 2026)*. Will be formally documented in the final PRISMA-ScR flow diagram. | Flow Diagram / Results |
 | **12. Duplicate removal** | Describe the process and tools used for duplicate removal. | Automated consolidation using the `synthesisr` package in R via fuzzy string-matching, with manual verification of edge cases. | Section 3.2 |
 | **13. Selection process** | Describe the study selection and screening process (title/abstract and full-text screening). | Dual independent screening by two human reviewers via `revtools`, assisted by Latent Dirichlet Allocation (LDA) topic modeling strictly as a human-in-the-loop decision-support tool. | Section 3.2 |
 | **14. Data collection process** | Describe the data collection process and extraction tools. | Standardized programmatic data charting in R across six analytical dimensions, executed independently and in duplicate. | Section 3.3 |
 | **15. Data items** | List and define all variables planned for extraction. | Electronic data charting form structured across 6 blocks: Metadata, Health System Context, Registry Characteristics, Garbage Code Typology, Correction Methodology, and Microsimulation Applicability. | Section 6.2 (Appendix II) |
 | **16. Search auditability & reproducibility** | Ensure complete audit trail and reproducibility of the search process. | Executable R scripts, syntax codes, and extraction matrices exported and permanently archived in the project's OSF repository. | Section 3.2 & Section 3.3 |
 
-## Appendix III: Preferred Reporting Items for Systematic Reviews and Meta-Analyses Extension for Scoping Reviews (PRISMA-ScR) Checklist
+\newpage
+
+## Appendix III: Preferred Reporting Items for Systematic Reviews and Meta-Analyses Extension for Scoping Reviews (PRISMA-ScR) Checklist {.unnumbered}
 
 | Section / Topic | Item \# | PRISMA-ScR Checklist Item | Reported on Page / Section | Specific Implementation in Protocol |
-|:--------------|:-------------:|:--------------|:--------------|:--------------|
+|:---|:--:|:---|:---|:---|
 | **TITLE** |  |  |  |  |
 | Title | 1 | Identify the report as a scoping review. | Title Page & Section 1 | Declared as a Scoping Review Protocol in the main title. |
 | **ABSTRACT** |  |  |  |  |
@@ -350,17 +370,17 @@ The following table details the adherence to the 16 items of the PRISMA-S guidel
 | Rationale | 3 | Describe the rationale for the review in the context of what is already known. | Section 1.1 (Background) | Details the "garbage codes" problem, limitations of macro-level corrections, and the translational gap toward microsimulation. |
 | Objectives | 4 | Provide an explicit statement of the question(s) or objective(s) being addressed. | Section 1.2 (Research Questions) | Formulates 4 explicit research questions using the Population, Concept, and Context (PCC) framework. |
 | **METHODS** |  |  |  |  |
-| Protocol & registration | 5 | Indicate if a review protocol exists; state if registered and supply registration info. | Section 3.2 & OSF Link | Registered *a priori* on the Open Science Framework (OSF ID: `10.17605/OSF.IO/ZP9AQ`). |
+| Protocol & registration | 5 | Indicate if a review protocol exists; state if registered and supply registration info. | Section 3.2 & OSF Link | Registered *a priori* on the Open Science Framework (OSF ID: [osf.io/374tm](https://osf.io/374tm)). |
 | Eligibility criteria | 6 | Specify characteristics used to decide eligibility (e.g., PCC, study design). | Section 2 (Eligibility Criteria) | Structured according to Population (mortality records/LMICs), Concept (garbage code algorithms), and Context (microsimulation applicability). |
 | Information sources | 7 | Describe all information sources (databases, grey literature, contact with authors). | Section 3.1 & Appendix I/III | MEDLINE/Ovid, Scopus, Web of Science, LILACS, SciELO, plus WHO, PAHO, IHME grey literature repositories. |
 | Search strategy | 8 | Present full electronic search strategy for at least one database, including limits. | Appendix I (Section 7.1) | Complete Ovid MEDLINE syntax provided with Boolean operators, MeSH terms, and line-by-line targets. |
 | Selection process | 9 | State process for selecting sources (screening, eligibility, deduplication tools). | Section 3.2 | Programmatic deduplication (`synthesisr`), dual independent screening (`revtools`), assisted by LDA topic modeling. |
 | Data charting process | 10 | Describe methods of charting data (forms, piloting, reviewer duplication). | Section 3.3 & Appendix II | Dual independent programmatic charting using a 6-block relational data extraction schema in R. |
-| Data items | 11 | List and define all variables for which data were sought. | Section 3.3 & Appendix II | Defines 20 variables across metadata, health context, registry quality, garbage code typology, methods, and TRL/microsimulation applicability. |
+| Data items | 11 | List and define all variables for which data were sought. | Section 3.3 & Appendix II | Defines 22 variables across metadata, health context, registry quality, garbage code typology, methods, and TRL/microsimulation applicability. |
 | Critical appraisal | 12 | State whether critical appraisal was conducted; if not, state why. | Section 3.3 | In accordance with JBI scoping review guidelines, formal risk-of-bias/critical appraisal is omitted as the objective is to map methodologies. |
 | Synthesis of results | 13 | Describe methods of handling and summarizing data (tables, charts, narrative). | Section 3.4 & 3.5 | Combines descriptive quantitative metrics, thematic narrative synthesis, ggplot2 matrix heatmaps, and igraph network diagrams. |
 | **RESULTS** |  |  |  |  |
-| Selection of sources | 14 | Report numbers of records screened, assessed for eligibility, and included. | *Pending Execution* | To be reported in the PRISMA-ScR Flow Diagram upon study completion (September 2026). |
+| Selection of sources | 14 | Report numbers of records screened, assessed for eligibility, and included. | *Pending Execution* | To be reported in the PRISMA-ScR Flow Diagram upon study completion (November 2026). |
 | Characteristics of sources | 15 | Describe characteristics of included sources of evidence. | *Pending Execution* | To be tabulated in the final review using the Appendix II extraction schema. |
 | Critical appraisal results | 16 | Share results of any critical appraisal of individual sources. | *Not Applicable* | Not conducted, in strict adherence to JBI scoping review methodology. |
 | Results of individual sources | 17 | For each source, present relevant data charted. | *Pending Execution* | Will be archived as open CSV/JSON matrices on the OSF project repository. |
@@ -372,15 +392,17 @@ The following table details the adherence to the 16 items of the PRISMA-S guidel
 | **FUNDING** |  |  |  |  |
 | Funding | 22 | Describe sources of funding and role of funders. | Section 7 | Self-funded through institutional academic time; no commercial or external grants. |
 
-## Appendix IV: Data extraction instrument
+\newpage
+
+## Appendix IV: Data extraction instrument {.unnumbered}
 
 | Block | Variable | Description / Purpose | Suggested Format / Values |
-|:-----------------|:-----------------|:-----------------|:-----------------|
+|:---|:---|:---|:---|
 | **I. Identification & Metadata** | Study ID | Unique identifier assigned by R workflow | Numeric (e.g., 001) |
 |  | Bibliographic Data | Author, year, title, and journal/institution | Text |
 |  | Evidence Type | Original article, technical report, or method book | Dropdown |
 | **II. Geographic & Health Context** | Geographic Scope | Country, region, or sub-national area | Text |
-|  | Economic Classification | World Bank income level | Dropdown (Low, Lower-Middle, Upper-Middle) |
+|  | Economic Classification | World Bank income level | Dropdown (Low, Lower-Middle, Upper-Middle, High) |
 |  | CRVS System Status | Description of Civil Registration and Vital Statistics status | Text |
 | **III. Mortality Database** | Data Periodicity | Years covered by mortality records | Text / Numeric |
 |  | Data Volume | Sample size (number of deaths analyzed) | Numeric |
@@ -398,7 +420,3 @@ The following table details the adherence to the 16 items of the PRISMA-S guidel
 |  | Demographic Granularity | Consistency at sub-group/small-area levels | Scale (1-5) |
 |  | Parametrization Potential | Capability to feed agent-based/microsimulation models | Scale (1-5) |
 |  | Reviewer Notes | Professional notes on applicability and transferability | Free text |
-
-## 
-
-## 

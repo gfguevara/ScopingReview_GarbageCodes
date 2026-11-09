@@ -1,0 +1,3 @@
+table { width: 100%; table-layout: fixed; font-size: 0.85em; }
+th, td { vertical-align: top; padding: 4px 6px; overflow-wrap: anywhere; }
+td code, pre, pre code { white-space: pre-wrap; overflow-wrap: anywhere; }
